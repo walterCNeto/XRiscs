@@ -1,6 +1,6 @@
 # XRiscs — Derivativos com Python
 
-Curso em português, em 16 notebooks, sobre avaliação baseada em mercado de opções sobre índices, construído sobre o livro *Derivatives Analytics with Python* (Y. Hilpisch, Wiley, 2015): teoria passo a passo, laboratórios em Python e 435 verificações numéricas automáticas.
+Curso em português, em 18 notebooks, sobre avaliação baseada em mercado de opções sobre índices, construído sobre o livro *Derivatives Analytics with Python* (Y. Hilpisch, Wiley, 2015): teoria passo a passo, laboratórios em Python e 482 verificações numéricas automáticas. Os dois últimos módulos complementam o livro com o modelo de juros de Hull-White (fórmulas fechadas e árvore trinomial).
 
 **Leia online:** https://waltercneto.github.io/XRiscs
 
@@ -24,6 +24,8 @@ Curso em português, em 16 notebooks, sobre avaliação baseada em mercado de op
 | 14 | Calibração II: saltos e BCC97 | cap. 11 |
 | 15 | Simulação no BCC97 | cap. 12 |
 | 16 | Hedge dinâmico e síntese | caps. 13-14 |
+| 17 | Hull-White I: medidas, modelo e fórmulas fechadas | complemento |
+| 18 | Hull-White II: árvore trinomial e Black-Karasinski | complemento |
 
 A página `erratas.md` (gerada por `scripts/gerar_erratas.py`) reúne as correções ao livro encontradas nos laboratórios.
 
@@ -33,7 +35,7 @@ A página `erratas.md` (gerada por `scripts/gerar_erratas.py`) reúne as correç
 conda env create -f environment.yml
 conda activate xriscs
 jupyter lab                  # estudar
-pytest -q                    # executar todos os notebooks e conferir as verificações (~15 min)
+pytest -q                    # executar todos os notebooks e conferir as verificações (~16 min)
 jupyter-book build .         # gerar o site em _build/html
 ```
 

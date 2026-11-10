@@ -25,7 +25,7 @@ for caminho in sorted(glob.glob(str(RAIZ / "[0-9][0-9]_*.ipynb"))):
         dentro = False
         for linha in linhas:
             if linha.startswith("## "):
-                dentro = bool(re.search(CABECALHO, linha))
+                dentro = bool(re.search(CABECALHO, linha)) and "planilha" not in linha.lower()
                 continue
             if dentro:
                 secao.append(linha)
