@@ -19,6 +19,8 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python scripts/gerar_erratas.py
       - run: jupyter-book build . --warningiserror --keep-going
+      - name: Publicar o livro em PDF num endereço fixo (abre no navegador)
+        run: cp livro/XRiscs_Derivativos_com_Python.pdf _build/html/livro.pdf
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
