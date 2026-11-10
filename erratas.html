@@ -1,0 +1,1073 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Erratas e notas sobre o livro &#8212; XRiscs — Derivativos com Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Clique para mostrar';</script>
+    <script>let toggleHintHide = 'Clique para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=daa5921a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"E": "\\mathbb{E}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'erratas';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="prev" title="Módulo 16 — Hedge dinâmico e síntese" href="16_hedge_dinamico.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">XRiscs — Derivativos com Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    XRiscs — Derivativos com Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_avaliacao_baseada_em_mercado.html">Módulo 1 — O que é avaliação baseada em mercado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_fatos_estilizados.html">Módulo 2 — Fatos estilizados e volatilidade implícita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_neutralidade_discreto.html">Módulo 3 — Neutralidade ao risco em tempo discreto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_tempo_continuo.html">Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos e métodos de avaliação</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_bsm.html">Módulo 5 — Black-Scholes-Merton: a EDP, a fórmula e as gregas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_crr.html">Módulo 6 — A árvore binomial de Cox-Ross-Rubinstein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_fourier_lewis.html">Módulo 7 — Fourier I: da função característica à fórmula de Lewis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_fourier_fft.html">Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_americanas_lsm.html">Módulo 9 — Opções americanas por simulação: LSM e dual</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avaliação baseada em mercado</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10_merton_mercado.html">Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bcc97.html">Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_monte_carlo.html">Módulo 12 — Monte Carlo: discretização e redução de variância</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_calibracao_cir_heston.html">Módulo 13 — Calibração I: a curva de juros no CIR e as opções no Heston</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_calibracao_bcc97.html">Módulo 14 — Calibração II: saltos, regularização e o BCC97 completo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_simulacao_bcc97.html">Módulo 15 — Simulação e avaliação no modelo geral BCC97</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_hedge_dinamico.html">Módulo 16 — Hedge dinâmico e síntese</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referência</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Erratas e notas sobre o livro</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/walterCNeto/XRiscs" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositório fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/walterCNeto/XRiscs/issues/new?title=Issue%20on%20page%20%2Ferratas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abra um problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/erratas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Erratas e notas sobre o livro</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-2-fatos-estilizados-e-volatilidade-implicita">Módulo 2 — Fatos estilizados e volatilidade implícita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-3-neutralidade-ao-risco-em-tempo-discreto">Módulo 3 — Neutralidade ao risco em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-4-tempo-continuo-browniano-ito-e-girsanov">Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-5-black-scholes-merton-a-edp-a-formula-e-as-gregas">Módulo 5 — Black-Scholes-Merton: a EDP, a fórmula e as gregas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-6-a-arvore-binomial-de-cox-ross-rubinstein">Módulo 6 — A árvore binomial de Cox-Ross-Rubinstein</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-7-fourier-i-da-funcao-caracteristica-a-formula-de-lewis">Módulo 7 — Fourier I: da função característica à fórmula de Lewis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-8-fourier-ii-carr-madan-fft-e-convolucao">Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-9-opcoes-americanas-por-simulacao-lsm-e-dual">Módulo 9 — Opções americanas por simulação: LSM e dual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-10-primeiro-exemplo-completo-avaliacao-baseada-em-mercado-com-merton">Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-11-o-modelo-geral-bcc97-volatilidade-estocastica-saltos-e-juros-estocasticos">Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-12-monte-carlo-discretizacao-e-reducao-de-variancia">Módulo 12 — Monte Carlo: discretização e redução de variância</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-13-calibracao-i-a-curva-de-juros-no-cir-e-as-opcoes-no-heston">Módulo 13 — Calibração I: a curva de juros no CIR e as opções no Heston</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-14-calibracao-ii-saltos-regularizacao-e-o-bcc97-completo">Módulo 14 — Calibração II: saltos, regularização e o BCC97 completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-15-simulacao-e-avaliacao-no-modelo-geral-bcc97">Módulo 15 — Simulação e avaliação no modelo geral BCC97</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-16-hedge-dinamico-e-sintese">Módulo 16 — Hedge dinâmico e síntese</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="erratas-e-notas-sobre-o-livro">
+<h1>Erratas e notas sobre o livro<a class="headerlink" href="#erratas-e-notas-sobre-o-livro" title="Link para este cabeçalho">#</a></h1>
+<p>Esta página junta, módulo a módulo, as erratas e observações registradas nos notebooks. Cada item foi
+conferido numericamente no laboratório correspondente. O livro de referência é <em>Derivatives Analytics
+with Python</em> (Y. Hilpisch, Wiley, 2015); as seções e equações citadas são as do livro.</p>
+<p>Página gerada automaticamente por <code class="docutils literal notranslate"><span class="pre">scripts/gerar_erratas.py</span></code>.</p>
+<section id="modulo-2-fatos-estilizados-e-volatilidade-implicita">
+<h2>Módulo 2 — Fatos estilizados e volatilidade implícita<a class="headerlink" href="#modulo-2-fatos-estilizados-e-volatilidade-implicita" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="02_fatos_estilizados.html"><span class="std std-doc">02_fatos_estilizados</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Problema</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Comentário 4 após a saída da GBM</p></td>
+<td><p>cita p-valor conjunto de 0,426, enquanto a saída impressa mostra 0,374</p></td>
+</tr>
+<tr class="row-odd"><td><p>§3.4.2, contagem de saltos</p></td>
+<td><p>escreve <span class="math notranslate nohighlight">\(P(r_n &gt; -0{,}05)\)</span>; deveria ser <span class="math notranslate nohighlight">\(+0{,}05\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>§3.4.2, contagem de saltos</p></td>
+<td><p>as probabilidades informadas (2,911 e 3,402 por 10.000 dias) não fecham com <span class="math notranslate nohighlight">\(\hat\mu\)</span> e <span class="math notranslate nohighlight">\(\hat\sigma\)</span> impressos, que dão 1,267 e 1,542 por 10.000 dias</p></td>
+</tr>
+<tr class="row-odd"><td><p>§3.5.2, primeira bolha</p></td>
+<td><p>diz que calls OTM têm implícita mais alta; a Figura 3.11 mostra isso para calls ITM (puts OTM)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-3-neutralidade-ao-risco-em-tempo-discreto">
+<h2>Módulo 3 — Neutralidade ao risco em tempo discreto<a class="headerlink" href="#modulo-3-neutralidade-ao-risco-em-tempo-discreto" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="03_neutralidade_discreto.html"><span class="std std-doc">03_neutralidade_discreto</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Problema</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Defs. 19 e 25</p></td>
+<td><p>admissibilidade com <span class="math notranslate nohighlight">\(V_t \ge -\alpha\)</span> torna “arbitragem” qualquer estratégia alavancada com ganho esperado positivo; o correto (Harrison-Pliska) é <span class="math notranslate nohighlight">\(V_t \ge 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Prova do Lema 1</p></td>
+<td><p>“<span class="math notranslate nohighlight">\(u &lt; t\)</span>” na definição de <span class="math notranslate nohighlight">\(\psi\)</span> deveria ser “<span class="math notranslate nohighlight">\(u &gt; t\)</span>”</p></td>
+</tr>
+<tr class="row-even"><td><p>Prova da Prop. 1</p></td>
+<td><p>a soma usa <span class="math notranslate nohighlight">\(\beta_{t+1}S_{t+1}\)</span>; o correto é <span class="math notranslate nohighlight">\(\beta_{t-1}S_{t-1}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Prova da Prop. 1</p></td>
+<td><p>“trading strategy <span class="math notranslate nohighlight">\(\zeta \in T\)</span>” deveria ser <span class="math notranslate nohighlight">\(\phi\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Nota 13</p></td>
+<td><p>refere “condição 3 da definição 3”; o certo é definição 1 (álgebra)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-4-tempo-continuo-browniano-ito-e-girsanov">
+<h2>Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov<a class="headerlink" href="#modulo-4-tempo-continuo-browniano-ito-e-girsanov" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="04_tempo_continuo.html"><span class="std std-doc">04_tempo_continuo</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Justificativa de (4.1)</p></td>
+<td><p>a esperança da integral é zero só se <span class="math notranslate nohighlight">\(V\)</span> for martingale verdadeiro; admissibilidade garante apenas <span class="math notranslate nohighlight">\(\mathbb{E}^Q[V_T] \le V_0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Teorema 3</p></td>
+<td><p>a medida é martingale local (sigma-martingale, no caso mais geral), e não martingale, para <span class="math notranslate nohighlight">\(S\)</span> não limitado</p></td>
+</tr>
+<tr class="row-even"><td><p>Def. 37 (arbitragem contínua)</p></td>
+<td><p>exige <span class="math notranslate nohighlight">\(V_T \ge 0\)</span>, corrigindo a Def. 25 do caso discreto</p></td>
+</tr>
+<tr class="row-odd"><td><p>Geral</p></td>
+<td><p>o teorema de Girsanov não é tratado; o livro passa direto à dinâmica sob <span class="math notranslate nohighlight">\(Q\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-5-black-scholes-merton-a-edp-a-formula-e-as-gregas">
+<h2>Módulo 5 — Black-Scholes-Merton: a EDP, a fórmula e as gregas<a class="headerlink" href="#modulo-5-black-scholes-merton-a-edp-a-formula-e-as-gregas" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="05_bsm.html"><span class="std std-doc">05_bsm</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Problema</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Passagem para (5.6)</p></td>
+<td><p><span class="math notranslate nohighlight">\(r(V - \partial V/\partial S)\)</span> deveria ser <span class="math notranslate nohighlight">\(r(V - S\,\partial V/\partial S)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Equação (5.6)</p></td>
+<td><p>falta o fator <span class="math notranslate nohighlight">\(rS\)</span> no primeiro termo: o correto é <span class="math notranslate nohighlight">\(rS\,\partial V/\partial S\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>§5.2.2</p></td>
+<td><p>a carteira <span class="math notranslate nohighlight">\(\Pi = V - \Delta S\)</span> não é autofinanciada; a dedução usa <span class="math notranslate nohighlight">\(\Delta\)</span> fixo no intervalo</p></td>
+</tr>
+<tr class="row-odd"><td><p>§5.2.3, item 1</p></td>
+<td><p>“<span class="math notranslate nohighlight">\(K &gt; 100\)</span> for the put, OTM” deveria ser <span class="math notranslate nohighlight">\(K &lt; 100\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-6-a-arvore-binomial-de-cox-ross-rubinstein">
+<h2>Módulo 6 — A árvore binomial de Cox-Ross-Rubinstein<a class="headerlink" href="#modulo-6-a-arvore-binomial-de-cox-ross-rubinstein" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="06_crr.html"><span class="std std-doc">06_crr</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nota da Tabela 5.1</p></td>
+<td><p>diz “put”; a tabela é de call</p></td>
+</tr>
+<tr class="row-odd"><td><p>§5.4, após a Figura 5.8</p></td>
+<td><p>atribui a oscilação a “parametrização diferente”; o motivo é a paridade de <span class="math notranslate nohighlight">\(M\)</span> em relação à posição de <span class="math notranslate nohighlight">\(K\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-7-fourier-i-da-funcao-caracteristica-a-formula-de-lewis">
+<h2>Módulo 7 — Fourier I: da função característica à fórmula de Lewis<a class="headerlink" href="#modulo-7-fourier-i-da-funcao-caracteristica-a-formula-de-lewis" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="07_fourier_lewis.html"><span class="std std-doc">07_fourier_lewis</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Prova da Prop. 6</p></td>
+<td><p>a expressão <span class="math notranslate nohighlight">\((z - i/2)^2 - (z - i/2)i = z^2 - 2zi + 1/4\)</span> está errada; o denominador correto, com a reta em <span class="math notranslate nohighlight">\(u_i = 1/2\)</span>, é <span class="math notranslate nohighlight">\(z^2 + 1/4\)</span>. A fórmula (6.5) está certa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Geral</p></td>
+<td><p>a existência de <span class="math notranslate nohighlight">\(\phi\)</span> em argumentos complexos exige uma faixa de analiticidade, que o texto não discute</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-8-fourier-ii-carr-madan-fft-e-convolucao">
+<h2>Módulo 8 — Fourier II: Carr-Madan, FFT e convolução<a class="headerlink" href="#modulo-8-fourier-ii-carr-madan-fft-e-convolucao" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="08_fourier_fft.html"><span class="std std-doc">08_fourier_fft</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Problema</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§6.5.1</p></td>
+<td><p><span class="math notranslate nohighlight">\(e^{iux}\)</span> está expandida incorretamente: o fator é <span class="math notranslate nohighlight">\(e^{-u_ix}\)</span> e a oscilação usa apenas <span class="math notranslate nohighlight">\(u_r\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Def. 43</p></td>
+<td><p>as somas de potências devem começar em <span class="math notranslate nohighlight">\(j = 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Def. 43</p></td>
+<td><p>potências positivas de <span class="math notranslate nohighlight">\(z_n\)</span> giram em sentido horário</p></td>
+</tr>
+<tr class="row-odd"><td><p>Def. 44</p></td>
+<td><p>a inversa da DFT precisa do fator <span class="math notranslate nohighlight">\(1/n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>§6.6.2, equação (6.13)</p></td>
+<td><p>a lei <span class="math notranslate nohighlight">\(\ln(1+J) \sim N(\ln(1+\mu_J) - \delta^2/2, \delta^2)\)</span> não é compatível com <span class="math notranslate nohighlight">\(r_J = \lambda(e^{\mu_J + \delta^2/2} - 1)\)</span> e com (6.14), que correspondem a <span class="math notranslate nohighlight">\(\ln(1+J) \sim N(\mu_J, \delta^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>§6.6.3</p></td>
+<td><p>o vetor <span class="math notranslate nohighlight">\(qv = (0{,}5034;\ 0{,}4966; \dots)\)</span> é incompatível com <span class="math notranslate nohighlight">\(q = 0{,}5378\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Equação (6.6)</p></td>
+<td><p>falta tomar a parte real</p></td>
+</tr>
+<tr class="row-odd"><td><p>§6.6.1, precisão da FFT</p></td>
+<td><p>os cinco dígitos relatados vêm do ramo OTM do script, de cauda lenta; não são um limite da FFT</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-9-opcoes-americanas-por-simulacao-lsm-e-dual">
+<h2>Módulo 9 — Opções americanas por simulação: LSM e dual<a class="headerlink" href="#modulo-9-opcoes-americanas-por-simulacao-lsm-e-dual" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="09_americanas_lsm.html"><span class="std std-doc">09_americanas_lsm</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tabelas 7.1 e 7.2</p></td>
+<td><p>a referência (árvore de 500 passos) é americana; os algoritmos estimam bermudanas de <span class="math notranslate nohighlight">\(M\)</span> datas. Boa parte da “diferença” reportada, sobretudo no condor, é a diferença entre as duas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tabela 7.2, nota</p></td>
+<td><p>diz “American put option”; a tabela é do short condor</p></td>
+</tr>
+<tr class="row-even"><td><p>Tabela 7.1 e §7.4.1</p></td>
+<td><p>o espaçamento entre LSM e dual é atribuído ao algoritmo; ele vem sobretudo do ruído da simulação aninhada (<span class="math notranslate nohighlight">\(J = 50\)</span>), que infla o limite superior</p></td>
+</tr>
+<tr class="row-odd"><td><p>Equações (7.8) a (7.12)</p></td>
+<td><p>o martingale deve ser expresso em unidades descontadas, como <span class="math notranslate nohighlight">\(h\)</span>; o texto mistura <span class="math notranslate nohighlight">\(B_0(t)[h_t - \mathcal{M}_t]\)</span> com um <span class="math notranslate nohighlight">\(\mathcal{M}^*\)</span> formado por valores não descontados</p></td>
+</tr>
+<tr class="row-even"><td><p>Equação (7.11)</p></td>
+<td><p>o máximo passa de <span class="math notranslate nohighlight">\(t \in \{\Delta t, \dots, T\}\)</span> para <span class="math notranslate nohighlight">\(t \in \{0, \dots, T\}\)</span> sem comentário</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-10-primeiro-exemplo-completo-avaliacao-baseada-em-mercado-com-merton">
+<h2>Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton<a class="headerlink" href="#modulo-10-primeiro-exemplo-completo-avaliacao-baseada-em-mercado-com-merton" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="10_merton_mercado.html"><span class="std std-doc">10_merton_mercado</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§8.2</p></td>
+<td><p>a lei <span class="math notranslate nohighlight">\(\ln(1+J) \sim N(\ln(1+\mu_J) - \delta^2/2, \delta^2)\)</span> não é a usada em <span class="math notranslate nohighlight">\(r_J\)</span>, em (8.2) e nos scripts, que correspondem a <span class="math notranslate nohighlight">\(\ln(1+J) \sim N(\mu_J, \delta^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>§8.5, saída do script</p></td>
+<td><p>os valores “Int” usam integração até <span class="math notranslate nohighlight">\(z = 50\)</span>, curta demais para <span class="math notranslate nohighlight">\(T = 0{,}22\)</span>; são os valores FFT que estão corretos</p></td>
+</tr>
+<tr class="row-even"><td><p>Equações (8.5) e (8.6)</p></td>
+<td><p>o salto é somado, e <span class="math notranslate nohighlight">\(y\)</span> saltos no mesmo passo usam um único tamanho multiplicado por <span class="math notranslate nohighlight">\(y\)</span>; o esquema tem viés</p></td>
+</tr>
+<tr class="row-odd"><td><p>§8.5, saída do script</p></td>
+<td><p>a diferença entre simulação e fórmula combina esse viés com ruído de uma única semente</p></td>
+</tr>
+<tr class="row-even"><td><p>Script 8.7.5</p></td>
+<td><p>comenta “T = 0.22 # shortest maturity”, mas o prazo mais curto é de 17 dias (0,047 ano)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-11-o-modelo-geral-bcc97-volatilidade-estocastica-saltos-e-juros-estocasticos">
+<h2>Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos<a class="headerlink" href="#modulo-11-o-modelo-geral-bcc97-volatilidade-estocastica-saltos-e-juros-estocasticos" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="11_bcc97.html"><span class="std std-doc">11_bcc97</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Local</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§9.2</p></td>
+<td><p>a lei do salto não corresponde a <span class="math notranslate nohighlight">\(r_J\)</span> nem a (9.11); o correto é <span class="math notranslate nohighlight">\(J \sim N(\mu_J, \delta^2)\)</span> para o log-salto</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eq. (9.8)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\partial^2C/\partial S\)</span> deveria ser <span class="math notranslate nohighlight">\(\partial^2C/\partial S^2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Eq. (9.8)</p></td>
+<td><p>faltam os fatores <span class="math notranslate nohighlight">\(v\)</span> e <span class="math notranslate nohighlight">\(r\)</span> nos termos <span class="math notranslate nohighlight">\(\tfrac12\sigma_v^2\,\partial^2C/\partial v^2\)</span> e <span class="math notranslate nohighlight">\(\tfrac12\sigma_r^2\,\partial^2C/\partial r^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Prova da Prop. 8</p></td>
+<td><p>o salto entra como <span class="math notranslate nohighlight">\(\partial A/\partial S\cdot jdN\)</span>, aproximação de primeira ordem; o certo é a diferença exata, como a própria (9.8) usa</p></td>
+</tr>
+<tr class="row-even"><td><p>Prova da Prop. 8</p></td>
+<td><p>na primeira linha da expansão, <span class="math notranslate nohighlight">\(\partial A/\partial t\)</span> aparece dentro do fator <span class="math notranslate nohighlight">\(\tfrac12\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>§9.5.2</p></td>
+<td><p>o uso de <span class="math notranslate nohighlight">\(r_{0,T} = -\ln B_0(T)/T\)</span> é uma aproximação, não o tratamento de juros estocásticos do artigo original</p></td>
+</tr>
+<tr class="row-even"><td><p>Eq. (9.10)</p></td>
+<td><p>a forma usada é a estável, com <span class="math notranslate nohighlight">\(c_2 = -d\)</span>; ponto positivo do livro</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-12-monte-carlo-discretizacao-e-reducao-de-variancia">
+<h2>Módulo 12 — Monte Carlo: discretização e redução de variância<a class="headerlink" href="#modulo-12-monte-carlo-discretizacao-e-reducao-de-variancia" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="12_monte_carlo.html"><span class="std std-doc">12_monte_carlo</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Onde</p></th>
+<th class="head"><p>O quê</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§10.6.3 e §10.6.4, processo do índice</p></td>
+<td><p>usa <code class="docutils literal notranslate"><span class="pre">v[t]</span></code> (fim do passo) em vez de <code class="docutils literal notranslate"><span class="pre">v[t-1]</span></code>; cria o drift espúrio <span class="math notranslate nohighlight">\(\tfrac12\rho\sigma_v\)</span> por unidade de tempo em <span class="math notranslate nohighlight">\(\ln S\)</span>, que não diminui com <span class="math notranslate nohighlight">\(\Delta t\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Tabela 10.1 e Figura 10.4</p></td>
+<td><p>o salto de precisão atribuído ao casamento de momentos é, em sua maior parte, a correção de drift (<code class="docutils literal notranslate"><span class="pre">bias</span></code>) desfazendo o problema acima; com <code class="docutils literal notranslate"><span class="pre">v[t-1]</span></code> não há salto</p></td>
+</tr>
+<tr class="row-even"><td><p>§10.3, lista de esquemas</p></td>
+<td><p>“Truncation” coincide com “Absorption” e “Simple Reflection” com “Reflection”: são cinco esquemas, não sete</p></td>
+</tr>
+<tr class="row-odd"><td><p>§10.2, Figuras 10.2 e 10.3</p></td>
+<td><p>a referência em <span class="math notranslate nohighlight">\(t &gt; 0\)</span> é <span class="math notranslate nohighlight">\(P(\mathbb{E}[r_t])\)</span>, mas a média de Monte Carlo estima <span class="math notranslate nohighlight">\(\mathbb{E}[P(r_t)]\)</span>; a diferença (Jensen) é da ordem do viés do Euler que se quer mostrar</p></td>
+</tr>
+<tr class="row-even"><td><p>§10.6.2, esquema exato</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.ramdom.chisquare</span></code> (erro de digitação)</p></td>
+</tr>
+<tr class="row-odd"><td><p>§10.6.4, correlação</p></td>
+<td><p><span class="math notranslate nohighlight">\(\rho\)</span> posto entre juros e índice, e não entre variância e índice; o controle europeu disfarça o efeito</p></td>
+</tr>
+<tr class="row-even"><td><p>§10.4, controle</p></td>
+<td><p>a média do controle usa Heston com taxa constante <span class="math notranslate nohighlight">\(\bar r\)</span>, uma aproximação (Módulo 11), pequena para prazos de até seis meses</p></td>
+</tr>
+<tr class="row-odd"><td><p>§10.2</p></td>
+<td><p>a transição por qui-quadrado não central é clássica (Feller, 1951; Cox, Ingersoll e Ross, 1985); Broadie e Kaya (2006) a usam na simulação exata do Heston</p></td>
+</tr>
+<tr class="row-even"><td><p>Scripts</p></td>
+<td><p>Python 2 (<code class="docutils literal notranslate"><span class="pre">xrange</span></code>, <code class="docutils literal notranslate"><span class="pre">print</span></code> sem parênteses; <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">/</span> <span class="pre">2</span></code> vira real no Python 3)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-13-calibracao-i-a-curva-de-juros-no-cir-e-as-opcoes-no-heston">
+<h2>Módulo 13 — Calibração I: a curva de juros no CIR e as opções no Heston<a class="headerlink" href="#modulo-13-calibracao-i-a-curva-de-juros-no-cir-e-as-opcoes-no-heston" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="13_calibracao_cir_heston.html"><span class="std std-doc">13_calibracao_cir_heston</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Onde</p></th>
+<th class="head"><p>O quê</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exemplo 4 (§11.2.1)</p></td>
+<td><p>o limite é <span class="math notranslate nohighlight">\(\nu &lt; 1/2\)</span>, não <span class="math notranslate nohighlight">\(1/4\)</span>; o intervalo de preços é <span class="math notranslate nohighlight">\(]4, 8[\)</span>, e não <span class="math notranslate nohighlight">\(]4, 9[\)</span>; e em <span class="math notranslate nohighlight">\(\nu = 1/4\)</span> o preço seria 6, não “<span class="math notranslate nohighlight">\(1 + 8 = 9\)</span>”</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eq. (11.6) e código da §11.6.1</p></td>
+<td><p>falta o fator 2 no primeiro termo: o correto é <span class="math notranslate nohighlight">\(2\kappa_r\theta_r(e^{\gamma t} - 1)/D\)</span>; o <span class="math notranslate nohighlight">\(\theta_r\)</span> calibrado sai dobrado</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.6.1, ponto de partida</p></td>
+<td><p>com a fórmula do livro, o Nelder-Mead a partir de <span class="math notranslate nohighlight">\((1;\ 0{,}02;\ 0{,}1)\)</span> pode parar longe do ajuste</p></td>
+</tr>
+<tr class="row-odd"><td><p>§11.3.2, dados</p></td>
+<td><p>a Eonia de 01/10/2014 (<span class="math notranslate nohighlight">\(-0{,}032\%\)</span>) é usada como <span class="math notranslate nohighlight">\(r_0\)</span> do CIR, que não admite taxas negativas</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.3.2, contagem</p></td>
+<td><p>o texto chama a Euribor de “30/360”, mas o código usa dias corridos/360 (real/360, que é a convenção da Euribor); os prazos das opções usam /365</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eq. (11.7)</p></td>
+<td><p><span class="math notranslate nohighlight">\(B_t(T) = a\,e^{-b\,\mathbb{E}[r_t]}\)</span> não é o preço esperado do título em <span class="math notranslate nohighlight">\(t\)</span> (desigualdade de Jensen; ver Módulo 12)</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.4.1, <span class="math notranslate nohighlight">\(H_1\)</span></p></td>
+<td><p>o logaritmo impresso traz <span class="math notranslate nohighlight">\(1 - c_1e^{c_3T}\)</span>; o correto (e o código) é <span class="math notranslate nohighlight">\(1 - c_3e^{c_2T}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>§11.4.3</p></td>
+<td><p>a solução (<span class="math notranslate nohighlight">\(\kappa_v = 18{,}447\)</span>) está na fronteira de Feller: a restrição está ativa</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.6.2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">options.ix</span></code> foi removido do pandas; use <code class="docutils literal notranslate"><span class="pre">.loc</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-14-calibracao-ii-saltos-regularizacao-e-o-bcc97-completo">
+<h2>Módulo 14 — Calibração II: saltos, regularização e o BCC97 completo<a class="headerlink" href="#modulo-14-calibracao-ii-saltos-regularizacao-e-o-bcc97-completo" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="14_calibracao_bcc97.html"><span class="std std-doc">14_calibracao_bcc97</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Onde</p></th>
+<th class="head"><p>O quê</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§11.6.4, <code class="docutils literal notranslate"><span class="pre">BCC_calibration_short</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">opt1</span></code> e <code class="docutils literal notranslate"><span class="pre">local_opt</span></code> são atribuídos sem <code class="docutils literal notranslate"><span class="pre">global</span></code>: viram variáveis locais, e a penalidade da função objetivo nunca é aplicada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eq. (11.17)</p></td>
+<td><p>a penalidade é a norma <span class="math notranslate nohighlight">\(\lVert p - p_0\rVert\)</span>, não o quadrado: não é Tikhonov; com <span class="math notranslate nohighlight">\(w = 1\)</span> e EQM em pontos², congela os parâmetros no ponto de partida</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.4.4, resultados</p></td>
+<td><p><span class="math notranslate nohighlight">\(\lambda = 0{,}008\)</span>, <span class="math notranslate nohighlight">\(\mu_J = -0{,}600\)</span> (no limite) e <span class="math notranslate nohighlight">\(\delta = 0{,}001\)</span>: na prática, nenhum salto; sintoma da calibração sequencial</p></td>
+</tr>
+<tr class="row-odd"><td><p>§11.4.5, resultados</p></td>
+<td><p><span class="math notranslate nohighlight">\(\rho = -0{,}999\)</span> e <span class="math notranslate nohighlight">\(\delta = 0{,}000\)</span> na fronteira, <span class="math notranslate nohighlight">\(\lambda = 0{,}008\)</span>: o BCC97 calibrado é praticamente um Heston</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.4.6, resultados</p></td>
+<td><p><span class="math notranslate nohighlight">\(\kappa_v\)</span> vai de 22,2 a 28,5 entre (11.1) e (11.4), funções quase iguais: parâmetros mal identificados; <span class="math notranslate nohighlight">\(\mu_J = -0{,}600\)</span> de novo no limite</p></td>
+</tr>
+<tr class="row-odd"><td><p>§11.6.5 e §11.6.6</p></td>
+<td><p>a condição de Feller continua imposta (ver Módulo 13)</p></td>
+</tr>
+<tr class="row-even"><td><p>§11.6.2 e seguintes</p></td>
+<td><p>Nelder-Mead com restrições por “valor alto” pode parar cedo encostado numa parede; sem reinício, o resultado depende de detalhes mínimos dos dados</p></td>
+</tr>
+<tr class="row-odd"><td><p>§11.6.6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">options.ix</span></code> foi removido do pandas; use <code class="docutils literal notranslate"><span class="pre">.loc</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-15-simulacao-e-avaliacao-no-modelo-geral-bcc97">
+<h2>Módulo 15 — Simulação e avaliação no modelo geral BCC97<a class="headerlink" href="#modulo-15-simulacao-e-avaliacao-no-modelo-geral-bcc97" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="15_simulacao_bcc97.html"><span class="std std-doc">15_simulacao_bcc97</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Onde</p></th>
+<th class="head"><p>O quê</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§12.5.1, <code class="docutils literal notranslate"><span class="pre">B96_generate_paths</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rj</span></code> é calculado e nunca usado: falta o compensador <span class="math notranslate nohighlight">\(-r_J\Delta t\)</span> de (12.1); o índice perde <span class="math notranslate nohighlight">\(\lvert r_J\rvert\)</span> de drift por ano</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eq. (12.1) e código</p></td>
+<td><p>saltos aditivos com um único tamanho para todos os <span class="math notranslate nohighlight">\(y_t\)</span> saltos do passo; o exato é <span class="math notranslate nohighlight">\(e^{N\mu_J + \sqrt N\delta z}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Eq. (12.1) e código</p></td>
+<td><p>a variância do passo é <code class="docutils literal notranslate"><span class="pre">v[t]</span></code>, do fim do passo (Módulo 12); com <span class="math notranslate nohighlight">\(\rho = -0{,}999\)</span>, o drift espúrio é <span class="math notranslate nohighlight">\(-0{,}475\)</span> por ano</p></td>
+</tr>
+<tr class="row-odd"><td><p>§12.3.1</p></td>
+<td><p>o viés de 22 a 52 pontos atribuído ao número de passos vem do <code class="docutils literal notranslate"><span class="pre">v[t]</span></code>; o esquema exato acerta com 50 passos por ano a partir de 6 meses (só no prazo de 1 mês, com 4 passos, há viés de Euler de 1 a 2 pontos)</p></td>
+</tr>
+<tr class="row-even"><td><p>§12.3.2</p></td>
+<td><p>a “diferença” americana − europeia mistura prêmio e viés de simulação</p></td>
+</tr>
+<tr class="row-odd"><td><p>§12.5.3, título</p></td>
+<td><p>“American Call Options”, mas o script avalia puts</p></td>
+</tr>
+<tr class="row-even"><td><p>Parâmetros do livro</p></td>
+<td><p><span class="math notranslate nohighlight">\(\rho = -0{,}999\)</span>, <span class="math notranslate nohighlight">\(\delta = 0\)</span> e <span class="math notranslate nohighlight">\(\lambda = 0{,}008\)</span> vêm da calibração degenerada do Módulo 14</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scripts</p></td>
+<td><p>Python 2 (<code class="docutils literal notranslate"><span class="pre">xrange</span></code>, <code class="docutils literal notranslate"><span class="pre">print</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">/</span> <span class="pre">2</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modulo-16-hedge-dinamico-e-sintese">
+<h2>Módulo 16 — Hedge dinâmico e síntese<a class="headerlink" href="#modulo-16-hedge-dinamico-e-sintese" title="Link para este cabeçalho">#</a></h2>
+<p>Notebook: <a class="reference internal" href="16_hedge_dinamico.html"><span class="std std-doc">16_hedge_dinamico</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Onde</p></th>
+<th class="head"><p>O quê</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>§13.5.1 e §13.5.3, delta inicial</p></td>
+<td><p>os dois preços LSM da diferença finita usam números aleatórios diferentes: o delta inicial é dominado pelo ruído (desvio-padrão acima de 0,5)</p></td>
+</tr>
+<tr class="row-odd"><td><p>§13.5.1, regra de exercício</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">&gt;=</span> <span class="pre">C</span></code> com <code class="docutils literal notranslate"><span class="pre">C</span></code> truncado em zero marca como exercidas puts fora do dinheiro, encerrando o hedge antes da hora</p></td>
+</tr>
+<tr class="row-even"><td><p>§13.5.2</p></td>
+<td><p>P&amp;L calculado nas mesmas trajetórias da regressão (dentro da amostra), apesar de a nota 3 defender a avaliação fora da amostra</p></td>
+</tr>
+<tr class="row-odd"><td><p>§13.3, P&amp;L médio de +4,34</p></td>
+<td><p>numa simulação sob <span class="math notranslate nohighlight">\(Q\)</span>, o P&amp;L médio de um hedge autofinanciável iniciado no preço justo é zero; o valor positivo vem do simulador (Módulo 15)</p></td>
+</tr>
+<tr class="row-even"><td><p>§13.3, “risco de salto diversificável”</p></td>
+<td><p>a hipótese de Merton é de diversificação entre ativos; não vale para muitas opções sobre o mesmo índice, cujos saltos são comuns</p></td>
+</tr>
+<tr class="row-odd"><td><p>§13.5.3</p></td>
+<td><p>herda o simulador do cap. 12 (<code class="docutils literal notranslate"><span class="pre">v[t]</span></code>, compensador ausente, saltos aditivos, casamento de momentos)</p></td>
+</tr>
+<tr class="row-even"><td><p>Cap. 14</p></td>
+<td><p>o resumo é fiel ao livro; os módulos 12 a 16 mostram que as etapas de simulação, calibração e hedge precisam das conferências da Seção 6.2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="16_hedge_dinamico.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Módulo 16 — Hedge dinâmico e síntese</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-2-fatos-estilizados-e-volatilidade-implicita">Módulo 2 — Fatos estilizados e volatilidade implícita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-3-neutralidade-ao-risco-em-tempo-discreto">Módulo 3 — Neutralidade ao risco em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-4-tempo-continuo-browniano-ito-e-girsanov">Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-5-black-scholes-merton-a-edp-a-formula-e-as-gregas">Módulo 5 — Black-Scholes-Merton: a EDP, a fórmula e as gregas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-6-a-arvore-binomial-de-cox-ross-rubinstein">Módulo 6 — A árvore binomial de Cox-Ross-Rubinstein</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-7-fourier-i-da-funcao-caracteristica-a-formula-de-lewis">Módulo 7 — Fourier I: da função característica à fórmula de Lewis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-8-fourier-ii-carr-madan-fft-e-convolucao">Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-9-opcoes-americanas-por-simulacao-lsm-e-dual">Módulo 9 — Opções americanas por simulação: LSM e dual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-10-primeiro-exemplo-completo-avaliacao-baseada-em-mercado-com-merton">Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-11-o-modelo-geral-bcc97-volatilidade-estocastica-saltos-e-juros-estocasticos">Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-12-monte-carlo-discretizacao-e-reducao-de-variancia">Módulo 12 — Monte Carlo: discretização e redução de variância</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-13-calibracao-i-a-curva-de-juros-no-cir-e-as-opcoes-no-heston">Módulo 13 — Calibração I: a curva de juros no CIR e as opções no Heston</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-14-calibracao-ii-saltos-regularizacao-e-o-bcc97-completo">Módulo 14 — Calibração II: saltos, regularização e o BCC97 completo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-15-simulacao-e-avaliacao-no-modelo-geral-bcc97">Módulo 15 — Simulação e avaliação no modelo geral BCC97</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modulo-16-hedge-dinamico-e-sintese">Módulo 16 — Hedge dinâmico e síntese</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Walter C. Neto
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Código sob licença MIT; textos sob CC BY 4.0. Curso independente, baseado em <em>Derivatives Analytics with Python</em> (Y. Hilpisch, Wiley, 2015); não reproduz o livro nem é afiliado ao autor ou à editora.</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
