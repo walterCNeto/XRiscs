@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
   
   <!-- So that users can add custom icons -->
   <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
@@ -56,7 +56,7 @@
     <script src="_static/togglebutton.js?v=b8b12719"></script>
     <script src="_static/translations.js?v=daa5921a"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -242,10 +242,11 @@
 <li class="toctree-l1"><a class="reference internal" href="15_simulacao_bcc97.html">Módulo 15 — Simulação e avaliação no modelo geral BCC97</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_hedge_dinamico.html">Módulo 16 — Hedge dinâmico e síntese</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Complemento — juros com Hull-White</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Complemento — modelos de juros</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="17_hull_white_teoria.html">Módulo 17 — Hull-White I: medidas, o modelo e as fórmulas fechadas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_hull_white_arvore.html">Módulo 18 — Hull-White II: a árvore trinomial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_simulacao_juros.html">Módulo 19 — Simulação de trajetórias de juros: do Vasicek ao HJM</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referência</span></p>
 <ul class="nav bd-sidenav">
@@ -461,7 +462,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="xriscs-derivativos-com-python">
 <h1>XRiscs — Derivativos com Python<a class="headerlink" href="#xriscs-derivativos-com-python" title="Link para este cabeçalho">#</a></h1>
-<p><strong>Avaliação baseada em mercado de opções sobre índices, da teoria à calibração e ao hedge, e um complemento de juros com Hull-White: 18 módulos com laboratórios.</strong></p>
+<p><strong>Avaliação baseada em mercado de opções sobre índices, da teoria à calibração e ao hedge, e um complemento de modelos de juros: 19 módulos com laboratórios.</strong></p>
 <p>Este é um curso de estudo, em português, construído sobre o livro <em>Derivatives Analytics with Python</em> (Yves Hilpisch, Wiley, 2015). Ele segue a sequência do livro, do modelo de Black-Scholes-Merton até o modelo geral de Bakshi, Cao e Chen (volatilidade estocástica, saltos e juros estocásticos), e acrescenta a cada passo o que o livro deixa implícito: as deduções completas e um laboratório em Python que confere cada resultado numericamente.</p>
 <section id="como-o-curso-e-organizado">
 <h2>Como o curso é organizado<a class="headerlink" href="#como-o-curso-e-organizado" title="Link para este cabeçalho">#</a></h2>
@@ -469,7 +470,7 @@
 <ol class="arabic simple">
 <li><p><strong>Objetivos</strong> e a ligação com os módulos anteriores.</p></li>
 <li><p><strong>Teoria passo a passo</strong>, com as deduções escritas por inteiro.</p></li>
-<li><p><strong>Laboratórios</strong> em Python: cada afirmação importante é conferida por código, com verificações automáticas (<code class="docutils literal notranslate"><span class="pre">ok(...)</span></code>) que interrompem o notebook se a conta não fechar. São <strong>482 verificações</strong> no curso.</p></li>
+<li><p><strong>Laboratórios</strong> em Python: cada afirmação importante é conferida por código, com verificações automáticas (<code class="docutils literal notranslate"><span class="pre">ok(...)</span></code>) que interrompem o notebook se a conta não fechar. São <strong>508 verificações</strong> no curso.</p></li>
 <li><p><strong>Síntese</strong>, <strong>erratas e notas</strong> sobre o trecho do livro, e <strong>exercícios</strong> com solução.</p></li>
 </ol>
 <p>Todos os dados são <strong>sintéticos</strong>. Isso permite algo que dados reais não permitem: calibrar um modelo onde a resposta é conhecida e ver o que a calibração recupera e o que ela não consegue identificar.</p>
@@ -556,10 +557,14 @@
 <td><p>Hull-White II: a árvore trinomial (e Black-Karasinski)</p></td>
 <td><p>complemento</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="19_simulacao_juros.html"><span class="doc std std-doc">19</span></a></p></td>
+<td><p>Simulação de trajetórias de juros: do Vasicek ao HJM</p></td>
+<td><p>complemento</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>Os Módulos 17 e 18 complementam o livro com o modelo de taxa curta de Hull-White, a partir de Wilmott, Clewlow e Strickland e Hull e White: troca de numerário, fórmulas fechadas, caps, estimação de parâmetros e a árvore trinomial com títulos callable e puttable. O Laboratório 6 do Módulo 17 usa as taxas diárias dos T-bills americanos de 2023 (U.S. Treasury, domínio público), em <code class="docutils literal notranslate"><span class="pre">dados/</span></code>.</p>
+<p>Os Módulos 17 a 19 complementam o livro com modelos de juros. Os dois primeiros tratam do Hull-White, a partir de Wilmott, Clewlow e Strickland e Hull e White: troca de numerário, fórmulas fechadas, caps, estimação de parâmetros e a árvore trinomial com títulos callable e puttable; o Módulo 19 simula e calibra à mesma curva e ao mesmo caplet uma escada de modelos (Vasicek, Ho-Lee, Hull-White, CIR++, Black-Karasinski, G2++ e HJM com componentes principais) e compara o que a calibração não fixa. O Laboratório 6 do Módulo 17 usa as taxas diárias dos T-bills americanos de 2023 (U.S. Treasury, domínio público), em <code class="docutils literal notranslate"><span class="pre">dados/</span></code>.</p>
 <p>A página <a class="reference internal" href="erratas.html"><span class="doc std std-doc">Erratas e notas</span></a> reúne, módulo a módulo, as correções ao livro encontradas nos laboratórios: de sinais e fatores em fórmulas a detalhes dos scripts que mudam os resultados numéricos.</p>
 </section>
 <section id="pre-requisitos">

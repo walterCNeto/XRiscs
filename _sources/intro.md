@@ -1,6 +1,6 @@
 # XRiscs — Derivativos com Python
 
-**Avaliação baseada em mercado de opções sobre índices, da teoria à calibração e ao hedge, e um complemento de juros com Hull-White: 18 módulos com laboratórios.**
+**Avaliação baseada em mercado de opções sobre índices, da teoria à calibração e ao hedge, e um complemento de modelos de juros: 19 módulos com laboratórios.**
 
 Este é um curso de estudo, em português, construído sobre o livro *Derivatives Analytics with Python* (Yves Hilpisch, Wiley, 2015). Ele segue a sequência do livro, do modelo de Black-Scholes-Merton até o modelo geral de Bakshi, Cao e Chen (volatilidade estocástica, saltos e juros estocásticos), e acrescenta a cada passo o que o livro deixa implícito: as deduções completas e um laboratório em Python que confere cada resultado numericamente.
 
@@ -10,7 +10,7 @@ Cada módulo é um notebook com a mesma estrutura:
 
 1. **Objetivos** e a ligação com os módulos anteriores.
 2. **Teoria passo a passo**, com as deduções escritas por inteiro.
-3. **Laboratórios** em Python: cada afirmação importante é conferida por código, com verificações automáticas (`ok(...)`) que interrompem o notebook se a conta não fechar. São **482 verificações** no curso.
+3. **Laboratórios** em Python: cada afirmação importante é conferida por código, com verificações automáticas (`ok(...)`) que interrompem o notebook se a conta não fechar. São **508 verificações** no curso.
 4. **Síntese**, **erratas e notas** sobre o trecho do livro, e **exercícios** com solução.
 
 Todos os dados são **sintéticos**. Isso permite algo que dados reais não permitem: calibrar um modelo onde a resposta é conhecida e ver o que a calibração recupera e o que ela não consegue identificar.
@@ -37,8 +37,9 @@ Todos os dados são **sintéticos**. Isso permite algo que dados reais não perm
 | [16](16_hedge_dinamico) | Hedge dinâmico e síntese | caps. 13-14 |
 | [17](17_hull_white_teoria) | Hull-White I: medidas, o modelo e as fórmulas fechadas | complemento |
 | [18](18_hull_white_arvore) | Hull-White II: a árvore trinomial (e Black-Karasinski) | complemento |
+| [19](19_simulacao_juros) | Simulação de trajetórias de juros: do Vasicek ao HJM | complemento |
 
-Os Módulos 17 e 18 complementam o livro com o modelo de taxa curta de Hull-White, a partir de Wilmott, Clewlow e Strickland e Hull e White: troca de numerário, fórmulas fechadas, caps, estimação de parâmetros e a árvore trinomial com títulos callable e puttable. O Laboratório 6 do Módulo 17 usa as taxas diárias dos T-bills americanos de 2023 (U.S. Treasury, domínio público), em `dados/`.
+Os Módulos 17 a 19 complementam o livro com modelos de juros. Os dois primeiros tratam do Hull-White, a partir de Wilmott, Clewlow e Strickland e Hull e White: troca de numerário, fórmulas fechadas, caps, estimação de parâmetros e a árvore trinomial com títulos callable e puttable; o Módulo 19 simula e calibra à mesma curva e ao mesmo caplet uma escada de modelos (Vasicek, Ho-Lee, Hull-White, CIR++, Black-Karasinski, G2++ e HJM com componentes principais) e compara o que a calibração não fixa. O Laboratório 6 do Módulo 17 usa as taxas diárias dos T-bills americanos de 2023 (U.S. Treasury, domínio público), em `dados/`.
 
 A página [Erratas e notas](erratas) reúne, módulo a módulo, as correções ao livro encontradas nos laboratórios: de sinais e fatores em fórmulas a detalhes dos scripts que mudam os resultados numéricos.
 
