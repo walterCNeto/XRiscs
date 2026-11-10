@@ -28,6 +28,9 @@ parts:
       - file: 17_hull_white_teoria
       - file: 18_hull_white_arvore
       - file: 19_simulacao_juros
+  - caption: Complemento — sorriso e volatilidade local
+    chapters:
+      - file: 20_arvores_implicitas
   - caption: Referência
     chapters:
       - file: erratas

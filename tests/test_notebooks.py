@@ -17,8 +17,8 @@ RAIZ = Path(__file__).resolve().parents[1]
 NOTEBOOKS = sorted(RAIZ.glob("[0-9][0-9]_*.ipynb"))
 
 
-def test_ha_19_modulos():
-    assert len(NOTEBOOKS) == 19
+def test_ha_20_modulos():
+    assert len(NOTEBOOKS) == 20
 
 
 @pytest.mark.parametrize("caminho", NOTEBOOKS, ids=[p.stem for p in NOTEBOOKS])

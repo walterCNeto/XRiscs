@@ -1,6 +1,6 @@
 # XRiscs — Derivativos com Python
 
-Curso em português, em 19 notebooks, sobre avaliação baseada em mercado de opções sobre índices, construído sobre o livro *Derivatives Analytics with Python* (Y. Hilpisch, Wiley, 2015): teoria passo a passo, laboratórios em Python e 508 verificações numéricas automáticas. Os três últimos módulos complementam o livro com modelos de juros: Hull-White (fórmulas fechadas e árvore trinomial) e a simulação calibrada de trajetórias, do Vasicek ao HJM.
+Curso em português, em 20 notebooks, sobre avaliação baseada em mercado de opções sobre índices, construído sobre o livro *Derivatives Analytics with Python* (Y. Hilpisch, Wiley, 2015): teoria passo a passo, laboratórios em Python e 530 verificações numéricas automáticas. Os módulos 17 a 19 complementam o livro com modelos de juros: Hull-White (fórmulas fechadas e árvore trinomial) e a simulação calibrada de trajetórias, do Vasicek ao HJM. O módulo 20 traz as árvores implícitas de Derman-Kani-Chriss, com um widget interativo para construir e desenhar a árvore.
 
 **Leia online:** https://waltercneto.github.io/XRiscs
 
@@ -27,6 +27,7 @@ Curso em português, em 19 notebooks, sobre avaliação baseada em mercado de op
 | 17 | Hull-White I: medidas, modelo e fórmulas fechadas | complemento |
 | 18 | Hull-White II: árvore trinomial e Black-Karasinski | complemento |
 | 19 | Simulação de trajetórias de juros: do Vasicek ao HJM | complemento |
+| 20 | Árvores implícitas de Derman-Kani-Chriss (interativo) | complemento |
 
 A página `erratas.md` (gerada por `scripts/gerar_erratas.py`) reúne as correções ao livro encontradas nos laboratórios.
 
