@@ -23,10 +23,11 @@ parts:
       - file: 14_calibracao_bcc97
       - file: 15_simulacao_bcc97
       - file: 16_hedge_dinamico
-  - caption: Complemento — juros com Hull-White
+  - caption: Complemento — modelos de juros
     chapters:
       - file: 17_hull_white_teoria
       - file: 18_hull_white_arvore
+      - file: 19_simulacao_juros
   - caption: Referência
     chapters:
       - file: erratas

@@ -3,7 +3,7 @@
 Cada notebook termina imprimindo "Módulo N concluído: K verificações aprovadas."; qualquer
 verificação que falhe interrompe a execução com AssertionError.
 
-Uso: pytest -q                       (todos; leva cerca de 16 minutos)
+Uso: pytest -q                       (todos; leva cerca de 17 minutos)
      pytest -q -k "05_bsm or 06_crr"  (só alguns)
 """
 import re
@@ -17,8 +17,8 @@ RAIZ = Path(__file__).resolve().parents[1]
 NOTEBOOKS = sorted(RAIZ.glob("[0-9][0-9]_*.ipynb"))
 
 
-def test_ha_18_modulos():
-    assert len(NOTEBOOKS) == 18
+def test_ha_19_modulos():
+    assert len(NOTEBOOKS) == 19
 
 
 @pytest.mark.parametrize("caminho", NOTEBOOKS, ids=[p.stem for p in NOTEBOOKS])
