@@ -6,7 +6,7 @@ with Python* (Y. Hilpisch, Wiley, 2015); as seções e equações citadas são a
 
 Página gerada automaticamente por `scripts/gerar_erratas.py`.
 
-## Módulo 2 — Fatos estilizados e volatilidade implícita
+## Módulo 2 — Stylized facts e volatilidade implícita
 
 Notebook: [02_fatos_estilizados](02_fatos_estilizados.ipynb)
 
@@ -17,7 +17,7 @@ Notebook: [02_fatos_estilizados](02_fatos_estilizados.ipynb)
 | §3.4.2, contagem de saltos | as probabilidades informadas (2,911 e 3,402 por 10.000 dias) não fecham com $\hat\mu$ e $\hat\sigma$ impressos, que dão 1,267 e 1,542 por 10.000 dias |
 | §3.5.2, primeira bolha | diz que calls OTM têm implícita mais alta; a Figura 3.11 mostra isso para calls ITM (puts OTM) |
 
-## Módulo 3 — Neutralidade ao risco em tempo discreto
+## Módulo 3 — A medida neutra ao risco em tempo discreto
 
 Notebook: [03_neutralidade_discreto](03_neutralidade_discreto.ipynb)
 
@@ -29,7 +29,7 @@ Notebook: [03_neutralidade_discreto](03_neutralidade_discreto.ipynb)
 | Prova da Prop. 1 | "trading strategy $\zeta \in T$" deveria ser $\phi$ |
 | Nota 13 | refere "condição 3 da definição 3"; o certo é definição 1 (álgebra) |
 
-## Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov
+## Módulo 4 — Cálculo estocástico: movimento browniano, Itô e Girsanov
 
 Notebook: [04_tempo_continuo](04_tempo_continuo.ipynb)
 
@@ -60,7 +60,7 @@ Notebook: [06_crr](06_crr.ipynb)
 | Nota da Tabela 5.1 | diz "put"; a tabela é de call |
 | §5.4, após a Figura 5.8 | atribui a oscilação a "parametrização diferente"; o motivo é a paridade de $M$ em relação à posição de $K$ |
 
-## Módulo 7 — Fourier I: da função característica à fórmula de Lewis
+## Módulo 7 — Métodos de Fourier I: da função característica à fórmula de Lewis
 
 Notebook: [07_fourier_lewis](07_fourier_lewis.ipynb)
 
@@ -69,7 +69,7 @@ Notebook: [07_fourier_lewis](07_fourier_lewis.ipynb)
 | Prova da Prop. 6 | a expressão $(z - i/2)^2 - (z - i/2)i = z^2 - 2zi + 1/4$ está errada; o denominador correto, com a reta em $u_i = 1/2$, é $z^2 + 1/4$. A fórmula (6.5) está certa |
 | Geral | a existência de $\phi$ em argumentos complexos exige uma faixa de analiticidade, que o texto não discute |
 
-## Módulo 8 — Fourier II: Carr-Madan, FFT e convolução
+## Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução
 
 Notebook: [08_fourier_fft](08_fourier_fft.ipynb)
 
@@ -84,7 +84,7 @@ Notebook: [08_fourier_fft](08_fourier_fft.ipynb)
 | Equação (6.6) | falta tomar a parte real |
 | §6.6.1, precisão da FFT | os cinco dígitos relatados vêm do ramo OTM do script, de cauda lenta; não são um limite da FFT |
 
-## Módulo 9 — Opções americanas por simulação: LSM e dual
+## Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual
 
 Notebook: [09_americanas_lsm](09_americanas_lsm.ipynb)
 
@@ -96,7 +96,7 @@ Notebook: [09_americanas_lsm](09_americanas_lsm.ipynb)
 | Equações (7.8) a (7.12) | o martingale deve ser expresso em unidades descontadas, como $h$; o texto mistura $B_0(t)[h_t - \mathcal{M}_t]$ com um $\mathcal{M}^*$ formado por valores não descontados |
 | Equação (7.11) | o máximo passa de $t \in \{\Delta t, \dots, T\}$ para $t \in \{0, \dots, T\}$ sem comentário |
 
-## Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton
+## Módulo 10 — Calibração ao mercado com o modelo de saltos de Merton
 
 Notebook: [10_merton_mercado](10_merton_mercado.ipynb)
 
@@ -108,7 +108,7 @@ Notebook: [10_merton_mercado](10_merton_mercado.ipynb)
 | §8.5, saída do script | a diferença entre simulação e fórmula combina esse viés com ruído de uma única semente |
 | Script 8.7.5 | comenta "T = 0.22 # shortest maturity", mas o prazo mais curto é de 17 dias (0,047 ano) |
 
-## Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos
+## Módulo 11 — O modelo BCC97: volatilidade estocástica, saltos e juros estocásticos
 
 Notebook: [11_bcc97](11_bcc97.ipynb)
 
@@ -129,7 +129,7 @@ Notebook: [12_monte_carlo](12_monte_carlo.ipynb)
 | Onde | O quê |
 |---|---|
 | §10.6.3 e §10.6.4, processo do índice | usa `v[t]` (fim do passo) em vez de `v[t-1]`; cria o drift espúrio $\tfrac12\rho\sigma_v$ por unidade de tempo em $\ln S$, que não diminui com $\Delta t$ |
-| Tabela 10.1 e Figura 10.4 | o salto de precisão atribuído ao casamento de momentos é, em sua maior parte, a correção de drift (`bias`) desfazendo o problema acima; com `v[t-1]` não há salto |
+| Tabela 10.1 e Figura 10.4 | o salto de precisão atribuído ao moment matching é, em sua maior parte, a correção de drift (`bias`) desfazendo o problema acima; com `v[t-1]` não há salto |
 | §10.3, lista de esquemas | "Truncation" coincide com "Absorption" e "Simple Reflection" com "Reflection": são cinco esquemas, não sete |
 | §10.2, Figuras 10.2 e 10.3 | a referência em $t > 0$ é $P(\mathbb{E}[r_t])$, mas a média de Monte Carlo estima $\mathbb{E}[P(r_t)]$; a diferença (Jensen) é da ordem do viés do Euler que se quer mostrar |
 | §10.6.2, esquema exato | `np.ramdom.chisquare` (erro de digitação) |
@@ -169,7 +169,7 @@ Notebook: [14_calibracao_bcc97](14_calibracao_bcc97.ipynb)
 | §11.6.2 e seguintes | Nelder-Mead com restrições por "valor alto" pode parar cedo encostado numa parede; sem reinício, o resultado depende de detalhes mínimos dos dados |
 | §11.6.6 | `options.ix` foi removido do pandas; use `.loc` |
 
-## Módulo 15 — Simulação e avaliação no modelo geral BCC97
+## Módulo 15 — Simulação e precificação no modelo BCC97
 
 Notebook: [15_simulacao_bcc97](15_simulacao_bcc97.ipynb)
 
@@ -184,7 +184,7 @@ Notebook: [15_simulacao_bcc97](15_simulacao_bcc97.ipynb)
 | Parâmetros do livro | $\rho = -0{,}999$, $\delta = 0$ e $\lambda = 0{,}008$ vêm da calibração degenerada do Módulo 14 |
 | Scripts | Python 2 (`xrange`, `print`, `I / 2`) |
 
-## Módulo 16 — Hedge dinâmico e síntese
+## Módulo 16 — Hedge dinâmico e síntese do curso
 
 Notebook: [16_hedge_dinamico](16_hedge_dinamico.ipynb)
 
@@ -195,5 +195,5 @@ Notebook: [16_hedge_dinamico](16_hedge_dinamico.ipynb)
 | §13.5.2 | P&L calculado nas mesmas trajetórias da regressão (dentro da amostra), apesar de a nota 3 defender a avaliação fora da amostra |
 | §13.3, P&L médio de +4,34 | numa simulação sob $Q$, o P&L médio de um hedge autofinanciável iniciado no preço justo é zero; o valor positivo vem do simulador (Módulo 15) |
 | §13.3, "risco de salto diversificável" | a hipótese de Merton é de diversificação entre ativos; não vale para muitas opções sobre o mesmo índice, cujos saltos são comuns |
-| §13.5.3 | herda o simulador do cap. 12 (`v[t]`, compensador ausente, saltos aditivos, casamento de momentos) |
+| §13.5.3 | herda o simulador do cap. 12 (`v[t]`, compensador ausente, saltos aditivos, moment matching) |
 | Cap. 14 | o resumo é fiel ao livro; os módulos 12 a 16 mostram que as etapas de simulação, calibração e hedge precisam das conferências da Seção 6.2 |

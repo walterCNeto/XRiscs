@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Módulo 9 — Opções americanas por simulação: LSM e dual &#8212; XRiscs — Derivativos com Python</title>
+    <title>Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual &#8212; XRiscs — Derivativos com Python</title>
   
   
   
@@ -67,8 +67,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton" href="10_merton_mercado.html" />
-    <link rel="prev" title="Módulo 8 — Fourier II: Carr-Madan, FFT e convolução" href="08_fourier_fft.html" />
+    <link rel="next" title="Módulo 10 — Calibração ao mercado com o modelo de saltos de Merton" href="10_merton_mercado.html" />
+    <link rel="prev" title="Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução" href="08_fourier_fft.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
   <meta name="docsearch:version" content="" />
@@ -218,28 +218,28 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_avaliacao_baseada_em_mercado.html">Módulo 1 — O que é avaliação baseada em mercado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_fatos_estilizados.html">Módulo 2 — Fatos estilizados e volatilidade implícita</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_neutralidade_discreto.html">Módulo 3 — Neutralidade ao risco em tempo discreto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_tempo_continuo.html">Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_avaliacao_baseada_em_mercado.html">Módulo 1 — Mercados, arbitragem e precificação de derivativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_fatos_estilizados.html">Módulo 2 — Stylized facts e volatilidade implícita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_neutralidade_discreto.html">Módulo 3 — A medida neutra ao risco em tempo discreto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_tempo_continuo.html">Módulo 4 — Cálculo estocástico: movimento browniano, Itô e Girsanov</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos e métodos de avaliação</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos e métodos de precificação</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="05_bsm.html">Módulo 5 — Black-Scholes-Merton: a EDP, a fórmula e as gregas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_crr.html">Módulo 6 — A árvore binomial de Cox-Ross-Rubinstein</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_fourier_lewis.html">Módulo 7 — Fourier I: da função característica à fórmula de Lewis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="08_fourier_fft.html">Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Módulo 9 — Opções americanas por simulação: LSM e dual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_fourier_lewis.html">Módulo 7 — Métodos de Fourier I: da função característica à fórmula de Lewis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_fourier_fft.html">Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avaliação baseada em mercado</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Precificação calibrada ao mercado</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10_merton_mercado.html">Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_bcc97.html">Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_merton_mercado.html">Módulo 10 — Calibração ao mercado com o modelo de saltos de Merton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bcc97.html">Módulo 11 — O modelo BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_monte_carlo.html">Módulo 12 — Monte Carlo: discretização e redução de variância</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_calibracao_cir_heston.html">Módulo 13 — Calibração I: a curva de juros no CIR e as opções no Heston</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14_calibracao_bcc97.html">Módulo 14 — Calibração II: saltos, regularização e o BCC97 completo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_simulacao_bcc97.html">Módulo 15 — Simulação e avaliação no modelo geral BCC97</a></li>
-<li class="toctree-l1"><a class="reference internal" href="16_hedge_dinamico.html">Módulo 16 — Hedge dinâmico e síntese</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_simulacao_bcc97.html">Módulo 15 — Simulação e precificação no modelo BCC97</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_hedge_dinamico.html">Módulo 16 — Hedge dinâmico e síntese do curso</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complemento — modelos de juros</span></p>
 <ul class="nav bd-sidenav">
@@ -485,7 +485,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Módulo 9 — Opções americanas por simulação: LSM e dual</h1>
+    <h1>Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -495,6 +495,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-vai-conseguir-fazer-ao-final">O que você vai conseguir fazer ao final</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#onde-estamos">Onde estamos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacao">0. Preparação</a></li>
@@ -549,10 +550,16 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modulo-9-opcoes-americanas-por-simulacao-lsm-e-dual">
-<h1>Módulo 9 — Opções americanas por simulação: LSM e dual<a class="headerlink" href="#modulo-9-opcoes-americanas-por-simulacao-lsm-e-dual" title="Link para este cabeçalho">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="modulo-9-opcoes-americanas-por-simulacao-longstaff-schwartz-e-o-problema-dual">
+<h1>Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual<a class="headerlink" href="#modulo-9-opcoes-americanas-por-simulacao-longstaff-schwartz-e-o-problema-dual" title="Link para este cabeçalho">#</a></h1>
+<section id="introducao">
+<h2>Introdução<a class="headerlink" href="#introducao" title="Link para este cabeçalho">#</a></h2>
+<p>Árvores e métodos de Fourier funcionam bem com um ou dois fatores de risco. Com mais fatores, como volatilidade estocástica e juros estocásticos ao mesmo tempo, a simulação de Monte Carlo passa a ser a ferramenta natural. Mas a simulação gera trajetórias para a frente, enquanto a decisão de exercer uma opção americana exige comparar, em cada data, o pagamento imediato com o <strong>valor de continuar</strong>, uma esperança condicional que depende do futuro.</p>
+<p>O algoritmo de <strong>Longstaff e Schwartz</strong> (LSM, <em>least-squares Monte Carlo</em>) resolve esse impasse estimando o valor de continuação por regressão dos pagamentos futuros simulados sobre funções do estado atual. O resultado é uma regra de exercício aproximada e, com ela, um preço que tende a ficar ligeiramente abaixo do verdadeiro.</p>
+<p>O <strong>problema dual</strong>, de Rogers e de Haugh e Kogan, dá o outro lado: um limite superior para o preço, construído a partir de um martingal. Juntos, LSM e dual formam um intervalo que mede a qualidade da aproximação. O capítulo implementa os dois e os confere contra valores de referência.</p>
 <p><strong>Curso:</strong> Derivativos com Python, a partir de <em>Derivatives Analytics with Python</em> (Y. Hilpisch, Wiley, 2015).
 <strong>Este módulo cobre:</strong> capítulo 7 do livro.</p>
+</section>
 <section id="o-que-voce-vai-conseguir-fazer-ao-final">
 <h2>O que você vai conseguir fazer ao final<a class="headerlink" href="#o-que-voce-vai-conseguir-fazer-ao-final" title="Link para este cabeçalho">#</a></h2>
 <ol class="arabic simple">
@@ -1531,7 +1538,7 @@ OK — a simulação aninhada com J=50 infla o limite superior
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tempo total: 6,405 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tempo total: 14,141 s
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1773,7 +1780,7 @@ OK — a fronteira do LSM fica perto da exata
 <p>O livro usa duas técnicas, que estudaremos no Módulo 12:</p>
 <ul class="simple">
 <li><p><strong>Variáveis antitéticas:</strong> para cada sorteio <span class="math notranslate nohighlight">\(z\)</span>, usa-se também <span class="math notranslate nohighlight">\(-z\)</span>.</p></li>
-<li><p><strong>Casamento de momentos:</strong> padronizam-se os sorteios de cada data para média 0 e variância 1 exatas.</p></li>
+<li><p><strong>Moment matching:</strong> padronizam-se os sorteios de cada data para média 0 e variância 1 exatas.</p></li>
 </ul>
 <section id="laboratorio-8-1-efeito-no-desvio-entre-corridas">
 <h3>Laboratório 8.1 — Efeito no desvio entre corridas<a class="headerlink" href="#laboratorio-8-1-efeito-no-desvio-entre-corridas" title="Link para este cabeçalho">#</a></h3>
@@ -1781,7 +1788,7 @@ OK — a fronteira do LSM fica perto da exata
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">910</span><span class="p">)</span>
 <span class="n">linhas</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">mm</span><span class="p">,</span> <span class="n">an</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">"Sem redução"</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Antitéticas"</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Casamento de momentos"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="s2">"As duas"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)]:</span>
+<span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">mm</span><span class="p">,</span> <span class="n">an</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">"Sem redução"</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Antitéticas"</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Moment matching"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="s2">"As duas"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)]:</span>
     <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
         <span class="n">S1</span> <span class="o">=</span> <span class="n">simular</span><span class="p">(</span><span class="n">PUT</span><span class="p">[</span><span class="s2">"S0"</span><span class="p">],</span> <span class="n">PUT</span><span class="p">[</span><span class="s2">"r"</span><span class="p">],</span> <span class="n">PUT</span><span class="p">[</span><span class="s2">"sig"</span><span class="p">],</span> <span class="n">PUT</span><span class="p">[</span><span class="s2">"T"</span><span class="p">],</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">8_192</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">momentos</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span> <span class="n">antiteticas</span><span class="o">=</span><span class="n">an</span><span class="p">)</span>
@@ -1791,7 +1798,7 @@ OK — a fronteira do LSM fica perto da exata
     <span class="n">linhas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"Técnica"</span><span class="p">:</span> <span class="n">nome</span><span class="p">,</span> <span class="s2">"Média"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vals</span><span class="p">)),</span> <span class="s2">"Desvio entre corridas"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))})</span>
 <span class="n">vr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">linhas</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Técnica"</span><span class="p">)</span>
 <span class="n">tabela</span><span class="p">(</span><span class="n">vr</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
-<span class="n">ok</span><span class="p">(</span><span class="n">vr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Casamento de momentos"</span><span class="p">,</span> <span class="s2">"Desvio entre corridas"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">vr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Sem redução"</span><span class="p">,</span> <span class="s2">"Desvio entre corridas"</span><span class="p">],</span> <span class="s2">"o casamento de momentos reduz o desvio entre corridas"</span><span class="p">)</span>
+<span class="n">ok</span><span class="p">(</span><span class="n">vr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Moment matching"</span><span class="p">,</span> <span class="s2">"Desvio entre corridas"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">vr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Sem redução"</span><span class="p">,</span> <span class="s2">"Desvio entre corridas"</span><span class="p">],</span> <span class="s2">"o moment matching reduz o desvio entre corridas"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1834,7 +1841,7 @@ OK — a fronteira do LSM fica perto da exata
     </tr>
     <tr>
       <th>2</th>
-      <td>Casamento de momentos</td>
+      <td>Moment matching</td>
       <td>4,460</td>
       <td>0,021</td>
     </tr>
@@ -1846,12 +1853,12 @@ OK — a fronteira do LSM fica perto da exata
     </tr>
   </tbody>
 </table>
-</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OK — o casamento de momentos reduz o desvio entre corridas
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OK — o moment matching reduz o desvio entre corridas
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Atenção ao combinar as duas técnicas com a avaliação fora da amostra.</strong> Com casamento de momentos, as trajetórias deixam de ser independentes entre si, e o erro-padrão calculado da forma usual deixa de ser exato. O desvio entre corridas, medido acima, é a forma segura de avaliar a precisão.</p>
+<p><strong>Atenção ao combinar as duas técnicas com a avaliação fora da amostra.</strong> Com moment matching, as trajetórias deixam de ser independentes entre si, e o erro-padrão calculado da forma usual deixa de ser exato. O desvio entre corridas, medido acima, é a forma segura de avaliar a precisão.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -1967,7 +1974,7 @@ OK — a fronteira do LSM fica perto da exata
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</p>
+        <p class="prev-next-title">Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução</p>
       </div>
     </a>
     <a class="right-next"
@@ -1975,7 +1982,7 @@ OK — a fronteira do LSM fica perto da exata
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">próximo</p>
-        <p class="prev-next-title">Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton</p>
+        <p class="prev-next-title">Módulo 10 — Calibração ao mercado com o modelo de saltos de Merton</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1997,6 +2004,7 @@ OK — a fronteira do LSM fica perto da exata
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-vai-conseguir-fazer-ao-final">O que você vai conseguir fazer ao final</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#onde-estamos">Onde estamos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacao">0. Preparação</a></li>

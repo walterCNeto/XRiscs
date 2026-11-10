@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Módulo 8 — Fourier II: Carr-Madan, FFT e convolução &#8212; XRiscs — Derivativos com Python</title>
+    <title>Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução &#8212; XRiscs — Derivativos com Python</title>
   
   
   
@@ -67,8 +67,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Módulo 9 — Opções americanas por simulação: LSM e dual" href="09_americanas_lsm.html" />
-    <link rel="prev" title="Módulo 7 — Fourier I: da função característica à fórmula de Lewis" href="07_fourier_lewis.html" />
+    <link rel="next" title="Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual" href="09_americanas_lsm.html" />
+    <link rel="prev" title="Módulo 7 — Métodos de Fourier I: da função característica à fórmula de Lewis" href="07_fourier_lewis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="pt-BR"/>
   <meta name="docsearch:version" content="" />
@@ -218,28 +218,28 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_avaliacao_baseada_em_mercado.html">Módulo 1 — O que é avaliação baseada em mercado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_fatos_estilizados.html">Módulo 2 — Fatos estilizados e volatilidade implícita</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_neutralidade_discreto.html">Módulo 3 — Neutralidade ao risco em tempo discreto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_tempo_continuo.html">Módulo 4 — Tempo contínuo: Browniano, Itô e Girsanov</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_avaliacao_baseada_em_mercado.html">Módulo 1 — Mercados, arbitragem e precificação de derivativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_fatos_estilizados.html">Módulo 2 — Stylized facts e volatilidade implícita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_neutralidade_discreto.html">Módulo 3 — A medida neutra ao risco em tempo discreto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_tempo_continuo.html">Módulo 4 — Cálculo estocástico: movimento browniano, Itô e Girsanov</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos e métodos de avaliação</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos e métodos de precificação</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="05_bsm.html">Módulo 5 — Black-Scholes-Merton: a EDP, a fórmula e as gregas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_crr.html">Módulo 6 — A árvore binomial de Cox-Ross-Rubinstein</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_fourier_lewis.html">Módulo 7 — Fourier I: da função característica à fórmula de Lewis</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_americanas_lsm.html">Módulo 9 — Opções americanas por simulação: LSM e dual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_fourier_lewis.html">Módulo 7 — Métodos de Fourier I: da função característica à fórmula de Lewis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_americanas_lsm.html">Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avaliação baseada em mercado</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Precificação calibrada ao mercado</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="10_merton_mercado.html">Módulo 10 — Primeiro exemplo completo: avaliação baseada em mercado com Merton</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_bcc97.html">Módulo 11 — O modelo geral BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_merton_mercado.html">Módulo 10 — Calibração ao mercado com o modelo de saltos de Merton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bcc97.html">Módulo 11 — O modelo BCC97: volatilidade estocástica, saltos e juros estocásticos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_monte_carlo.html">Módulo 12 — Monte Carlo: discretização e redução de variância</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_calibracao_cir_heston.html">Módulo 13 — Calibração I: a curva de juros no CIR e as opções no Heston</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14_calibracao_bcc97.html">Módulo 14 — Calibração II: saltos, regularização e o BCC97 completo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="15_simulacao_bcc97.html">Módulo 15 — Simulação e avaliação no modelo geral BCC97</a></li>
-<li class="toctree-l1"><a class="reference internal" href="16_hedge_dinamico.html">Módulo 16 — Hedge dinâmico e síntese</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_simulacao_bcc97.html">Módulo 15 — Simulação e precificação no modelo BCC97</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_hedge_dinamico.html">Módulo 16 — Hedge dinâmico e síntese do curso</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Complemento — modelos de juros</span></p>
 <ul class="nav bd-sidenav">
@@ -485,7 +485,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Módulo 8 — Fourier II: Carr-Madan, FFT e convolução</h1>
+    <h1>Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -495,6 +495,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-vai-conseguir-fazer-ao-final">O que você vai conseguir fazer ao final</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacao">0. Preparação</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-abordagem-de-carr-madan">1. A abordagem de Carr-Madan</a><ul class="nav section-nav flex-column">
@@ -549,10 +550,16 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modulo-8-fourier-ii-carr-madan-fft-e-convolucao">
-<h1>Módulo 8 — Fourier II: Carr-Madan, FFT e convolução<a class="headerlink" href="#modulo-8-fourier-ii-carr-madan-fft-e-convolucao" title="Link para este cabeçalho">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="modulo-8-metodos-de-fourier-ii-carr-madan-fft-e-convolucao">
+<h1>Módulo 8 — Métodos de Fourier II: Carr-Madan, FFT e convolução<a class="headerlink" href="#modulo-8-metodos-de-fourier-ii-carr-madan-fft-e-convolucao" title="Link para este cabeçalho">#</a></h1>
+<section id="introducao">
+<h2>Introdução<a class="headerlink" href="#introducao" title="Link para este cabeçalho">#</a></h2>
+<p>A fórmula de Lewis calcula uma integral por strike. Quando se precisa de uma superfície inteira de preços, é mais eficiente calcular muitos strikes de uma vez. O método de <strong>Carr e Madan</strong> reescreve o preço da call, depois de um amortecimento exponencial, como uma transformada de Fourier no log-strike, e essa transformada pode ser calculada para toda uma grade de strikes com a <strong>FFT</strong> (transformada rápida de Fourier), em tempo quase linear.</p>
+<p>O preço da velocidade é uma série de escolhas numéricas: o fator de amortecimento, o tamanho da grade, a relação entre o espaçamento em frequência e o espaçamento em strike, a regra de integração. O capítulo estuda cada uma e mostra quando o método erra.</p>
+<p>Por fim, a mesma lógica se estende a opções com exercício antecipado em datas discretas: entre duas datas de exercício, o valor de continuação é uma <strong>convolução</strong> da função valor com a densidade do retorno, e convoluções também são calculadas rapidamente por FFT.</p>
 <p><strong>Curso:</strong> Derivativos com Python, a partir de <em>Derivatives Analytics with Python</em> (Y. Hilpisch, Wiley, 2015).
 <strong>Este módulo cobre:</strong> seções 6.4.2 a 6.6 do livro.</p>
+</section>
 <section id="o-que-voce-vai-conseguir-fazer-ao-final">
 <h2>O que você vai conseguir fazer ao final<a class="headerlink" href="#o-que-voce-vai-conseguir-fazer-ao-final" title="Link para este cabeçalho">#</a></h2>
 <ol class="arabic simple">
@@ -1901,7 +1908,7 @@ OK — para M grande, a DFT é mais rápida que a árvore vetorizada
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Módulo 7 — Fourier I: da função característica à fórmula de Lewis</p>
+        <p class="prev-next-title">Módulo 7 — Métodos de Fourier I: da função característica à fórmula de Lewis</p>
       </div>
     </a>
     <a class="right-next"
@@ -1909,7 +1916,7 @@ OK — para M grande, a DFT é mais rápida que a árvore vetorizada
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">próximo</p>
-        <p class="prev-next-title">Módulo 9 — Opções americanas por simulação: LSM e dual</p>
+        <p class="prev-next-title">Módulo 9 — Opções americanas por simulação: Longstaff-Schwartz e o problema dual</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1931,6 +1938,7 @@ OK — para M grande, a DFT é mais rápida que a árvore vetorizada
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-vai-conseguir-fazer-ao-final">O que você vai conseguir fazer ao final</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparacao">0. Preparação</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-abordagem-de-carr-madan">1. A abordagem de Carr-Madan</a><ul class="nav section-nav flex-column">
