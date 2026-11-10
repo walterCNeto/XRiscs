@@ -6,7 +6,7 @@ Este é um curso de estudo, em português, construído sobre o livro *Derivative
 
 ```{admonition} O curso em livro
 :class: tip
-Os 20 módulos também estão reunidos num livro em PDF, com sumário, código, saídas e figuras de todos os laboratórios: {download}`baixe o livro (PDF) <livro/XRiscs_Derivativos_com_Python.pdf>`.
+Os 20 módulos também estão reunidos num livro em PDF, com introdução e fundamentos teóricos em cada capítulo, código, saídas, figuras e referências: [ler o livro no navegador](https://waltercneto.github.io/XRiscs/livro.pdf) ou {download}`baixar o PDF <livro/XRiscs_Derivativos_com_Python.pdf>`.
 ```
 
 ## Como o curso é organizado
