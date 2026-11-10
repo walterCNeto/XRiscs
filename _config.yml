@@ -1,0 +1,43 @@
+title: "XRiscs — Derivativos com Python"
+author: Walter C. Neto
+copyright: "2026"
+logo: ""
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: "off"   # os notebooks vão para o repositório já executados; os testes rodam à parte
+
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - amsmath
+    - colon_fence
+    - deflist
+    - html_image
+
+sphinx:
+  config:
+    language: pt_BR
+    html_show_copyright: true
+    mathjax3_config:
+      tex:
+        macros:
+          "E": "\\mathbb{E}"
+
+repository:
+  url: https://github.com/walterCNeto/XRiscs
+  path_to_book: .
+  branch: main
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: false
+  home_page_in_navbar: true
+  extra_footer: |
+    <p>Código sob licença MIT; textos sob CC BY 4.0. Curso independente, baseado em <em>Derivatives Analytics with Python</em> (Y. Hilpisch, Wiley, 2015); não reproduz o livro nem é afiliado ao autor ou à editora.</p>
+
+launch_buttons:
+  notebook_interface: classic
+  binderhub_url: https://mybinder.org
+  colab_url: https://colab.research.google.com

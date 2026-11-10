@@ -1,0 +1,28 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Fundamentos
+    chapters:
+      - file: 01_avaliacao_baseada_em_mercado
+      - file: 02_fatos_estilizados
+      - file: 03_neutralidade_discreto
+      - file: 04_tempo_continuo
+  - caption: Modelos e métodos de avaliação
+    chapters:
+      - file: 05_bsm
+      - file: 06_crr
+      - file: 07_fourier_lewis
+      - file: 08_fourier_fft
+      - file: 09_americanas_lsm
+  - caption: Avaliação baseada em mercado
+    chapters:
+      - file: 10_merton_mercado
+      - file: 11_bcc97
+      - file: 12_monte_carlo
+      - file: 13_calibracao_cir_heston
+      - file: 14_calibracao_bcc97
+      - file: 15_simulacao_bcc97
+      - file: 16_hedge_dinamico
+  - caption: Referência
+    chapters:
+      - file: erratas

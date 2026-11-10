@@ -1,0 +1,11 @@
+# Livro de referência: material protegido, nunca vai para o repositório
+*.pdf
+
+# Saídas de build e caches
+_build/
+.ipynb_checkpoints/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+Thumbs.db
