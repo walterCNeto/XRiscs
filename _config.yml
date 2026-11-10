@@ -41,3 +41,5 @@ launch_buttons:
   notebook_interface: classic
   binderhub_url: https://mybinder.org
   colab_url: https://colab.research.google.com
+
+exclude_patterns: [.pytest_cache, _build, .github, README.md]
