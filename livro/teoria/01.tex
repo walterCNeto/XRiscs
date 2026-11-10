@@ -1,0 +1,60 @@
+\section{Fundamentos teóricos}
+
+Esta seção fixa a linguagem usada no resto do livro. O ponto de partida é um mercado com finitos ativos negociados; a pergunta é quando um preço para um contrato novo é \emph{consistente} com os preços já observados. A resposta, a ausência de arbitragem, organiza toda a teoria de precificação \citep{harrisonkreps1979,bjork2009}.
+
+\subsection{Mercado, carteiras e arbitragem}
+
+\begin{definicao}[Mercado de um período]
+Seja $\Omega=\{\omega_1,\dots,\omega_K\}$ um conjunto finito de estados com probabilidade $\mathbb P(\omega_k)>0$. Há $N+1$ ativos com preços hoje $S^i_0$ e preços aleatórios $S^i_1(\omega)$ em $t=1$, $i=0,\dots,N$. O ativo $0$ é a conta remunerada: $S^0_0=1$ e $S^0_1=1+r$, com $r>-1$. Uma \emph{carteira} é um vetor $\theta\in\mathbb R^{N+1}$; seu custo é $V_0(\theta)=\sum_i\theta_iS^i_0$ e seu valor final é $V_1(\theta)=\sum_i\theta_iS^i_1$.
+\end{definicao}
+
+\begin{definicao}[Arbitragem]
+Uma \emph{arbitragem} é uma carteira com $V_0(\theta)\le 0$, $V_1(\theta)\ge 0$ em todos os estados e $\mathbb P\big(V_1(\theta)>0\big)>0$. O mercado é \emph{livre de arbitragem} se nenhuma carteira desse tipo existe.
+\end{definicao}
+
+\begin{proposicao}[Lei do preço único]\label{prop:lpu}
+Num mercado livre de arbitragem, duas carteiras com o mesmo valor final em todos os estados têm o mesmo custo hoje.
+\end{proposicao}
+
+\begin{proof}
+Se $V_1(\theta)=V_1(\theta')$ e $V_0(\theta)<V_0(\theta')$, a carteira $\theta-\theta'$, combinada com a aplicação de $V_0(\theta')-V_0(\theta)>0$ na conta remunerada, custa zero e paga $(1+r)\big(V_0(\theta')-V_0(\theta)\big)>0$ em todos os estados: arbitragem.
+\end{proof}
+
+\begin{definicao}[Direito contingente e replicação]
+Um \emph{direito contingente} (ou derivativo) é uma variável aleatória $X=f(\omega)$ paga em $t=1$. Ele é \emph{replicável} se existe $\theta$ com $V_1(\theta)=X$ em todos os estados. O mercado é \emph{completo} se todo direito contingente é replicável.
+\end{definicao}
+
+\begin{corolario}[Preço por replicação]
+Se $X$ é replicável por $\theta$ e o mercado é livre de arbitragem, o único preço de $X$ que não cria arbitragem é $V_0(\theta)$.
+\end{corolario}
+
+O corolário é a forma mais simples de \emph{precificação calibrada ao mercado}: o preço de $X$ é o custo de reproduzi-lo com o que o mercado já precifica. Quando o mercado é incompleto, a replicação deixa de existir para alguns contratos e passa a haver um intervalo de preços livres de arbitragem; o modelo escolhe um ponto nesse intervalo, e é por isso que ele precisa ser \emph{calibrado}.
+
+\subsection{Modelo, calibração e risco de modelo}
+
+\begin{definicao}[Modelo paramétrico e calibração]
+Um \emph{modelo} é uma família de regras de preço $\{\Pi(\cdot;\vartheta):\vartheta\in\Theta\}$, $\Theta\subset\mathbb R^p$, livres de arbitragem para cada $\vartheta$. Dados preços de mercado $C^{\mathrm{mkt}}_1,\dots,C^{\mathrm{mkt}}_m$ de instrumentos líquidos $X_1,\dots,X_m$, \emph{calibrar} é resolver
+\begin{equation}
+\hat\vartheta\in\arg\min_{\vartheta\in\Theta}\ \sum_{j=1}^m w_j\,\big(\Pi(X_j;\vartheta)-C^{\mathrm{mkt}}_j\big)^2,
+\end{equation}
+com pesos $w_j>0$. O preço de um contrato novo $Y$ é então $\Pi(Y;\hat\vartheta)$.
+\end{definicao}
+
+\begin{observacao}[Risco de modelo]
+Dois modelos que reproduzem os mesmos $C^{\mathrm{mkt}}_j$ podem dar preços diferentes para $Y$. A diferença mede o \emph{risco de modelo} do contrato. Ela é nula quando $Y$ é replicável pelos instrumentos de calibração e tende a crescer quando $Y$ depende de aspectos (dinâmica do smile, trajetória, exercício antecipado) que os $X_j$ não revelam.
+\end{observacao}
+
+\subsection{Paridade put-call}
+
+\begin{proposicao}[Paridade put-call]
+Sejam $C$ e $P$ uma call e uma put europeias de mesmo strike $K$ e vencimento $T$ sobre um ativo sem dividendos, e $B(0,T)$ o preço de um título que paga $1$ em $T$. Na ausência de arbitragem,
+\begin{equation}
+C-P=S_0-K\,B(0,T).
+\end{equation}
+\end{proposicao}
+
+\begin{proof}
+A carteira \emph{comprar a call e vender a put} paga $\max(S_T-K,0)-\max(K-S_T,0)=S_T-K$ em qualquer estado. A carteira \emph{comprar o ativo e tomar emprestado $K\,B(0,T)$} paga o mesmo. Pela Proposição~\ref{prop:lpu}, os custos são iguais.
+\end{proof}
+
+A paridade não depende de nenhum modelo: é uma restrição que qualquer modelo livre de arbitragem precisa respeitar, e é o primeiro teste aplicado aos laboratórios.

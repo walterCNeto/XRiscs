@@ -1,5 +1,7 @@
 # Livro de referência: material protegido, nunca vai para o repositório
 *.pdf
+# exceção: o livro gerado a partir dos notebooks (livro/gerar_livro.py)
+!livro/XRiscs_Derivativos_com_Python.pdf
 
 # Saídas de build e caches
 _build/

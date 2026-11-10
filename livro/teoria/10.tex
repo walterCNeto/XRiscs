@@ -1,0 +1,50 @@
+\section{Fundamentos teóricos}
+
+\subsection{Processo de Poisson composto e o modelo de Merton}
+
+\begin{definicao}[Processo de Poisson]
+Um processo de contagem $N_t$ é de Poisson com intensidade $\lambda>0$ se tem incrementos independentes e estacionários e $\mathbb P(N_{t+h}-N_t=1)=\lambda h+o(h)$, $\mathbb P(N_{t+h}-N_t\ge2)=o(h)$. Então $N_t\sim\mathrm{Poisson}(\lambda t)$ e $N_t-\lambda t$ é um martingal: $\lambda t$ é o \emph{compensador} de $N_t$.
+\end{definicao}
+
+\begin{definicao}[Modelo de Merton, 1976]
+Sob $\mathbb Q$,
+\begin{equation}\label{eq:merton-sde}
+\frac{dS_t}{S_{t-}}=(r-r_J)\,dt+\sigma\,dW_t+J_t\,dN_t,\qquad r_J=\lambda\big(e^{\mu_J+\delta^2/2}-1\big),
+\end{equation}
+com $\ln(1+J)\sim N(\mu_J,\delta^2)$ independente de $W$ e $N$. O termo $-r_J$ é a correção de deriva que compensa o salto médio $\mathbb E[J]=e^{\mu_J+\delta^2/2}-1$.
+\end{definicao}
+
+\begin{proposicao}[Solução e martingalidade]
+A solução de \eqref{eq:merton-sde} é $S_t=S_0\exp\big((r-r_J-\tfrac12\sigma^2)t+\sigma W_t\big)\prod_{k=1}^{N_t}(1+J_k)$, e $e^{-rt}S_t$ é um $\mathbb Q$-martingal. A função característica de $\ln(S_T/S_0)$ é \eqref{eq:cf-merton}.
+\end{proposicao}
+
+\begin{proof}
+A parte contínua é tratada por Itô como no Capítulo 4. Para a parte de saltos, condicione em $N_T=n$: o produto tem esperança $(1+\mathbb E J)^n$; somando sobre a lei de Poisson, $\mathbb E\big[\prod_{k\le N_T}(1+J_k)\big]=e^{\lambda T\,\mathbb E J}=e^{r_JT}$, que cancela o fator $e^{-r_JT}$.
+\end{proof}
+
+\begin{proposicao}[Fórmula em série]
+Condicionando no número de saltos,
+\begin{equation}
+C^{\mathrm{M}}=\sum_{n=0}^\infty\frac{e^{-\lambda'T}(\lambda'T)^n}{n!}\,C^{\mathrm{BS}}\big(S_0,K,T,r_n,\sigma_n\big),
+\end{equation}
+com $\lambda'=\lambda(1+\mathbb EJ)$, $\sigma_n^2=\sigma^2+n\delta^2/T$ e $r_n=r-r_J+n\ln(1+\mathbb EJ)/T$ \citep{merton1976}.
+\end{proposicao}
+
+\begin{observacao}[Mercado incompleto]
+Com saltos de tamanho aleatório, o ativo e a conta remunerada não replicam uma opção: o mercado é incompleto, e a MME não é única. A escolha de $\mathbb Q$ com saltos de mesma lei sob $\mathbb P$ e $\mathbb Q$ é uma hipótese de Merton (risco de salto diversificável). A precificação calibrada ao mercado contorna a questão: os parâmetros de $\mathbb Q$ são \emph{lidos} dos preços de opções por calibração.
+\end{observacao}
+
+\subsection{Calibração como problema inverso}
+
+\begin{definicao}[Problema de calibração]
+Dados preços $C^{\mathrm{mkt}}_j$ de opções com strikes e prazos $(K_j,T_j)$, procure
+\begin{equation}\label{eq:calib}
+\hat\vartheta=\arg\min_{\vartheta\in\Theta}\ \frac1m\sum_{j=1}^m\big(C^{\mathrm{mod}}_j(\vartheta)-C^{\mathrm{mkt}}_j\big)^2,\qquad \vartheta=(\sigma,\lambda,\mu_J,\delta).
+\end{equation}
+\end{definicao}
+
+\begin{observacao}[Boa colocação]
+Um problema é \emph{bem posto} no sentido de Hadamard se a solução existe, é única e depende continuamente dos dados. Calibrações de modelos com saltos violam com frequência a unicidade e a estabilidade: combinações diferentes de $(\lambda,\mu_J,\delta)$ geram superfícies quase iguais, e pequenas mudanças nos preços movem muito os parâmetros \citep{conttankov2004}. As consequências práticas são três: usar várias partidas no otimizador, combinar busca global e local, e acompanhar não só o erro de ajuste mas a estabilidade dos parâmetros. O Capítulo~14 trata a regularização.
+\end{observacao}
+
+Uma escolha de pesos que equilibra opções caras e baratas é minimizar erros em vol implícita, ou dividir cada termo de \eqref{eq:calib} pelo vega. Para erros pequenos, $\Delta C\approx\mathcal V\,\Delta\sigma$, e as duas abordagens coincidem em primeira ordem.

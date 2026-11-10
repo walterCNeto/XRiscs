@@ -1,0 +1,64 @@
+\section{Fundamentos teóricos}
+
+\subsection{Árvores trinomiais por moment matching}
+
+Hull e White constroem a árvore em duas etapas \citep{hullwhite1994}: primeiro uma árvore para o processo auxiliar $x$, com $dx_t=-ax_t\,dt+\sigma\,dW_t$ e $x_0=0$; depois um deslocamento determinístico $\alpha_m$ em cada data, $r=x+\alpha$, escolhido para reproduzir a curva.
+
+\begin{definicao}[Malha]
+Com passo $\Delta t$, os nós são $x_{m,j}=j\,\Delta x$, com $\Delta x=\sigma\sqrt{3\Delta t}$. Condicionalmente a $x_{m,j}$, o próximo valor tem média $x_{m,j}+M\,x_{m,j}$ e variância $V$, com
+\begin{equation}
+M=e^{-a\Delta t}-1\approx-a\Delta t,\qquad V=\frac{\sigma^2}{2a}\big(1-e^{-2a\Delta t}\big)\approx\sigma^2\Delta t.
+\end{equation}
+\end{definicao}
+
+\begin{proposicao}[Probabilidades de transição]\label{prop:hw-probs}
+Para o ramo padrão $(j+1,j,j-1)$ e $\eta=jM$, as probabilidades que casam média e variância são
+\begin{equation}
+p_u=\frac16+\frac{\eta^2+\eta}{2},\qquad p_m=\frac23-\eta^2,\qquad p_d=\frac16+\frac{\eta^2-\eta}{2}.
+\end{equation}
+Elas são positivas se e somente se $|jM|<\sqrt{2/3}$. Para $j>j_{\max}$, com $j_{\max}=\lceil0{,}184/(a\Delta t)\rceil$, usa-se o ramo $(j,j-1,j-2)$, e simetricamente embaixo.
+\end{proposicao}
+
+\begin{proof}
+Em unidades de $\Delta x$, as condições são $p_u-p_d=\eta$, $p_u+p_d=\tfrac13+\eta^2$ (variância $V/\Delta x^2=\tfrac13$ mais o quadrado da média) e $p_u+p_m+p_d=1$. A positividade de $p_m$ exige $\eta^2<\tfrac23$. O valor $0{,}184$ é o menor que garante probabilidades positivas nos dois ramos na transição; é a escolha de Hull e White.
+\end{proof}
+
+\subsection{Preços de Arrow-Debreu e o deslocamento}
+
+\begin{definicao}[Preços de Arrow-Debreu]
+$Q_{m,j}$ é o valor hoje de um título que paga $1$ se o nó $(m,j)$ for atingido. Começa com $Q_{0,0}=1$ e avança por
+\begin{equation}\label{eq:ad-forward}
+Q_{m+1,k}=\sum_jQ_{m,j}\,\pi_{j\to k}\,e^{-(\alpha_m+j\Delta x)\Delta t}.
+\end{equation}
+\end{definicao}
+
+\begin{proposicao}[Ajuste exato da curva]\label{prop:alpha}
+O deslocamento que faz a árvore reproduzir $P^{\mathrm{mkt}}(0,t_{m+1})$ é
+\begin{equation}
+\alpha_m=\frac1{\Delta t}\ln\frac{\sum_jQ_{m,j}\,e^{-j\Delta x\,\Delta t}}{P^{\mathrm{mkt}}(0,t_{m+1})}.
+\end{equation}
+\end{proposicao}
+
+\begin{proof}
+O título que vence em $t_{m+1}$ vale $\sum_jQ_{m,j}\,e^{-(\alpha_m+j\Delta x)\Delta t}$, pois paga $1$ em $t_{m+1}$ a partir de qualquer nó de $t_m$. Igualando a $P^{\mathrm{mkt}}(0,t_{m+1})$ e isolando $\alpha_m$ obtém-se a fórmula.
+\end{proof}
+
+Alternando a Proposição~\ref{prop:alpha} e \eqref{eq:ad-forward}, a árvore inteira é calibrada à curva em uma passagem para a frente. A formulação de \citet{clewlowstrickland1998} escreve o mesmo passo em termos de $\theta_m$, o análogo discreto de $\vartheta(t)$ na Proposição~\ref{prop:hw-theta}.
+
+\subsection{Black-Karasinski}
+
+\begin{definicao}[Modelo de Black-Karasinski]
+$d\ln r_t=\big(\vartheta(t)-a\ln r_t\big)\,dt+\sigma\,dW_t$ \citep{blackkarasinski1991}. As taxas são lognormais e positivas, mas não há fórmulas fechadas para títulos.
+\end{definicao}
+
+\begin{proposicao}[Calibração na árvore]
+Com a mesma árvore para $x=\ln r-\alpha$, o deslocamento $\alpha_m$ resolve a equação não linear
+\begin{equation}
+\sum_jQ_{m,j}\exp\big(-e^{\alpha_m+j\Delta x}\,\Delta t\big)=P^{\mathrm{mkt}}(0,t_{m+1}),
+\end{equation}
+cujo lado esquerdo é estritamente decrescente em $\alpha_m$; o método de Newton converge em poucas iterações a partir de $\alpha_{m-1}$.
+\end{proposicao}
+
+\subsection{Derivativos na árvore}
+
+Calibrada a árvore, títulos, opções europeias e americanas, caps e títulos com opções embutidas (\emph{callable} e \emph{puttable}) são precificados por indução para trás, com o desconto do nó $e^{-r_{m,j}\Delta t}$ e o máximo (ou mínimo) entre continuação e exercício onde houver direito de exercício. O erro de discretização é $O(\Delta t)$, com oscilações quando os vencimentos e as datas de exercício não caem na malha.

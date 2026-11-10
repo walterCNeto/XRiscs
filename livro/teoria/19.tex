@@ -1,0 +1,74 @@
+\section{Fundamentos teóricos}
+
+\subsection{Uma escada de modelos de short rate}
+
+\begin{definicao}[Modelos de um fator]
+Sob $\mathbb Q$:
+\begin{align*}
+\text{Vasicek:}\quad & dr=a(b-r)\,dt+\sigma\,dW, &
+\text{Ho-Lee:}\quad & dr=\vartheta(t)\,dt+\sigma\,dW,\\
+\text{Hull-White:}\quad & dr=(\vartheta(t)-ar)\,dt+\sigma\,dW, &
+\text{CIR:}\quad & dr=a(b-r)\,dt+\sigma\sqrt r\,dW,\\
+\text{Black-Karasinski:}\quad & d\ln r=(\vartheta(t)-a\ln r)\,dt+\sigma\,dW.
+\end{align*}
+\end{definicao}
+
+Os modelos com um parâmetro dependente do tempo reproduzem exatamente a curva inicial; os de parâmetros constantes (Vasicek, CIR) não. A extensão determinística resolve isso para qualquer modelo.
+
+\begin{proposicao}[Extensão determinística, CIR++]
+Se $x$ segue um modelo de short rate com preços de título $P^x(0,T)$, então $r_t=x_t+\varphi(t)$, com
+\begin{equation}
+\varphi(t)=f^{\mathrm{mkt}}(0,t)-f^{x}(0,t),
+\end{equation}
+reproduz $P^{\mathrm{mkt}}(0,T)$ para todo $T$ e preserva a tratabilidade de $x$ \citep{brigomercurio2006}.
+\end{proposicao}
+
+\begin{proof}
+$P(0,T)=\mathbb E\big[e^{-\int_0^T(x_s+\varphi(s))ds}\big]=e^{-\int_0^T\varphi}P^x(0,T)$. Com a escolha de $\varphi$, $e^{-\int_0^T\varphi}=P^{\mathrm{mkt}}(0,T)/P^x(0,T)$.
+\end{proof}
+
+\subsection{Calibração por trajetórias}
+
+\begin{proposicao}[Bootstrapping da deriva]
+Simule $I$ trajetórias de $x$ e escreva $r=g(x+\alpha)$, com $g$ crescente ($g(y)=y$ nos modelos gaussianos, $g(y)=e^y$ em Black-Karasinski). Data a data, o deslocamento $\alpha_{k+1}$ é a raiz de
+\begin{equation}
+\frac1I\sum_{i=1}^I D_{k,i}\exp\Big(-\tfrac{\Delta t}{2}\big[r_{k,i}+g(\alpha_{k+1}+x_{k+1,i})\big]\Big)=P^{\mathrm{mkt}}(0,t_{k+1}),
+\end{equation}
+onde $D_{k,i}$ é o fator de desconto acumulado da trajetória até $t_k$. O lado esquerdo é monótono em $\alpha_{k+1}$, e a raiz é única.
+\end{proposicao}
+
+O procedimento reproduz a curva \emph{nas trajetórias simuladas}, sem erro de Monte Carlo nos títulos. Ele é o análogo, por simulação, da indução de Arrow-Debreu do Capítulo 18, e funciona para qualquer modelo que se possa simular.
+
+\subsection{O arcabouço HJM}
+
+\begin{definicao}[Modelo HJM]
+Heath, Jarrow e Morton modelam diretamente a curva forward \citep{hjm1992}:
+\begin{equation}
+df(t,T)=\mu(t,T)\,dt+\sum_{\ell=1}^d\sigma_\ell(t,T)\,dW^\ell_t,\qquad f(0,T)=f^{\mathrm{mkt}}(0,T).
+\end{equation}
+\end{definicao}
+
+\begin{teorema}[Condição de deriva de HJM]\label{teo:hjm}
+Os preços $P(t,T)=\exp\big(-\int_t^Tf(t,u)\,du\big)$ descontados pela conta remunerada são $\mathbb Q$-martingais se, e somente se,
+\begin{equation}\label{eq:hjm-drift}
+\mu(t,T)=\sum_{\ell=1}^d\sigma_\ell(t,T)\int_t^T\sigma_\ell(t,u)\,du.
+\end{equation}
+\end{teorema}
+
+\begin{proof}[Esboço]
+Por Itô, $d\ln P(t,T)=\big(r_t-\int_t^T\mu(t,u)du\big)dt-\sum_\ell\Sigma_\ell(t,T)\,dW^\ell_t$, com $\Sigma_\ell(t,T)=\int_t^T\sigma_\ell(t,u)\,du$. O preço descontado é martingal se e somente se sua deriva se anula: $\int_t^T\mu(t,u)du=\tfrac12\sum_\ell\Sigma_\ell(t,T)^2$. Derivando em $T$ obtém-se \eqref{eq:hjm-drift}.
+\end{proof}
+
+A consequência é notável: sob $\mathbb Q$, a deriva da curva forward é determinada pelas volatilidades. Calibrar um modelo HJM é escolher volatilidades; a curva inicial entra como condição inicial, e o ajuste a ela é automático. Hull-White é o caso $d=1$, $\sigma(t,T)=\sigma e^{-a(T-t)}$.
+
+\begin{observacao}[Parametrização de Musiela e componentes principais]
+Na prática simula-se a curva em prazos fixos, $\tilde f(t,\tau)=f(t,t+\tau)$, cuja dinâmica ganha o termo $\partial_\tau\tilde f\,dt$. As volatilidades podem ser estimadas por componentes principais das variações históricas da curva: os três primeiros fatores (nível, inclinação e curvatura) explicam quase toda a variância.
+\end{observacao}
+
+\subsection{Dois fatores}
+
+\begin{definicao}[G2++]
+$r_t=x_t+y_t+\varphi(t)$, com $dx=-ax\,dt+\sigma\,dW^1$, $dy=-by\,dt+\eta\,dW^2$, $d\langle W^1,W^2\rangle=\rho\,dt$ \citep{brigomercurio2006}.
+\end{definicao}
+
+Em modelos de um fator, as variações de todas as taxas são perfeitamente correlacionadas. Com dois fatores e $\rho<0$, a correlação entre short rates e longas fica abaixo de $1$, o que é observado empiricamente e importa para produtos que dependem de inclinação da curva.

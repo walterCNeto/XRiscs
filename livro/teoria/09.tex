@@ -1,0 +1,53 @@
+\section{Fundamentos teóricos}
+
+\subsection{Parada ótima}
+
+Seja $Z_t=e^{-rt}h(S_t)$ o payoff descontado de uma opção que pode ser exercida nas datas $0=t_0<t_1<\dots<t_M=T$ (bermudana; a americana é o limite de malha fina).
+
+\begin{teorema}[Programação dinâmica]\label{teo:pd}
+O valor da opção é $V_0=\sup_{\tau}\mathbb E^{\mathbb Q}[Z_\tau]$, com o supremo sobre tempos de parada com valores em $\{t_0,\dots,t_M\}$. Ele é obtido pela recursão
+\begin{equation}\label{eq:pd}
+V_M=Z_M,\qquad V_m=\max\big\{Z_m,\ \mathbb E^{\mathbb Q}[V_{m+1}\mid\mathcal F_{t_m}]\big\},
+\end{equation}
+e $\tau^*=\min\{t_m:Z_m\ge C_m\}$, com $C_m=\mathbb E^{\mathbb Q}[V_{m+1}\mid\mathcal F_{t_m}]$, é ótimo.
+\end{teorema}
+
+O obstáculo numérico está no valor de continuação $C_m$: uma esperança condicional, função do estado, que a simulação não fornece diretamente.
+
+\subsection{Mínimos quadrados de Longstaff e Schwartz}
+
+\begin{proposicao}[Esperança condicional como projeção]
+Se $Y\in L^2$ e $X$ é o estado em $t_m$, então $\mathbb E[Y\mid X]$ é a projeção ortogonal de $Y$ sobre o subespaço $L^2(\sigma(X))$: minimiza $\mathbb E[(Y-g(X))^2]$ entre as funções mensuráveis $g$.
+\end{proposicao}
+
+O algoritmo LSM \citep{longstaffschwartz2001} aproxima essa projeção por regressão sobre uma base finita $\{e_1,\dots,e_D\}$:
+\begin{enumerate}
+\item simule $I$ trajetórias do estado e inicialize o fluxo de caixa com $Z_M$;
+\item para $m=M-1,\dots,1$: regrida o fluxo de caixa descontado até $t_m$ sobre $e_d(X_{m,i})$, \emph{apenas nas trajetórias dentro do dinheiro}, obtendo $\hat C_m(x)=\sum_d\hat\alpha_{d,m}e_d(x)$;
+\item onde $Z_{m,i}\ge\hat C_m(X_{m,i})$, substitua o fluxo de caixa pelo exercício em $t_m$;
+\item estime $V_0$ pela média dos fluxos descontados.
+\end{enumerate}
+
+\begin{teorema}[Convergência]
+Para base fixa, quando $I\to\infty$ o estimador LSM converge quase certamente para o valor da regra de exercício definida pelas projeções exatas sobre a base; quando, em seguida, $D\to\infty$, esse valor converge para $V_0$ \citep{clementetal2002}.
+\end{teorema}
+
+\begin{observacao}[Viés baixo]
+Se a regra de exercício é estimada num conjunto de trajetórias e o preço é calculado em outro independente, o estimador é \emph{viesado para baixo}: qualquer regra de exercício é subótima, e $\mathbb E[Z_{\hat\tau}]\le V_0$. Usar as mesmas trajetórias introduz um viés para cima (sobreajuste) que, na prática, é pequeno.
+\end{observacao}
+
+\subsection{O problema dual}
+
+\begin{teorema}[Dualidade de Rogers, Haugh e Kogan]\label{teo:dual}
+Para todo martingal $M$ com $M_0=0$,
+\begin{equation}\label{eq:dual}
+V_0\le\mathbb E^{\mathbb Q}\Big[\max_{0\le m\le M}\big(Z_m-M_{t_m}\big)\Big],
+\end{equation}
+com igualdade quando $M$ é a parte martingal da decomposição de Doob do envelope de Snell \citep{rogers2002,haughkogan2004}.
+\end{teorema}
+
+\begin{proof}
+Para qualquer tempo de parada $\tau$, pelo teorema da parada opcional $\mathbb E[M_\tau]=0$, logo $\mathbb E[Z_\tau]=\mathbb E[Z_\tau-M_\tau]\le\mathbb E[\max_m(Z_m-M_{t_m})]$. Tomando o supremo em $\tau$ obtém-se \eqref{eq:dual}. Para a igualdade, a decomposição $V_m=V_0+M^*_m-A_m$, com $A$ previsível crescente, dá $Z_m-M^*_m\le V_m-M^*_m=V_0-A_m\le V_0$.
+\end{proof}
+
+Na prática, $M$ é construído a partir do valor de continuação estimado pelo LSM, com simulações aninhadas para as esperanças condicionais. O resultado é um \emph{intervalo}: o LSM dá uma cota inferior, o dual uma cota superior, e a distância entre elas mede a qualidade da regra de exercício.

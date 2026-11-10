@@ -1,0 +1,162 @@
+% Modelo do livro XRiscs (XeLaTeX + pandoc). Formato 7 x 10 pol, tipografia clássica de LaTeX.
+\documentclass[10pt,twoside,openright]{book}
+\usepackage[paperwidth=7in,paperheight=10in,inner=0.95in,outer=0.8in,top=0.9in,bottom=0.95in,headsep=0.28in,footskip=0.42in]{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\setmainfont{Latin Modern Roman}[SmallCapsFont={Latin Modern Roman Caps}]
+\setsansfont{Latin Modern Sans}
+\setmonofont{DejaVu Sans Mono}[Scale=0.78]
+\setmathfont{Latin Modern Math}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=brazilian]{portuguese}
+\usepackage{microtype}
+\usepackage{xcolor}
+\definecolor{tinta}{HTML}{1B2E4B}
+\definecolor{acento}{HTML}{2A78D6}
+\definecolor{laranja}{HTML}{C9562B}
+\definecolor{fundocod}{HTML}{F5F6F8}
+\definecolor{fundosai}{HTML}{FCFCFA}
+\definecolor{cinza}{HTML}{7A7A74}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{booktabs,longtable,array,calc}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt}
+\usepackage{fvextra}
+\usepackage[most]{tcolorbox}
+\usepackage{etoolbox}
+\usepackage[round,authoryear]{natbib}
+\setlength{\bibsep}{3pt plus 1pt}
+\usepackage[hidelinks,unicode,bookmarksnumbered]{hyperref}
+\usepackage{bookmark}
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{0}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+\setlength{\emergencystretch}{2.5em}
+\numberwithin{equation}{chapter}
+
+% ---------- teoremas ----------
+\newtheoremstyle{livro}{8pt}{8pt}{\itshape}{}{\bfseries}{.}{0.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{ \normalfont(#3)}}
+\newtheoremstyle{livrodef}{8pt}{8pt}{\normalfont}{}{\bfseries}{.}{0.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{ \normalfont(#3)}}
+\theoremstyle{livro}
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{proposicao}[teorema]{Proposição}
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}[teorema]{Corolário}
+\theoremstyle{livrodef}
+\newtheorem{definicao}[teorema]{Definição}
+\newtheorem{exemplo}[teorema]{Exemplo}
+\newtheorem{observacao}[teorema]{Observação}
+\renewcommand{\proofname}{Demonstração}
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
+
+% ---------- capítulos e seções ----------
+\titleformat{\chapter}[display]
+  {\normalfont\filleft}
+  {{\large\scshape\color{cinza}\chaptertitlename}\hspace{0.4em}{\fontsize{64}{64}\selectfont\color{tinta}\thechapter}}
+  {14pt}
+  {\fontsize{24}{29}\selectfont\bfseries\color{tinta}\filleft}
+  [\vspace{6pt}{\color{tinta}\titlerule[0.8pt]}]
+\titlespacing*{\chapter}{0pt}{0.3in}{32pt}
+\titleformat{name=\chapter,numberless}[display]{\normalfont\filleft}{}{0pt}
+  {\fontsize{24}{29}\selectfont\bfseries\color{tinta}\filleft}[\vspace{6pt}{\color{tinta}\titlerule[0.8pt]}]
+\titlespacing*{name=\chapter,numberless}{0pt}{0.3in}{32pt}
+\titleformat{\section}{\normalfont\Large\bfseries\color{tinta}\raggedright}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{tinta}\raggedright}{}{0pt}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\itshape\raggedright}{}{0pt}{}
+\titlespacing*{\section}{0pt}{18pt plus 4pt}{7pt}
+\titlespacing*{\subsection}{0pt}{13pt plus 3pt}{5pt}
+\titleformat{\part}[display]{\thispagestyle{empty}\centering\normalfont\color{tinta}}
+  {\Large\scshape Parte\ \thepart}{16pt}{\fontsize{28}{34}\selectfont\bfseries}[\vspace{10pt}{\color{cinza}\rule{0.3\linewidth}{0.5pt}}]
+\renewcommand{\thepart}{\Roman{part}}
+\titlecontents{part}[0pt]{\addvspace{14pt}\normalfont\bfseries\color{tinta}}{Parte \thecontentslabel\quad}{}{\hfill\contentspage}[\addvspace{3pt}]
+\titlecontents{chapter}[2.2em]{\addvspace{3pt}\normalfont}{\contentslabel{2.2em}}{}{\titlerule*[0.7pc]{.}\contentspage}
+
+% ---------- cabeçalho e rodapé ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[LE]{\small\thepage\hspace{1.2em}\scshape XRiscs --- Derivativos com Python}
+\fancyhead[RO]{\small\scshape\nouppercase{\leftmark}\hspace{1.2em}\upshape\thepage}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\thepage}}
+
+% ---------- código e saídas ----------
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},breaklines,breakanywhere,fontsize=\footnotesize}
+\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced,breakable,colback=fundocod,colframe=fundocod,
+  borderline west={1.2pt}{0pt}{tinta!60},arc=0pt,outer arc=0pt,boxrule=0pt,left=6pt,right=4pt,top=2pt,bottom=2pt,before skip=6pt,after skip=6pt]}{\end{tcolorbox}}
+\DefineVerbatimEnvironment{Saida}{Verbatim}{breaklines,breakanywhere,fontsize=\scriptsize,formatcom=\color{black!80}}
+\newenvironment{saida}{\begin{tcolorbox}[enhanced,breakable,colback=fundosai,colframe=black!15,boxrule=0.4pt,arc=0pt,
+  left=6pt,right=4pt,top=1pt,bottom=1pt,before skip=2pt,after skip=8pt]}{\end{tcolorbox}}
+\newtcolorbox{solucao}{enhanced,breakable,colback=white,colframe=tinta!70,boxrule=0.5pt,arc=0pt,
+  title={\bfseries Solução},coltitle=white,colbacktitle=tinta!70,fonttitle=\small,left=6pt,right=6pt}
+\newtcolorbox{nota}{enhanced,breakable,colback=acento!5,colframe=acento!70,boxrule=0.5pt,arc=0pt,left=6pt,right=6pt}
+\newcommand{\figura}[2]{\par\smallskip{\centering\includegraphics[width=#2\linewidth]{#1}\par}\smallskip}
+\newcommand{\tabelalivro}[1]{\par\smallskip{\centering\small\begin{adjustbox}{max width=\linewidth}#1\end{adjustbox}\par}\smallskip}
+% abertura da seção teórica de cada capítulo
+\newcommand{\aberturateoria}{\par\noindent{\color{cinza}\rule{\linewidth}{0.4pt}}\par\nobreak}
+
+\begin{document}
+\frontmatter
+\pagestyle{empty}
+% ---------- capa ----------
+\begin{tikzpicture}[remember picture,overlay]
+  \node[anchor=center,inner sep=0] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{capa_fundo.pdf}};
+  \node[anchor=north west,text width=5.6in,align=left,text=white] at ([xshift=0.75in,yshift=-1.05in]current page.north west)
+    {{\fontsize{50}{54}\selectfont\bfseries XRiscs}\\[16pt]
+     {\fontsize{26}{30}\selectfont Derivativos com Python}\\[14pt]
+     {\color{white!80}\rule{1.6in}{0.6pt}}\\[12pt]
+     {\Large\itshape Precificação, calibração e hedge em Python,\\ do Black-Scholes ao smile, com auxílio de IA}};
+  \node[anchor=south west,text=white] at ([xshift=0.75in,yshift=1.15in]current page.south west) {\fontsize{20}{24}\selectfont\scshape Walter C. Neto};
+  \node[anchor=south west,text=white!75] at ([xshift=0.75in,yshift=0.8in]current page.south west) {\small Edição $edicao$ \,·\, $data$};
+\end{tikzpicture}
+\cleardoublepage
+% ---------- folha de rosto ----------
+\begin{center}
+\vspace*{1.3in}{\fontsize{34}{40}\selectfont\bfseries\color{tinta} XRiscs}\\[12pt]
+{\LARGE Derivativos com Python}\\[10pt]
+{\large\itshape Precificação, calibração e hedge em Python,\\ do Black-Scholes ao smile, com auxílio de IA}\\[1.3in]
+{\Large\scshape Walter C. Neto}\\[2.1in]
+{\small waltercneto.github.io/XRiscs}
+\end{center}
+\newpage
+% ---------- página de créditos ----------
+\vspace*{\fill}
+{\small\noindent
+\textbf{XRiscs --- Derivativos com Python}\\
+Walter C. Neto\\
+Edição $edicao$, $data$. Gerada a partir dos notebooks do repositório
+\url{https://github.com/walterCNeto/XRiscs} (commit $commit$).\par\medskip
+\noindent Textos e figuras: Creative Commons Atribuição 4.0 Internacional (CC BY 4.0).
+Código: licença MIT. Você pode copiar, adaptar e redistribuir, desde que cite a fonte.\par\medskip
+\noindent Textos, código e laboratórios desenvolvidos com auxílio de IA (Claude, da Anthropic).\par\medskip
+\noindent Este é um material de estudo independente. A sequência dos Capítulos 1 a 16 acompanha
+\citet{hilpisch2015}; não há afiliação com o autor nem com a editora, e nenhum trecho daquele livro é reproduzido.
+Todos os dados são sintéticos, exceto as taxas dos T-bills do Capítulo 17 (U.S. Treasury, domínio público).\par\medskip
+\noindent Cada capítulo corresponde a um notebook executável. As verificações automáticas \texttt{ok(...)}
+que aparecem nas saídas foram todas aprovadas na geração desta edição ($verificacoes$ no total).\par\medskip
+\noindent Capa: trajetórias simuladas de um movimento browniano geométrico, com as bandas de \(\pm1\) e \(\pm2\) desvios-padrão do log-preço.\par}
+\cleardoublepage
+\pagestyle{fancy}
+\tableofcontents
+\cleardoublepage
+$body$
+\backmatter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Referências}
+\renewcommand{\bibname}{Referências}
+\nocite{*}
+\bibliographystyle{plainnat}
+\bibliography{referencias}
+\end{document}

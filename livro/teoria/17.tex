@@ -1,0 +1,78 @@
+\section{Fundamentos teóricos}
+
+\subsection{Numerários e medidas}
+
+\begin{teorema}[Mudança de numerário]\label{teo:numerario}
+Sejam $N$ e $M$ dois numerários (processos de preço positivos) e $\mathbb Q^N$ uma medida sob a qual todo preço dividido por $N$ é martingal. A medida definida por
+\begin{equation}
+\frac{d\mathbb Q^M}{d\mathbb Q^N}\bigg|_{\mathcal F_T}=\frac{M_T/M_0}{N_T/N_0}
+\end{equation}
+torna martingal todo preço dividido por $M$. Em particular, para qualquer payoff $H$ em $T$,
+\begin{equation}
+V_0=N_0\,\mathbb E^{\mathbb Q^N}\Big[\frac{H}{N_T}\Big]=M_0\,\mathbb E^{\mathbb Q^M}\Big[\frac{H}{M_T}\Big]
+\end{equation}
+\citep{gemanetal1995}.
+\end{teorema}
+
+\begin{definicao}[Medida forward]
+Tomando como numerário o título de cupom zero $P(t,T)$, obtém-se a \emph{medida $T$-forward} $\mathbb Q^T$. Como $P(T,T)=1$,
+\begin{equation}
+V_0=P(0,T)\,\mathbb E^{\mathbb Q^T}[H],
+\end{equation}
+e o desconto sai da esperança mesmo com juros estocásticos. Sob $\mathbb Q^T$, a taxa forward $f(t,T)$ e o preço forward de qualquer ativo para entrega em $T$ são martingais.
+\end{definicao}
+
+\subsection{O modelo de Hull-White}
+
+\begin{definicao}[Hull-White de um fator]
+Sob a medida neutra ao risco,
+\begin{equation}\label{eq:hw}
+dr_t=\big(\vartheta(t)-ar_t\big)\,dt+\sigma\,dW_t,
+\end{equation}
+com $a,\sigma>0$ constantes e $\vartheta(t)$ determinística \citep{hullwhite1990}. Com $\vartheta$ constante, é o modelo de Vasicek; com $a=0$, o de Ho-Lee \citep{vasicek1977,holee1986}.
+\end{definicao}
+
+\begin{proposicao}[Ajuste à curva]\label{prop:hw-theta}
+O modelo reproduz a curva inicial $P^{\mathrm{mkt}}(0,T)$ para todo $T$ se, e somente se,
+\begin{equation}
+\vartheta(t)=\partial_tf^{\mathrm{mkt}}(0,t)+af^{\mathrm{mkt}}(0,t)+\frac{\sigma^2}{2a}\big(1-e^{-2at}\big).
+\end{equation}
+Equivalentemente, $r_t=x_t+\alpha(t)$, com $dx_t=-ax_t\,dt+\sigma\,dW_t$, $x_0=0$, e $\alpha(t)=f^{\mathrm{mkt}}(0,t)+\frac{\sigma^2}{2a^2}\big(1-e^{-at}\big)^2$.
+\end{proposicao}
+
+\begin{proposicao}[Preço do título]
+Em Hull-White, $P(t,T)=A(t,T)\,e^{-B(t,T)r_t}$, com
+\begin{equation}
+B(t,T)=\frac{1-e^{-a(T-t)}}{a},\qquad \ln A(t,T)=\ln\frac{P^{\mathrm{mkt}}(0,T)}{P^{\mathrm{mkt}}(0,t)}+B(t,T)f^{\mathrm{mkt}}(0,t)-\frac{\sigma^2}{4a}\big(1-e^{-2at}\big)B(t,T)^2.
+\end{equation}
+\end{proposicao}
+
+\begin{proof}[Esboço]
+$\int_t^Tr_s\,ds$ é gaussiana condicionalmente a $\mathcal F_t$, pois $x$ é um processo de Ornstein-Uhlenbeck. Logo $P(t,T)=\exp\big(-m+\tfrac12s^2\big)$, com $m$ e $s^2$ a média e a variância condicionais da integral; ambas são afins em $r_t$, e o coeficiente de $r_t$ é $B(t,T)$. A parte determinística é fixada pela condição de reproduzir $P^{\mathrm{mkt}}(0,\cdot)$.
+\end{proof}
+
+\subsection{Opções sobre títulos e caps}
+
+\begin{teorema}[Opção sobre título de cupom zero]
+Uma call europeia de vencimento $T$ e strike $X$ sobre o título que vence em $S>T$ vale
+\begin{gather}
+\mathrm{ZBC}=P(0,S)\,N(h)-X\,P(0,T)\,N(h-\sigma_P),\\
+\sigma_P=\sigma\sqrt{\frac{1-e^{-2aT}}{2a}}\,B(T,S),\qquad h=\frac1{\sigma_P}\ln\frac{P(0,S)}{X\,P(0,T)}+\frac{\sigma_P}{2}.
+\end{gather}
+\end{teorema}
+
+\begin{proof}
+Sob $\mathbb Q^T$, $P(T,S)=P(t,S)/P(t,T)$ avaliado em $T$ é o preço forward, um martingal lognormal com variância $\sigma_P^2$. A fórmula é a de Black para esse preço forward \citep{black1976,brigomercurio2006}.
+\end{proof}
+
+\begin{proposicao}[Caplet como put sobre título]
+Um caplet de taxa simples $L(T,S)$ com strike $K$, período $\delta=S-T$ e nominal $1$, pago em $S$, vale o mesmo que $(1+K\delta)$ puts europeias de vencimento $T$ e strike $1/(1+K\delta)$ sobre o título $P(\cdot,S)$.
+\end{proposicao}
+
+\begin{proof}
+O payoff $\delta\,(L-K)^+$ em $S$ vale em $T$ $P(T,S)\,\delta(L-K)^+$. Com $1+\delta L=1/P(T,S)$, isso é $(1-(1+K\delta)P(T,S))^+=(1+K\delta)\big(\tfrac1{1+K\delta}-P(T,S)\big)^+$.
+\end{proof}
+
+\begin{teorema}[Jamshidian]
+Num modelo de um fator em que $P(T,S_i)$ é decrescente em $r_T$, uma opção sobre um título com cupons $c_i$ é uma carteira de opções sobre títulos de cupom zero, com strikes $X_i=P(T,S_i)|_{r_T=r^*}$, onde $r^*$ resolve $\sum_ic_iP(T,S_i)|_{r^*}=X$ \citep{jamshidian1989}.
+\end{teorema}

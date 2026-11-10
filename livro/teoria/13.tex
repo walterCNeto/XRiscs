@@ -1,0 +1,48 @@
+\section{Fundamentos teóricos}
+
+\subsection{Curva forward e ajuste do CIR}
+
+\begin{definicao}[Taxas forward]
+Para preços de títulos $B(0,T)$, a \emph{taxa spot} contínua é $y(T)=-\ln B(0,T)/T$ e a \emph{taxa forward instantânea} é $f(0,T)=-\partial_T\ln B(0,T)$. Então $B(0,T)=\exp\big(-\int_0^Tf(0,s)\,ds\big)$.
+\end{definicao}
+
+\begin{proposicao}[Curva forward do CIR]\label{prop:cir-fwd}
+Na Proposição~\ref{prop:cir-bond}, $f(0,T)=-\partial_T\ln A(T)+r_0\,\partial_TB(T)$. Com $\gamma=\sqrt{\kappa^2+2\sigma^2}$ e $D(T)=(\kappa+\gamma)(e^{\gamma T}-1)+2\gamma$,
+\begin{equation}\label{eq:cir-fwd}
+f^{\mathrm{CIR}}(0,T)=\frac{2\kappa\theta\,(e^{\gamma T}-1)}{D(T)}+r_0\,\frac{4\gamma^2e^{\gamma T}}{D(T)^2}.
+\end{equation}
+\end{proposicao}
+
+\begin{proof}
+Derive $\ln A=\tfrac{2\kappa\theta}{\sigma^2}\big[\ln(2\gamma)+\tfrac{(\kappa+\gamma)T}2-\ln D\big]$ e $B=2(e^{\gamma T}-1)/D$. Usando $D'=(\kappa+\gamma)\gamma e^{\gamma T}$ e $\gamma^2-\kappa^2=2\sigma^2$, o primeiro termo simplifica para $2\kappa\theta(e^{\gamma T}-1)/D$; o segundo dá $B'=4\gamma^2e^{\gamma T}/D^2$.
+\end{proof}
+
+\begin{observacao}
+No limite $T\to\infty$, $f^{\mathrm{CIR}}(0,T)\to2\kappa\theta/(\kappa+\gamma)$, menor que $\theta$: a convexidade dos juros puxa a taxa forward longa para baixo da média de longo prazo da short rate. O fator $2$ em \eqref{eq:cir-fwd} é essencial; sem ele, a curva ajustada exige um $\theta$ duas vezes maior.
+\end{observacao}
+
+\subsection{Calibração de Heston}
+
+\begin{definicao}[Problema de calibração]
+Para $\vartheta=(\kappa_v,\theta_v,\sigma_v,\rho,v_0)$, minimize
+\begin{equation}
+\mathrm{EQM}(\vartheta)=\frac1m\sum_{j=1}^m\big(C^{\mathrm H}_j(\vartheta)-C^{\mathrm{mkt}}_j\big)^2
+\end{equation}
+sobre $\Theta=\{\kappa_v,\theta_v,\sigma_v,v_0>0,\ -1<\rho<1\}$, possivelmente com a restrição de Feller $2\kappa_v\theta_v\ge\sigma_v^2$.
+\end{definicao}
+
+\begin{observacao}[Papel de cada parâmetro]
+Num prazo fixo, $v_0$ e $\theta_v$ controlam o nível das vols implícitas, $\rho$ o skew e $\sigma_v$ a convexidade. A velocidade $\kappa_v$ controla como skew e convexidade se dissipam com o prazo. Por isso uma calibração a um único vencimento identifica mal $\kappa_v$ e $\theta_v$: só o produto e a combinação com $v_0$ são bem determinados, e a superfície de erro tem um vale longo.
+\end{observacao}
+
+\begin{proposicao}[Variância esperada]
+Em Heston, $\mathbb E\big[\tfrac1T\int_0^Tv_t\,dt\big]=\theta_v+(v_0-\theta_v)\frac{1-e^{-\kappa_vT}}{\kappa_vT}$.
+\end{proposicao}
+
+A proposição explica o vale: diferentes pares $(\kappa_v,\theta_v)$ produzem a mesma variância média até o prazo calibrado, e portanto preços ATM muito próximos. Ela também mostra o risco: fora do prazo calibrado, as previsões divergem (Capítulo~14).
+
+\subsection{Otimização}
+
+\begin{observacao}[Estratégia em duas etapas]
+O EQM é não convexo e, em geral, tem mínimos locais. A abordagem usual combina uma busca global grosseira (grade ou força bruta) com um refinamento local sem derivadas (Nelder-Mead) ou com gradiente (quase-Newton, Levenberg-Marquardt). Restrições de sinal e de Feller entram como barreiras ou penalidades; uma restrição ativa na solução sinaliza que o mercado ``pede'' um processo fora do domínio permitido.
+\end{observacao}

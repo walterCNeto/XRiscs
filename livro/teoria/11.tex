@@ -1,0 +1,64 @@
+\section{Fundamentos teóricos}
+
+\subsection{O modelo}
+
+\begin{definicao}[Modelo de Bakshi, Cao e Chen]
+Sob $\mathbb Q$, o índice $S$, sua variância instantânea $v$ e a short rate $r$ seguem
+\begin{align}
+\frac{dS_t}{S_{t-}}&=(r_t-r_J)\,dt+\sqrt{v_t}\,dZ^1_t+J_t\,dN_t,\\
+dv_t&=\kappa_v(\theta_v-v_t)\,dt+\sigma_v\sqrt{v_t}\,dZ^2_t,\label{eq:heston-v}\\
+dr_t&=\kappa_r(\theta_r-r_t)\,dt+\sigma_r\sqrt{r_t}\,dZ^3_t,\label{eq:cir}
+\end{align}
+com $d\langle Z^1,Z^2\rangle_t=\rho\,dt$, $Z^3$ independente de $(Z^1,Z^2)$, e saltos como no modelo de Merton \citep{bcc1997}.
+\end{definicao}
+
+O modelo reúne três blocos: volatilidade estocástica de Heston (agrupamento e efeito alavancagem, via $\rho<0$), saltos de Merton (assimetria de curto prazo) e juros estocásticos de Cox, Ingersoll e Ross \citep{cir1985}.
+
+\subsection{O processo de raiz quadrada}
+
+\begin{proposicao}[Propriedades do processo CIR]\label{prop:cir}
+Para $dx_t=\kappa(\theta-x_t)\,dt+\sigma\sqrt{x_t}\,dW_t$, $x_0>0$, com $\kappa,\theta,\sigma>0$:
+\begin{enumerate}
+\item $x_t\ge0$ para todo $t$, e $x_t>0$ para todo $t$ se e somente se $2\kappa\theta\ge\sigma^2$ (condição de Feller) \citep{feller1951};
+\item $\mathbb E[x_t]=\theta+(x_0-\theta)e^{-\kappa t}$ e $\mathrm{Var}(x_t)=x_0\frac{\sigma^2}{\kappa}\big(e^{-\kappa t}-e^{-2\kappa t}\big)+\theta\frac{\sigma^2}{2\kappa}\big(1-e^{-\kappa t}\big)^2$;
+\item condicionalmente a $x_s$, $x_t/c$ tem distribuição qui-quadrado não central com $d=4\kappa\theta/\sigma^2$ graus de liberdade e parâmetro de não centralidade $x_se^{-\kappa(t-s)}/c$, onde $c=\sigma^2\big(1-e^{-\kappa(t-s)}\big)/(4\kappa)$.
+\end{enumerate}
+\end{proposicao}
+
+\begin{proposicao}[Preço do título no CIR]\label{prop:cir-bond}
+O título de cupom zero de vencimento $T$ vale $B(t,T)=\mathbb E^{\mathbb Q}\big[e^{-\int_t^Tr_s\,ds}\mid r_t\big]=A(\tau)e^{-B(\tau)r_t}$, $\tau=T-t$, com $\gamma=\sqrt{\kappa_r^2+2\sigma_r^2}$ e
+\begin{equation}
+A(\tau)=\left[\frac{2\gamma e^{(\kappa_r+\gamma)\tau/2}}{(\gamma+\kappa_r)(e^{\gamma\tau}-1)+2\gamma}\right]^{2\kappa_r\theta_r/\sigma_r^2},\qquad B(\tau)=\frac{2(e^{\gamma\tau}-1)}{(\gamma+\kappa_r)(e^{\gamma\tau}-1)+2\gamma}.
+\end{equation}
+\end{proposicao}
+
+\begin{proof}[Esboço]
+Pelo argumento de Feynman-Kac, $B(t,T)=F(t,r)$ resolve $\partial_tF+\kappa_r(\theta_r-r)\partial_rF+\tfrac12\sigma_r^2r\,\partial_{rr}F-rF=0$, $F(T,r)=1$. A tentativa $F=A(\tau)e^{-B(\tau)r}$ separa a EDP em duas EDOs: uma de Riccati para $B$, $B'=1-\kappa_rB-\tfrac12\sigma_r^2B^2$, e uma linear para $\ln A$, cujas soluções são as expressões acima.
+\end{proof}
+
+\subsection{Estrutura afim e função característica}
+
+\begin{teorema}[Modelos afins]
+Se o vetor de estado $X$ tem deriva, matriz de covariância instantânea e intensidade de saltos afins em $X$, então
+\begin{equation}
+\mathbb E^{\mathbb Q}\big[e^{-\int_t^Tr_s\,ds}\,e^{iu\cdot X_T}\,\big|\,X_t\big]=\exp\big(\alpha(t)+\beta(t)\cdot X_t\big),
+\end{equation}
+com $\alpha$ e $\beta$ soluções de EDOs de Riccati generalizadas \citep{duffiepansingleton2000}.
+\end{teorema}
+
+\begin{corolario}[Função característica no BCC97]
+Com juros independentes do par $(S,v)$ e a aproximação usada no livro, que trata a taxa de desconto até $T$ como a taxa constante equivalente do título CIR, $\bar r_T=-\ln B(0,T)/T$ (ignorando a volatilidade do título na dinâmica do forward), a função característica do log-retorno fatora-se em
+\begin{equation}
+\varphi^{\mathrm{BCC}}(u)=\varphi^{\mathrm{H}}(u)\cdot\varphi^{\mathrm{J}}(u),
+\end{equation}
+produto das contribuições de Heston e dos saltos, pois os dois blocos são independentes. A parte dos saltos é a de \eqref{eq:cf-merton} sem o termo difusivo. A parte de Heston é
+$\varphi^{\mathrm H}(u)=\exp\big(H_1(u,T)+H_2(u,T)v_0\big)$, com
+\begin{gather}
+c(u)=\sqrt{(\rho\sigma_vui-\kappa_v)^2-\sigma_v^2(-ui-u^2)},\qquad g(u)=\frac{\kappa_v-\rho\sigma_vui-c}{\kappa_v-\rho\sigma_vui+c},\\
+H_2=\frac{\kappa_v-\rho\sigma_vui-c}{\sigma_v^2}\,\frac{1-e^{-cT}}{1-ge^{-cT}},\qquad
+H_1=\bar r_T\,uiT+\frac{\kappa_v\theta_v}{\sigma_v^2}\Big[(\kappa_v-\rho\sigma_vui-c)T-2\ln\frac{1-ge^{-cT}}{1-g}\Big],
+\end{gather}
+nesta forma (com a raiz $c$ de parte real positiva), que evita a descontinuidade do logaritmo complexo.
+\end{corolario}
+
+Com a função característica em mãos, a fórmula de Lewis do Capítulo~7 precifica opções europeias no BCC97 com uma integral unidimensional, o que torna a calibração viável.

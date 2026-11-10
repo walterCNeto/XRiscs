@@ -1,0 +1,50 @@
+\section{Fundamentos teóricos}
+
+\subsection{Função característica}
+
+\begin{definicao}[Função característica]
+A função característica de uma variável aleatória $X$ é $\varphi_X(u)=\mathbb E\big[e^{iuX}\big]$, $u\in\mathbb R$. Ela existe sempre, determina a lei de $X$ e, quando $X$ tem densidade $f$ integrável, $f(x)=\frac1{2\pi}\int_{\mathbb R}e^{-iux}\varphi_X(u)\,du$. A definição se estende a $u\in\mathbb C$ na faixa onde $\mathbb E[e^{-\operatorname{Im}(u)X}]<\infty$.
+\end{definicao}
+
+\begin{exemplo}[Modelos usados no livro]
+Com $X_T=\ln(S_T/S_0)$ sob $\mathbb Q$:
+\begin{enumerate}
+\item Black-Scholes: $\varphi(u)=\exp\big(iu(r-\tfrac12\sigma^2)T-\tfrac12\sigma^2u^2T\big)$.
+\item Merton com saltos \citep{merton1976}: saltos de intensidade $\lambda$ e tamanho $\ln(1+J)\sim N(\mu_J,\delta^2)$,
+\begin{equation}\label{eq:cf-merton}
+\varphi(u)=\exp\Big(T\Big[iu\omega-\tfrac12\sigma^2u^2+\lambda\big(e^{iu\mu_J-\delta^2u^2/2}-1\big)\Big]\Big),
+\end{equation}
+com $\omega=r-\tfrac12\sigma^2-\lambda\big(e^{\mu_J+\delta^2/2}-1\big)$ escolhido para que $e^{-rt}S_t$ seja martingal.
+\item Heston \citep{heston1993}: forma exponencial-afim $\varphi(u)=\exp\big(A(u,T)+B(u,T)v_0\big)$, com $A$ e $B$ soluções de equações de Riccati (Capítulo~11).
+\end{enumerate}
+\end{exemplo}
+
+\begin{teorema}[Processos de Lévy]
+Se $X$ é um processo de Lévy, $\varphi_{X_t}(u)=e^{t\psi(u)}$, com o expoente característico dado pela fórmula de Lévy-Khintchine
+\begin{equation}
+\psi(u)=i\gamma u-\tfrac12\sigma^2u^2+\int_{\mathbb R}\big(e^{iux}-1-iux\mathbf 1_{|x|<1}\big)\,\nu(dx).
+\end{equation}
+\end{teorema}
+
+O modelo de Merton é Lévy (difusão mais Poisson composto); o de Heston não é, mas é \emph{afim}, e também tem função característica em forma fechada \citep{duffiepansingleton2000}.
+
+\subsection{A fórmula de Lewis}
+
+\begin{teorema}[Lewis, 2001]\label{teo:lewis}
+Seja $\varphi$ a função característica de $X_T=\ln(S_T/S_0)$ sob $\mathbb Q$ e suponha que $\varphi(u-\tfrac i2)$ é bem definida. Então a call europeia vale
+\begin{equation}\label{eq:lewis}
+C_0=S_0-\frac{\sqrt{S_0K}\,e^{-rT/2}}{\pi}\int_0^\infty\operatorname{Re}\Big[e^{iuk}\,\varphi\big(u-\tfrac i2\big)\Big]\frac{du}{u^2+\tfrac14},\qquad k=\ln(S_0/K).
+\end{equation}
+\end{teorema}
+
+\begin{proof}[Esboço]
+Escreva o payoff em log-preço, $w(x)=(e^x-K)^+$, e sua transformada generalizada $\hat w(z)=\int e^{izx}w(x)\,dx=-K^{iz+1}/(z^2-iz)$, válida para $\operatorname{Im}z>1$. Pela fórmula de Parseval, $C_0=\frac{e^{-rT}}{2\pi}\int\hat w(z)\,\varphi_{\ln S_T}(-z)\,dz$ ao longo de uma reta $\operatorname{Im}z=c$. Desloque a reta para $c=\tfrac12$; ao cruzar o polo em $z=i$ aparece o resíduo $S_0$. O integrando restante é par na parte real, o que dá o fator $2$ e a integral em $[0,\infty)$ \citep{lewis2001}.
+\end{proof}
+
+\begin{observacao}[Por que $u-\tfrac i2$]
+A linha $\operatorname{Im}z=\tfrac12$ fica no meio da faixa $0<\operatorname{Im}z<1$ onde a transformada de um contrato \emph{covered call} existe e onde $\varphi$ é finita para qualquer modelo com primeiro momento: $\mathbb E[S_T^{1/2}]<\infty$. O integrando decai como $u^{-2}$, e a integral converge rapidamente.
+\end{observacao}
+
+\subsection{Integração numérica}
+
+A integral \eqref{eq:lewis} é calculada por quadratura em $[0,U]$. O truncamento em $U$ tem erro controlado pelo decaimento de $|\varphi(u-\tfrac i2)|$; nos modelos de difusão, o decaimento é gaussiano e $U$ moderado basta; com saltos e prazos curtos, o decaimento é mais lento e $U$ precisa crescer. A quadratura adaptativa é robusta, mas cara para muitos strikes; o Capítulo~8 troca a quadratura por uma transformada rápida.

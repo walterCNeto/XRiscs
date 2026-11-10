@@ -1,0 +1,63 @@
+\section{Fundamentos teóricos}
+
+\subsection{Preços de opções e densidade neutra ao risco}
+
+\begin{teorema}[Breeden-Litzenberger]\label{teo:bl}
+Se $C(K,T)=e^{-rT}\mathbb E^{\mathbb Q}[(S_T-K)^+]$ é duas vezes diferenciável em $K$, então
+\begin{equation}\label{eq:bl}
+\partial_KC(K,T)=-e^{-rT}\,\mathbb Q(S_T>K),\qquad \partial_{KK}C(K,T)=e^{-rT}\,q_T(K),
+\end{equation}
+onde $q_T$ é a densidade de $S_T$ sob $\mathbb Q$ \citep{breedenlitzenberger1978}.
+\end{teorema}
+
+\begin{proof}
+$C=e^{-rT}\int_K^\infty(s-K)q_T(s)\,ds$. Derivando sob o sinal de integral, $\partial_KC=-e^{-rT}\int_K^\infty q_T(s)\,ds$, e derivando de novo, $\partial_{KK}C=e^{-rT}q_T(K)$.
+\end{proof}
+
+\begin{corolario}[Ausência de arbitragem estática]
+Uma superfície de preços é livre de arbitragem de borboleta se $\partial_{KK}C\ge0$ e livre de arbitragem de calendário (sem dividendos) se $C(K e^{r(T_2-T_1)},T_2)\ge C(K,T_1)$ para $T_2>T_1$.
+\end{corolario}
+
+Os preços de mercado de um vencimento, portanto, determinam a lei marginal de $S_T$. A volatilidade local escolhe, entre todas as dinâmicas compatíveis com essas leis marginais, a única que é uma difusão markoviana em $S$.
+
+\subsection{Volatilidade local}
+
+\begin{teorema}[Dupire]\label{teo:dupire}
+Se $dS_t=rS_t\,dt+\sigma(S_t,t)S_t\,dW_t$ sob $\mathbb Q$ e a superfície de calls é suficientemente regular, então
+\begin{equation}\label{eq:dupire}
+\sigma^2(K,T)=\frac{\partial_TC+rK\,\partial_KC}{\tfrac12K^2\,\partial_{KK}C}.
+\end{equation}
+Reciprocamente, dada uma superfície livre de arbitragem, \eqref{eq:dupire} define a única volatilidade local que a reproduz \citep{dupire1994}.
+\end{teorema}
+
+\begin{proof}[Esboço]
+A densidade $q_T$ satisfaz a equação de Fokker-Planck, $\partial_Tq=-\partial_K(rKq)+\tfrac12\partial_{KK}(\sigma^2K^2q)$. Substitua $q=e^{rT}\partial_{KK}C$, integre duas vezes em $K$ entre $K$ e $\infty$ e use as condições de decaimento: obtém-se $\partial_TC=-rK\partial_KC+\tfrac12\sigma^2K^2\partial_{KK}C$, que é \eqref{eq:dupire}.
+\end{proof}
+
+\begin{proposicao}[Regra do dobro do skew]
+Perto do dinheiro e para prazos curtos, a vol implícita é aproximadamente a média da vol local entre o preço corrente e o strike:
+\begin{equation}
+\sigma_{\mathrm{imp}}(K,T)\approx\frac{1}{\ln(K/S_0)}\int_{\ln S_0}^{\ln K}\sigma_{\mathrm{loc}}(e^x)\,dx.
+\end{equation}
+Logo, se $\sigma_{\mathrm{loc}}$ é linear em $\ln S$ com inclinação $\beta$, a vol implícita é linear em $\ln K$ com inclinação $\beta/2$ \citep{dkz1996,gatheral2006}.
+\end{proposicao}
+
+\subsection{Árvores implícitas}
+
+\begin{definicao}[Árvore trinomial implícita]
+Dado um espaço de estados com $2n+1$ nós no nível $n$, ordenados de forma decrescente, uma árvore implícita é a escolha de probabilidades $(p_i,1-p_i-q_i,q_i)$ tal que (i) cada nó respeita o forward, $\mathbb E[S_{n+1}\mid S_n=S_i]=S_ie^{r\Delta t}$, e (ii) as calls e puts de vencimento $t_{n+1}$ com strikes nos nós do nível $n+1$ são reproduzidas \citep{dermankani1994,dkc1996}.
+\end{definicao}
+
+\begin{proposicao}[Recursão de Derman-Kani-Chriss]
+Sejam $\lambda_i$ os preços de Arrow-Debreu do nível $n$, $F_i=S_ie^{r\Delta t}$ e $s_i>s_{i+1}>s_{i+2}$ os sucessores do nó $i$. Para os nós da metade superior,
+\begin{equation}
+p_i=\frac{e^{r\Delta t}C(s_{i+1},t_{n+1})-\sum_{j<i}\lambda_j\,(F_j-s_{i+1})}{\lambda_i\,(s_i-s_{i+1})},\qquad q_i=\frac{F_i-p_i(s_i-s_{i+1})-s_{i+1}}{s_{i+2}-s_{i+1}},
+\end{equation}
+e, para os da metade inferior, a fórmula simétrica com puts. Com as probabilidades, os preços de Arrow-Debreu do nível seguinte são $\Lambda_k=e^{-r\Delta t}\sum_i\lambda_i\,\pi_{i\to k}$.
+\end{proposicao}
+
+A recursão é a versão discreta de \eqref{eq:bl}: impor o preço da call com strike no nó $s_{i+1}$ é impor a massa de probabilidade que a árvore coloca acima desse nó. Quando o espaço de estados não comporta a variância local pedida pelo smile, as fórmulas dão probabilidades fora de $[0,1]$, e o nó recebe um \emph{override} que só respeita o forward.
+
+\begin{observacao}[Limitação dinâmica]
+O modelo de volatilidade local reproduz por construção os preços de hoje, mas prevê uma dinâmica do smile em que, quando o preço cai, o smile se desloca na direção oposta à observada \citep{hagan2002}. Produtos que dependem do smile futuro pedem modelos de volatilidade estocástica ou modelos mistos.
+\end{observacao}

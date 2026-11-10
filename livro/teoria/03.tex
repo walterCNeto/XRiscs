@@ -1,0 +1,69 @@
+\section{Fundamentos teóricos}
+
+\subsection{Medidas martingais equivalentes}
+
+Mantemos o mercado de um período do Capítulo~1, com estados $\omega_1,\dots,\omega_K$ e conta remunerada de taxa $r$.
+
+\begin{definicao}[Medida martingal equivalente]
+Uma medida $\mathbb Q$ em $\Omega$ é \emph{equivalente} a $\mathbb P$ se $\mathbb Q(\omega_k)>0$ para todo $k$. Ela é uma \emph{medida martingal equivalente} (MME) se, para todo ativo $i$,
+\begin{equation}\label{eq:mme}
+S^i_0=\frac{1}{1+r}\,\mathbb E^{\mathbb Q}\big[S^i_1\big].
+\end{equation}
+\end{definicao}
+
+\begin{teorema}[Primeiro teorema fundamental]\label{teo:ftap1}
+O mercado é livre de arbitragem se, e somente se, existe uma medida martingal equivalente.
+\end{teorema}
+
+\begin{proof}
+($\Leftarrow$) Se $\mathbb Q$ é MME, então $V_0(\theta)=\mathbb E^{\mathbb Q}[V_1(\theta)]/(1+r)$ para toda carteira. Se $V_1(\theta)\ge0$ com $V_1(\theta)>0$ em algum estado, como $\mathbb Q$ dá peso positivo a todos os estados, $V_0(\theta)>0$: não há arbitragem.
+
+($\Rightarrow$) Considere o conjunto $\mathcal G=\{G(\theta)\in\mathbb R^K:\theta\in\mathbb R^{N}\}$ dos ganhos descontados $G_k(\theta)=\sum_{i\ge1}\theta_i\big(S^i_1(\omega_k)/(1+r)-S^i_0\big)$, um subespaço vetorial. A ausência de arbitragem equivale a $\mathcal G\cap\mathbb R^K_+=\{0\}$. O simplex $\Delta=\{x\in\mathbb R^K_+:\sum x_k=1\}$ é compacto, convexo e disjunto de $\mathcal G$; pelo teorema da separação de hiperplanos existe $q\in\mathbb R^K$ com $q\cdot g=0$ para todo $g\in\mathcal G$ e $q\cdot x>0$ para todo $x\in\Delta$. A segunda condição dá $q_k>0$; normalizando, $\mathbb Q(\omega_k)=q_k/\sum_jq_j$ é uma medida equivalente, e a primeira condição é exatamente \eqref{eq:mme}.
+\end{proof}
+
+O teorema vale em tempo discreto com qualquer espaço de estados \citep{dmw1990} e, com a noção adequada de arbitragem, em tempo contínuo \citep{harrisonpliska1981,delbaenschachermayer1994}.
+
+\begin{teorema}[Segundo teorema fundamental]
+Num mercado livre de arbitragem, o mercado é completo se, e somente se, a MME é única.
+\end{teorema}
+
+\begin{proof}[Esboço]
+Completude significa que a matriz de payoffs $A_{ki}=S^i_1(\omega_k)$ tem posto $K$. As MME são as soluções positivas de um sistema linear de $N+1$ equações em $K$ incógnitas; o sistema tem solução única se e somente se o posto é $K$.
+\end{proof}
+
+\begin{corolario}[Fórmula de precificação neutra ao risco]
+Se $X$ é replicável, seu único preço livre de arbitragem é
+\begin{equation}
+\Pi_0(X)=\frac{1}{1+r}\,\mathbb E^{\mathbb Q}[X],
+\end{equation}
+para qualquer MME $\mathbb Q$. Se $X$ não é replicável, os preços livres de arbitragem formam o intervalo $\big(\inf_{\mathbb Q}\mathbb E^{\mathbb Q}[X],\,\sup_{\mathbb Q}\mathbb E^{\mathbb Q}[X]\big)/(1+r)$.
+\end{corolario}
+
+\subsection{O modelo binomial}
+
+\begin{proposicao}[Binomial de um período]\label{prop:binomial}
+Se $S_1\in\{uS_0,dS_0\}$ com $0<d<u$, o mercado com o ativo e a conta remunerada é livre de arbitragem se, e somente se, $d<1+r<u$. Nesse caso a MME é única,
+\begin{equation}
+q=\frac{1+r-d}{u-d},
+\end{equation}
+e o mercado é completo: um payoff $(X_u,X_d)$ é replicado por $\Delta=(X_u-X_d)/\big((u-d)S_0\big)$ unidades do ativo e $B=(uX_d-dX_u)/\big((u-d)(1+r)\big)$ na conta.
+\end{proposicao}
+
+\begin{proof}
+A condição \eqref{eq:mme} para o ativo é $qu+(1-q)d=1+r$, cuja solução é a expressão de $q$; ela está em $(0,1)$ se e somente se $d<1+r<u$, e o Teorema~\ref{teo:ftap1} conclui. A replicação resolve o sistema $\Delta uS_0+B(1+r)=X_u$, $\Delta dS_0+B(1+r)=X_d$.
+\end{proof}
+
+\begin{definicao}[Árvore binomial de $n$ períodos]
+Em cada período, $S_{t+1}=uS_t$ com probabilidade $q$ e $S_{t+1}=dS_t$ com probabilidade $1-q$, independentemente do passado. Após $n$ períodos, $S_n=S_0u^jd^{n-j}$, com $j$ binomial. Por indução para trás, o preço de um payoff europeu $f(S_n)$ é
+\begin{equation}\label{eq:binom-n}
+\Pi_0=\frac{1}{(1+r)^n}\sum_{j=0}^n\binom nj q^j(1-q)^{n-j}f\big(S_0u^jd^{n-j}\big).
+\end{equation}
+\end{definicao}
+
+\begin{observacao}[Martingais e mudança de numerário]
+Em \eqref{eq:mme}, o preço descontado $S_t/(1+r)^t$ é um $\mathbb Q$-martingal. A conta remunerada é o \emph{numerário}. Qualquer ativo de preço positivo pode servir de numerário, com uma medida própria; essa ideia, retomada no Capítulo~17, é a base das medidas forward \citep{gemanetal1995}.
+\end{observacao}
+
+\begin{observacao}[Preços de Arrow-Debreu]
+O \emph{título de Arrow-Debreu} do estado $k$ paga $1$ se $\omega_k$ ocorre e $0$ caso contrário \citep{arrow1964}. Seu preço é $\lambda_k=\mathbb Q(\omega_k)/(1+r)$, e qualquer payoff vale $\sum_k\lambda_kX(\omega_k)$. Os preços de Arrow-Debreu reaparecem nas árvores dos Capítulos 18 e 20, onde são calculados por indução para a frente.
+\end{observacao}

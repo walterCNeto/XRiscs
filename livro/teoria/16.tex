@@ -1,0 +1,50 @@
+\section{Fundamentos teóricos}
+
+\subsection{O P\&L do hedge delta}
+
+Considere quem vende uma opção por um preço calculado com volatilidade $\sigma_h$ e faz hedge contínuo com o delta de Black-Scholes nessa mesma volatilidade, enquanto o ativo segue $dS_t=\mu_tS_t\,dt+\sigma_tS_t\,dW_t$ com volatilidade realizada $\sigma_t$.
+
+\begin{proposicao}[Fórmula do P\&L de hedge]\label{prop:pl-hedge}
+O valor no vencimento da carteira (opção vendida, hedge e caixa), descontado, é
+\begin{equation}\label{eq:pl-hedge}
+\mathrm{P\&L}_T=\int_0^Te^{-rt}\,\tfrac12\,\Gamma_t\,S_t^2\,\big(\sigma_h^2-\sigma_t^2\big)\,dt,
+\end{equation}
+com $\Gamma_t$ a gama de Black-Scholes calculada com $\sigma_h$ \citep{elkaroui1998}.
+\end{proposicao}
+
+\begin{proof}
+Seja $V$ o preço de Black-Scholes com $\sigma_h$. Por Itô com a dinâmica verdadeira, $dV=\big(\partial_tV+\tfrac12\sigma_t^2S^2\Gamma\big)dt+\Delta\,dS$. A EDP com $\sigma_h$ dá $\partial_tV=rV-rS\Delta-\tfrac12\sigma_h^2S^2\Gamma$. A carteira $-V+\Delta S+(V-\Delta S)$ em caixa tem variação descontada $e^{-rt}\tfrac12S^2\Gamma(\sigma_h^2-\sigma_t^2)\,dt$; integrando obtém-se \eqref{eq:pl-hedge}.
+\end{proof}
+
+\begin{corolario}
+Se $\sigma_t=\sigma_h$, o P\&L é zero em todas as trajetórias: a replicação é perfeita. Se $\sigma_h>\sigma_t$ em todo instante, o vendedor ganha com certeza; mas o tamanho do ganho depende da trajetória, através de $\Gamma_tS_t^2$, que é máximo perto do strike e do vencimento.
+\end{corolario}
+
+\subsection{Hedge em tempo discreto}
+
+\begin{proposicao}[Erro de hedge discreto]
+Com rebalanceamento em $N$ datas igualmente espaçadas e $\sigma_t=\sigma_h=\sigma$, o P\&L tem média aproximadamente zero e desvio-padrão
+\begin{equation}
+\mathrm{dp}(\mathrm{P\&L})\approx\sqrt{\frac{\pi}{4}}\;\frac{\mathcal V\,\sigma}{\sqrt N},
+\end{equation}
+onde $\mathcal V$ é o vega da opção na data inicial.
+\end{proposicao}
+
+\begin{proof}[Esboço]
+Em cada intervalo, o erro local é $\tfrac12\Gamma S^2\big(\sigma^2\Delta t-(\Delta S/S)^2\big)$, de média zero e variância $\tfrac12\Gamma^2S^4\sigma^4\Delta t^2$. Somando sobre os intervalos e aproximando $\mathbb E\int\Gamma^2S^4\,dt$ com a densidade lognormal, chega-se à expressão, que relaciona o resultado ao vega pela identidade $\mathcal V=\Gamma S^2\sigma T$ \citep{wilmott2006}.
+\end{proof}
+
+O erro cai com $N^{-1/2}$: dobrar a precisão exige quadruplicar a frequência de rebalanceamento, e os custos de transação crescem na mesma proporção. Esse é o conflito estudado por \citet{leland1985}.
+
+\subsection{Mercados incompletos}
+
+\begin{observacao}[Volatilidade estocástica e saltos]
+No BCC97, o ativo sozinho não replica uma opção: há riscos de variância e de salto não negociados. O hedge delta neutraliza apenas a exposição a $dW^1$; os resíduos vêm dos termos em $dv$ e $dN$. Acrescentar uma segunda opção como instrumento de hedge permite neutralizar também o vega:
+\begin{equation}
+\Pi=V-\Delta S-\eta\,U,\qquad \eta=\frac{\partial_vV}{\partial_vU},\quad \Delta=\partial_SV-\eta\,\partial_SU.
+\end{equation}
+\end{observacao}
+
+\begin{observacao}[Média do P\&L]
+Sob $\mathbb Q$, qualquer estratégia autofinanciada descontada é um martingal e tem P\&L esperado zero. Um P\&L médio diferente de zero numa simulação sob $\mathbb Q$ indica viés do simulador (deriva incorreta, saltos sem compensador) ou do estimador do delta, não uma oportunidade de lucro.
+\end{observacao}

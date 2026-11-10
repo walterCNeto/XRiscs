@@ -7,14 +7,14 @@ parts:
       - file: 02_fatos_estilizados
       - file: 03_neutralidade_discreto
       - file: 04_tempo_continuo
-  - caption: Modelos e métodos de avaliação
+  - caption: Modelos e métodos de precificação
     chapters:
       - file: 05_bsm
       - file: 06_crr
       - file: 07_fourier_lewis
       - file: 08_fourier_fft
       - file: 09_americanas_lsm
-  - caption: Avaliação baseada em mercado
+  - caption: Precificação calibrada ao mercado
     chapters:
       - file: 10_merton_mercado
       - file: 11_bcc97

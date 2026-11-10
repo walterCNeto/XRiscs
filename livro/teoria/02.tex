@@ -1,0 +1,53 @@
+\section{Fundamentos teóricos}
+
+\subsection{Retornos e seus momentos}
+
+\begin{definicao}[Retornos]
+Para preços $S_0,S_1,\dots$ observados em datas igualmente espaçadas, o \emph{retorno simples} é $R_t=S_t/S_{t-1}-1$ e o \emph{log-retorno} é $r_t=\ln(S_t/S_{t-1})$. Log-retornos são aditivos no tempo: $\ln(S_T/S_0)=\sum_{t=1}^T r_t$.
+\end{definicao}
+
+\begin{definicao}[Assimetria e curtose]
+Para uma variável $X$ com média $\mu$ e desvio-padrão $\sigma$, a \emph{assimetria} é $\mathbb E[(X-\mu)^3]/\sigma^3$ e a \emph{curtose} é $\kappa=\mathbb E[(X-\mu)^4]/\sigma^4$. Para a normal, assimetria $0$ e $\kappa=3$; o \emph{excesso de curtose} é $\kappa-3$.
+\end{definicao}
+
+\begin{definicao}[Volatilidade realizada]
+Com $n$ log-retornos por ano, a volatilidade realizada anualizada é $\hat\sigma=\sqrt{n}\,\mathrm{dp}(r_t)$. A regra da raiz do tempo supõe retornos não correlacionados e de variância constante: $\mathrm{Var}\big(\sum_{t=1}^h r_t\big)=h\,\mathrm{Var}(r_t)$.
+\end{definicao}
+
+\subsection{Stylized facts}
+
+Os stylized facts são regularidades estatísticas observadas em praticamente todos os mercados líquidos \citep{cont2001}. Os que importam para a avaliação de opções são:
+\begin{enumerate}
+\item \textbf{Caudas pesadas:} o excesso de curtose dos log-retornos diários é positivo e grande; a normal subestima a frequência de movimentos extremos.
+\item \textbf{Assimetria de ganhos e perdas:} em índices de ações, grandes quedas são mais frequentes que grandes altas.
+\item \textbf{Agrupamento de volatilidade:} $\mathrm{corr}(|r_t|,|r_{t+h}|)$ é positiva e decai lentamente em $h$, embora $\mathrm{corr}(r_t,r_{t+h})\approx0$.
+\item \textbf{Efeito alavancagem:} $\mathrm{corr}(r_t,\sigma^2_{t+h})<0$; quedas antecedem aumentos de volatilidade.
+\item \textbf{Normalidade agregada:} em horizontes longos, a distribuição dos log-retornos se aproxima da normal.
+\end{enumerate}
+Cada fato motiva um ingrediente dos modelos dos capítulos seguintes: saltos (caudas e assimetria de curto prazo), volatilidade estocástica (agrupamento) e correlação negativa entre preço e volatilidade (alavancagem).
+
+\subsection{Volatilidade implícita}
+
+Seja $C^{\mathrm{BS}}(\sigma)=C^{\mathrm{BS}}(S_0,K,T,r,\sigma)$ o preço de Black-Scholes de uma call europeia (Capítulo~5).
+
+\begin{proposicao}[Existência e unicidade da volatilidade implícita]\label{prop:volimp}
+Para $S_0,K,T>0$, a função $\sigma\mapsto C^{\mathrm{BS}}(\sigma)$ é contínua e estritamente crescente em $(0,\infty)$, com
+\begin{equation}
+\lim_{\sigma\downarrow0}C^{\mathrm{BS}}(\sigma)=\big(S_0-Ke^{-rT}\big)^+,\qquad \lim_{\sigma\to\infty}C^{\mathrm{BS}}(\sigma)=S_0.
+\end{equation}
+Logo, para todo preço $C$ no intervalo de não arbitragem $\big((S_0-Ke^{-rT})^+,\,S_0\big)$ existe um único $\sigma_{\mathrm{imp}}>0$ com $C^{\mathrm{BS}}(\sigma_{\mathrm{imp}})=C$.
+\end{proposicao}
+
+\begin{proof}
+A derivada é o vega, $\partial C^{\mathrm{BS}}/\partial\sigma=S_0\sqrt T\,\phi(d_1)>0$, onde $\phi$ é a densidade normal; logo a função é estritamente crescente. Quando $\sigma\downarrow0$, $d_{1},d_2\to\pm\infty$ conforme o sinal de $\ln(S_0/K)+rT$, e o preço tende ao valor intrínseco descontado. Quando $\sigma\to\infty$, $d_1\to+\infty$ e $d_2\to-\infty$, e o preço tende a $S_0$. O resultado segue do teorema do valor intermediário.
+\end{proof}
+
+\begin{definicao}[Smile e superfície de volatilidade]
+A função $(K,T)\mapsto\sigma_{\mathrm{imp}}(K,T)$ obtida invertendo preços de mercado é a \emph{superfície de volatilidade implícita}; um corte com $T$ fixo é o \emph{smile}. É comum parametrizá-la pela \emph{log-moneyness} $m=\ln(K/F_T)$, com $F_T=S_0e^{rT}$.
+\end{definicao}
+
+\begin{observacao}
+Se o modelo de Black-Scholes fosse correto, a superfície seria plana. O skew e a convexidade do smile são a forma como o mercado de opções incorpora os stylized facts acima. A vol implícita é uma \emph{unidade de preço}, não uma estimativa da volatilidade futura.
+\end{observacao}
+
+Numericamente, a inversão usa Newton–Raphson, $\sigma_{k+1}=\sigma_k-\big(C^{\mathrm{BS}}(\sigma_k)-C\big)/\mathrm{vega}(\sigma_k)$, que converge quadraticamente perto da raiz; longe do dinheiro o vega é pequeno e métodos de intervalo (bissecção, Brent) são mais robustos \citep{gatheral2006}.

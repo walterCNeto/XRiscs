@@ -1,0 +1,53 @@
+\section{Fundamentos teóricos}
+
+\subsection{O método de Carr e Madan}
+
+O preço da call como função do log-strike $k=\ln K$, $C_T(k)=e^{-rT}\mathbb E^{\mathbb Q}[(e^{s_T}-e^k)^+]$ com $s_T=\ln S_T$, não é integrável em $k$: tende a $S_0$ quando $k\to-\infty$. Carr e Madan amortecem a função antes de transformá-la \citep{carrmadan1999}.
+
+\begin{proposicao}[Transformada da call amortecida]
+Para $\alpha>0$ com $\mathbb E[S_T^{\alpha+1}]<\infty$, a função $c_T(k)=e^{\alpha k}C_T(k)$ é integrável, e sua transformada $\psi_T(v)=\int e^{ivk}c_T(k)\,dk$ vale
+\begin{equation}\label{eq:carr-madan}
+\psi_T(v)=\frac{e^{-rT}\,\varphi_{s_T}\big(v-(\alpha+1)i\big)}{\alpha^2+\alpha-v^2+i(2\alpha+1)v}.
+\end{equation}
+Logo
+\begin{equation}
+C_T(k)=\frac{e^{-\alpha k}}{\pi}\int_0^\infty\operatorname{Re}\big[e^{-ivk}\psi_T(v)\big]\,dv.
+\end{equation}
+\end{proposicao}
+
+\begin{proof}
+Troque a ordem das integrais (Fubini, justificado pela condição de momento):
+$\psi_T(v)=e^{-rT}\int q(s)\int_{-\infty}^{s}e^{(\alpha+iv)k}(e^s-e^k)\,dk\,ds$, onde $q$ é a densidade de $s_T$. A integral interna vale $e^{(\alpha+1+iv)s}\big/\big((\alpha+iv)(\alpha+1+iv)\big)$, e a integral externa é $\varphi_{s_T}(v-(\alpha+1)i)$. O denominador expandido é \eqref{eq:carr-madan}. A inversão usa que $c_T$ é real, de modo que $\psi_T(-v)=\overline{\psi_T(v)}$.
+\end{proof}
+
+\begin{observacao}[Escolha de $\alpha$]
+$\alpha$ grande demais viola a condição de momento ou amplifica erros numéricos em $e^{-\alpha k}$; pequeno demais deixa $c_T$ pouco amortecida e a integral mal condicionada. Valores entre $1$ e $2$ funcionam para os modelos do livro. Para opções muito fora do dinheiro, Carr e Madan propõem uma variante com $\sinh$ que evita o cancelamento.
+\end{observacao}
+
+\subsection{Da integral à FFT}
+
+\begin{definicao}[Transformada discreta de Fourier]
+Para $x\in\mathbb C^N$, a DFT é $X_m=\sum_{j=0}^{N-1}e^{-2\pi ijm/N}x_j$, $m=0,\dots,N-1$. A FFT calcula todos os $X_m$ em $O(N\log N)$ operações \citep{cooleytukey1965}, contra $O(N^2)$ da soma direta.
+\end{definicao}
+
+\begin{proposicao}[Discretização de Carr-Madan]
+Com a malha $v_j=\eta j$ e a malha de log-strikes $k_m=-b+\lambda m$, $m=0,\dots,N-1$, a regra de quadratura com pesos $w_j$ dá
+\begin{equation}
+C_T(k_m)\approx\frac{e^{-\alpha k_m}}{\pi}\operatorname{Re}\sum_{j=0}^{N-1}e^{-2\pi ijm/N}\,e^{ibv_j}\psi_T(v_j)\,\eta\,w_j,
+\end{equation}
+que é uma DFT se, e somente se, $\lambda\eta=2\pi/N$. Com $b=N\lambda/2$, a malha de strikes fica centrada no dinheiro.
+\end{proposicao}
+
+A restrição $\lambda\eta=2\pi/N$ é o compromisso central do método: uma malha fina em $v$ (pequeno $\eta$, integral precisa) força uma malha grossa em $k$ (strikes espaçados), e vice-versa. Com pesos de Simpson, $w_j=\tfrac13\big(3+(-1)^{j+1}-\delta_{j0}\big)$, o erro de quadratura cai de $O(\eta^2)$ para $O(\eta^4)$ em integrandos suaves.
+
+\subsection{Convolução e exercício antecipado}
+
+\begin{proposicao}[Valor de continuação como convolução]
+Num modelo com incrementos independentes do log-preço (Lévy), o valor de continuação de uma opção bermudana entre duas datas de exercício é
+\begin{equation}
+C(t_m,x)=e^{-r\Delta t}\int V(t_{m+1},x+y)\,f(y)\,dy,
+\end{equation}
+uma convolução da função valor com a densidade $f$ do incremento. No domínio de Fourier, a convolução vira produto: $\widehat C=e^{-r\Delta t}\,\widehat V\cdot\overline{\varphi}$, calculável com duas FFTs por data \citep{lordetal2008}.
+\end{proposicao}
+
+Esse é o método de convolução (CONV): ele herda a velocidade da FFT e trata o exercício antecipado tomando o máximo entre o valor de continuação e o payoff em cada data. A precisão depende do amortecimento, do tamanho do domínio e da malha, os mesmos parâmetros de Carr-Madan.

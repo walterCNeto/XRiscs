@@ -1,0 +1,63 @@
+\section{Fundamentos teóricos}
+
+\subsection{O estimador de Monte Carlo}
+
+\begin{proposicao}[Lei forte e teorema central do limite]
+Sejam $Y_1,\dots,Y_I$ cópias i.i.d. de $Y=e^{-rT}h(S_T)$ com $\mathbb E[Y^2]<\infty$, e $\hat Y_I=\frac1I\sum_iY_i$. Então $\hat Y_I\to\mathbb E[Y]$ quase certamente e
+\begin{equation}
+\sqrt I\,\big(\hat Y_I-\mathbb E[Y]\big)\Rightarrow N\big(0,\mathrm{Var}(Y)\big).
+\end{equation}
+O \emph{erro-padrão} $\hat s/\sqrt I$, com $\hat s$ o desvio-padrão amostral, dá intervalos de confiança assintóticos $\hat Y_I\pm1{,}96\,\hat s/\sqrt I$.
+\end{proposicao}
+
+A taxa $I^{-1/2}$ não depende da dimensão do problema, o que torna o método competitivo para produtos dependentes de trajetória e modelos multifatoriais \citep{boylebroadieglasserman1997,glasserman2004}.
+
+\subsection{Discretização de EDEs}
+
+\begin{definicao}[Esquema de Euler]
+Para $dX_t=a(X_t)\,dt+b(X_t)\,dW_t$ e passo $\Delta t$, o esquema de Euler-Maruyama é $\hat X_{k+1}=\hat X_k+a(\hat X_k)\Delta t+b(\hat X_k)\sqrt{\Delta t}\,z_{k+1}$, com $z_k\sim N(0,1)$ i.i.d.
+\end{definicao}
+
+\begin{teorema}[Ordens de convergência]
+Sob condições de Lipschitz e crescimento linear sobre $a$ e $b$, o esquema de Euler tem ordem forte $\tfrac12$, $\mathbb E|\hat X_T-X_T|=O(\Delta t^{1/2})$, e, para $g$ suave, ordem fraca $1$, $|\mathbb E\,g(\hat X_T)-\mathbb E\,g(X_T)|=O(\Delta t)$ \citep{kloedenplaten1992}.
+\end{teorema}
+
+Para precificar opções importa a ordem \emph{fraca}. O erro total de Monte Carlo combina o viés de discretização, $O(\Delta t)$, e o erro estatístico, $O(I^{-1/2})$; com custo proporcional a $I/\Delta t$, o equilíbrio ótimo é $I\propto\Delta t^{-2}$.
+
+\subsection{O processo de raiz quadrada em tempo discreto}
+
+O processo \eqref{eq:cir} não satisfaz a condição de Lipschitz em $0$, e o esquema de Euler pode produzir valores negativos, para os quais $\sqrt{x}$ não está definido.
+
+\begin{definicao}[Esquemas corrigidos]
+Com $f_1,f_2,f_3$ funções de correção, os esquemas de Euler corrigidos são
+\begin{equation}
+\tilde x_{k+1}=f_1(\tilde x_k)+\kappa\big(\theta-f_2(\tilde x_k)\big)\Delta t+\sigma\sqrt{f_3(\tilde x_k)}\sqrt{\Delta t}\,z_{k+1},\qquad x_{k+1}=f_3(\tilde x_{k+1}).
+\end{equation}
+\emph{Full truncation} usa $f_1=\mathrm{id}$, $f_2=f_3=x^+$; \emph{reflection} usa $f_1=f_2=f_3=|x|$ \citep{lordetal2010}.
+\end{definicao}
+
+\begin{proposicao}[Esquema exato]
+Pela Proposição~\ref{prop:cir}, $x_{k+1}$ pode ser amostrado exatamente da lei qui-quadrado não central condicional a $x_k$. Não há viés de discretização em $x$; o custo é maior, e funções integradas como $\int x_t\,dt$ ainda precisam de aproximação \citep{broadiekaya2006,andersen2008}.
+\end{proposicao}
+
+\subsection{Redução de variância}
+
+\begin{proposicao}[Variáveis antitéticas]
+Se $Y=g(z)$ e $Y'=g(-z)$, então $\mathrm{Var}\big(\tfrac{Y+Y'}2\big)=\tfrac12\mathrm{Var}(Y)\big(1+\mathrm{corr}(Y,Y')\big)$. O ganho existe se $g$ é monótona, pois então $\mathrm{corr}(Y,Y')\le0$.
+\end{proposicao}
+
+\begin{proposicao}[Variável de controle]\label{prop:cv}
+Seja $X$ com $\mathbb E[X]$ conhecido. Para $Y_\beta=Y-\beta(X-\mathbb E[X])$, $\mathbb E[Y_\beta]=\mathbb E[Y]$ e
+\begin{equation}
+\mathrm{Var}(Y_\beta)=\mathrm{Var}(Y)-2\beta\,\mathrm{Cov}(X,Y)+\beta^2\mathrm{Var}(X),
+\end{equation}
+minimizada em $\beta^*=\mathrm{Cov}(X,Y)/\mathrm{Var}(X)$, onde vale $\mathrm{Var}(Y_{\beta^*})=(1-\rho_{XY}^2)\,\mathrm{Var}(Y)$.
+\end{proposicao}
+
+\begin{proof}
+A expressão da variância é direta; é uma parábola em $\beta$ com mínimo em $\beta^*$. Substituindo, $\mathrm{Var}(Y)-\mathrm{Cov}(X,Y)^2/\mathrm{Var}(X)=(1-\rho_{XY}^2)\mathrm{Var}(Y)$.
+\end{proof}
+
+\begin{definicao}[Moment matching e martingal empírica]
+O \emph{moment matching} normaliza os choques simulados para média amostral $0$ e variância $1$. A \emph{martingal empírica} ajusta as trajetórias para que a média amostral de $e^{-rt}S_t$ seja exatamente $S_0$ em cada data \citep{duansimonato1998}. Ambos reduzem variância, mas introduzem dependência entre trajetórias, e o erro-padrão usual deixa de ser exato.
+\end{definicao}

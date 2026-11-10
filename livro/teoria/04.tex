@@ -1,0 +1,86 @@
+\section{Fundamentos teóricos}
+
+Fixamos um espaço de probabilidade $(\Omega,\mathcal F,\mathbb P)$ com uma filtração $(\mathcal F_t)_{t\ge0}$ que satisfaz as condições usuais. As referências para esta seção são \citet{shreve2004b}, \citet{karatzasshreve1991} e \citet{oksendal2003}.
+
+\subsection{Movimento browniano}
+
+\begin{definicao}[Movimento browniano]
+Um processo $(W_t)_{t\ge0}$ adaptado é um \emph{movimento browniano padrão} se (i) $W_0=0$; (ii) para $0\le s<t$, o incremento $W_t-W_s$ é independente de $\mathcal F_s$; (iii) $W_t-W_s\sim N(0,t-s)$; (iv) as trajetórias $t\mapsto W_t(\omega)$ são contínuas.
+\end{definicao}
+
+\begin{proposicao}[Limite do passeio aleatório]
+Seja $X_1,X_2,\dots$ i.i.d. com $\mathbb P(X_i=\pm1)=\tfrac12$ e $W^{(n)}_t=n^{-1/2}\sum_{i\le\lfloor nt\rfloor}X_i$. Para cada $t$, $W^{(n)}_t\Rightarrow N(0,t)$, e o processo $W^{(n)}$ converge em distribuição para o movimento browniano (teorema de Donsker).
+\end{proposicao}
+
+\begin{proposicao}[Variação quadrática]\label{prop:vq}
+Para uma partição $0=t_0<\dots<t_n=t$ com malha $\|\pi\|=\max_k(t_{k+1}-t_k)\to0$,
+\begin{equation}
+\sum_{k=0}^{n-1}\big(W_{t_{k+1}}-W_{t_k}\big)^2\ \xrightarrow{L^2}\ t.
+\end{equation}
+\end{proposicao}
+
+\begin{proof}
+Seja $Q_\pi$ a soma. Como $\mathbb E[(\Delta W_k)^2]=\Delta t_k$, $\mathbb E[Q_\pi]=t$. Pela independência dos incrementos e $\mathrm{Var}\big((\Delta W_k)^2\big)=2\Delta t_k^2$, $\mathrm{Var}(Q_\pi)=2\sum_k\Delta t_k^2\le2\|\pi\|\,t\to0$.
+\end{proof}
+
+A proposição é a origem da regra heurística $(dW_t)^2=dt$. Ela implica que as trajetórias brownianas têm variação total infinita em qualquer intervalo, e por isso a integral $\int H\,dW$ não pode ser definida trajetória a trajetória como uma integral de Stieltjes.
+
+\subsection{Integral de Itô}
+
+\begin{definicao}[Integral de Itô]
+Para um processo \emph{simples} $H_t=\sum_k\xi_k\mathbf 1_{(t_k,t_{k+1}]}(t)$, com $\xi_k$ limitada e $\mathcal F_{t_k}$-mensurável, define-se $\int_0^TH_t\,dW_t=\sum_k\xi_k(W_{t_{k+1}}-W_{t_k})$. Para $H$ adaptado com $\mathbb E\int_0^TH_t^2\,dt<\infty$, a integral é o limite em $L^2$ das integrais de processos simples que aproximam $H$.
+\end{definicao}
+
+\begin{teorema}[Propriedades da integral de Itô]
+Para $H$ como acima, $I_t=\int_0^tH_s\,dW_s$ é um martingal contínuo com $\mathbb E[I_t]=0$ e vale a \emph{isometria de Itô}
+\begin{equation}
+\mathbb E\Big[\Big(\int_0^tH_s\,dW_s\Big)^2\Big]=\mathbb E\int_0^tH_s^2\,ds.
+\end{equation}
+\end{teorema}
+
+O integrando é avaliado no \emph{início} de cada intervalo. É essa escolha, e não outra, que torna a integral um martingal, e ela corresponde à realidade financeira: a posição $\xi_k$ é decidida antes de se conhecer o movimento seguinte.
+
+\subsection{Fórmula de Itô}
+
+\begin{definicao}[Processo de Itô]
+Um processo de Itô é $X_t=X_0+\int_0^t\mu_s\,ds+\int_0^t\sigma_s\,dW_s$, que se escreve $dX_t=\mu_t\,dt+\sigma_t\,dW_t$; sua variação quadrática é $d\langle X\rangle_t=\sigma_t^2\,dt$.
+\end{definicao}
+
+\begin{teorema}[Fórmula de Itô]\label{teo:ito}
+Se $f\in C^{1,2}$, então
+\begin{equation}\label{eq:ito}
+df(t,X_t)=\Big(\partial_tf+\mu_t\,\partial_xf+\tfrac12\sigma_t^2\,\partial_{xx}f\Big)dt+\sigma_t\,\partial_xf\,dW_t.
+\end{equation}
+\end{teorema}
+
+\begin{proof}[Esboço]
+Expanda $f$ por Taylor até a segunda ordem em cada intervalo de uma partição. Os termos $(\Delta t)^2$ e $\Delta t\,\Delta W$ somam zero no limite; os termos $(\Delta W)^2$ somam $\int\sigma^2\,\partial_{xx}f\,dt$ pela Proposição~\ref{prop:vq}.
+\end{proof}
+
+\begin{exemplo}[Movimento browniano geométrico]
+A EDE $dS_t=\mu S_t\,dt+\sigma S_t\,dW_t$ tem solução única
+\begin{equation}
+S_t=S_0\exp\Big(\big(\mu-\tfrac12\sigma^2\big)t+\sigma W_t\Big).
+\end{equation}
+Basta aplicar \eqref{eq:ito} a $f(x)=\ln x$: $d\ln S_t=(\mu-\tfrac12\sigma^2)\,dt+\sigma\,dW_t$. O termo $-\tfrac12\sigma^2$ é a correção de Itô; ela garante $\mathbb E[S_t]=S_0e^{\mu t}$.
+\end{exemplo}
+
+\subsection{Mudança de medida}
+
+\begin{teorema}[Girsanov]\label{teo:girsanov}
+Seja $\gamma$ adaptado com $\mathbb E\big[\exp\big(\tfrac12\int_0^T\gamma_s^2ds\big)\big]<\infty$ (condição de Novikov) e
+\begin{equation}
+Z_T=\exp\Big(-\int_0^T\gamma_s\,dW_s-\tfrac12\int_0^T\gamma_s^2\,ds\Big).
+\end{equation}
+Então $\mathbb E[Z_T]=1$, $d\mathbb Q=Z_T\,d\mathbb P$ define uma medida equivalente, e $\widetilde W_t=W_t+\int_0^t\gamma_s\,ds$ é um movimento browniano sob $\mathbb Q$.
+\end{teorema}
+
+\begin{corolario}[Medida neutra ao risco no modelo lognormal]
+No movimento browniano geométrico com taxa livre de risco $r$, escolha o \emph{preço de mercado do risco} $\gamma=(\mu-r)/\sigma$. Sob a $\mathbb Q$ do Teorema~\ref{teo:girsanov}, $dS_t=rS_t\,dt+\sigma S_t\,d\widetilde W_t$, e o preço descontado $e^{-rt}S_t$ é um $\mathbb Q$-martingal.
+\end{corolario}
+
+\begin{teorema}[Representação de martingais]
+Se $(\mathcal F_t)$ é a filtração gerada por $W$ e $M$ é um martingal de quadrado integrável, existe $H$ adaptado com $M_t=M_0+\int_0^tH_s\,dW_s$.
+\end{teorema}
+
+A representação de martingais é a versão contínua do Segundo Teorema Fundamental: no modelo de um fator browniano, todo payoff de quadrado integrável é replicável, e o integrando $H$ dá a estratégia de hedge \citep{harrisonpliska1981}.

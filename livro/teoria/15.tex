@@ -1,0 +1,43 @@
+\section{Fundamentos teóricos}
+
+\subsection{Discretização do sistema BCC97}
+
+Simulamos $(r,v,\ln S)$ numa malha $t_k=k\Delta t$. Os choques são construídos a partir de normais independentes $\varepsilon^1,\varepsilon^2,\varepsilon^3$ pela decomposição de Cholesky da matriz de correlação:
+\begin{equation}
+z^1=\varepsilon^1,\qquad z^2=\rho\,\varepsilon^1+\sqrt{1-\rho^2}\,\varepsilon^2,\qquad z^3=\varepsilon^3.
+\end{equation}
+
+\begin{definicao}[Esquema]
+Com $\tilde x^+=\max(\tilde x,0)$ (full truncation) para $v$ e $r$,
+\begin{align}
+\tilde v_{k+1}&=\tilde v_k+\kappa_v(\theta_v-\tilde v_k^+)\Delta t+\sigma_v\sqrt{\tilde v_k^+}\sqrt{\Delta t}\,z^2_{k+1},\\
+\ln S_{k+1}&=\ln S_k+\Big(\bar r_k-r_J-\tfrac12v_k\Big)\Delta t+\sqrt{v_k}\sqrt{\Delta t}\,z^1_{k+1}+\sum_{\ell=1}^{\Delta N_{k+1}}\ln(1+J_\ell),\label{eq:bcc-logS}
+\end{align}
+onde $v_k=\tilde v_k^+$ é a variância \emph{no início} do passo e $\bar r_k=\tfrac12(r_k+r_{k+1})$ é a média trapezoidal da short rate.
+\end{definicao}
+
+\begin{observacao}[Não antecipação]
+Em \eqref{eq:bcc-logS}, usar $v_{k+1}$ no lugar de $v_k$ faria a variância do passo depender do choque $z^2_{k+1}$, correlacionado com $z^1_{k+1}$. Como $\sqrt{v_{k+1}}\approx\sqrt{v_k}+\tfrac12\sigma_v\sqrt{\Delta t}\,z^2_{k+1}$, o incremento $\sqrt{v_{k+1}}\sqrt{\Delta t}\,z^1_{k+1}$ teria média $\approx\tfrac12\rho\sigma_v\Delta t$. Somados os $T/\Delta t$ passos, surge uma deriva espúria de $\tfrac12\rho\sigma_vT$ no log-preço, que não desaparece quando $\Delta t\to0$; o preço descontado deixa de ser martingal. A integral de Itô exige integrandos avaliados no início do intervalo.
+\end{observacao}
+
+\subsection{Saltos exatos}
+
+\begin{proposicao}[Passo exato dos saltos]
+Num passo, $\Delta N\sim\mathrm{Poisson}(\lambda\Delta t)$ e, dado $\Delta N=n$, $\sum_{\ell\le n}\ln(1+J_\ell)\sim N(n\mu_J,n\delta^2)$. Amostrar $(\Delta N,\sum\ln(1+J))$ dessa forma não tem erro de discretização, e a compensação $-r_J\Delta t$ garante $\mathbb E\big[\prod_\ell(1+J_\ell)\big]e^{-r_J\Delta t}=1$ em cada passo.
+\end{proposicao}
+
+\begin{proof}
+$\mathbb E\big[\prod_{\ell\le\Delta N}(1+J_\ell)\big]=\sum_n\frac{e^{-\lambda\Delta t}(\lambda\Delta t)^n}{n!}(1+\mathbb EJ)^n=e^{\lambda\Delta t\,\mathbb EJ}=e^{r_J\Delta t}$.
+\end{proof}
+
+Omitir o compensador soma uma deriva espúria $r_J$ ao índice: com saltos médios negativos, o preço descontado simulado decai, e as calls ficam baratas e as puts caras na mesma proporção.
+
+\subsection{Avaliação e desconto}
+
+\begin{proposicao}[Desconto com juros estocásticos]
+O preço de um payoff $H$ em $T$ é $\mathbb E^{\mathbb Q}\big[e^{-\int_0^Tr_s\,ds}H\big]$. Na simulação, o fator de desconto de cada trajetória é $\exp\big(-\sum_k\bar r_k\Delta t\big)$, e a média dos fatores de desconto estima $B(0,T)$, conhecido em forma fechada (Proposição~\ref{prop:cir-bond}): uma variável de controle natural.
+\end{proposicao}
+
+\begin{observacao}[Consistência com a fórmula fechada]
+Sem juros estocásticos ou com a aproximação do Capítulo~11, o preço europeu por simulação e o preço pela fórmula de Lewis devem coincidir dentro do erro de Monte Carlo mais o viés de discretização. Essa comparação é o teste básico de qualquer simulador antes de usá-lo em produtos sem fórmula, como as opções americanas, avaliadas aqui pelo LSM do Capítulo~9.
+\end{observacao}

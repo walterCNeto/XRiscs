@@ -1,0 +1,57 @@
+\section{Fundamentos teóricos}
+
+\subsection{A parametrização CRR e a convergência}
+
+\begin{definicao}[Árvore de Cox-Ross-Rubinstein]
+Divida $[0,T]$ em $M$ passos de tamanho $\Delta t=T/M$ e tome
+\begin{equation}
+u=e^{\sigma\sqrt{\Delta t}},\qquad d=1/u,\qquad q=\frac{e^{r\Delta t}-d}{u-d}.
+\end{equation}
+O preço no nó $(m,j)$, com $j$ altas em $m$ passos, é $S_{m,j}=S_0u^jd^{m-j}=S_0u^{2j-m}$. Pela Proposição~\ref{prop:binomial}, a árvore é livre de arbitragem se $d<e^{r\Delta t}<u$, o que vale para $\Delta t$ pequeno \citep{crr1979}.
+\end{definicao}
+
+\begin{proposicao}[Moment matching]
+Com a escolha acima, o log-retorno de um passo $X=\ln(S_{m+1}/S_m)$ satisfaz, sob $\mathbb Q$,
+\begin{equation}
+\mathbb E[X]=\big(r-\tfrac12\sigma^2\big)\Delta t+O(\Delta t^{3/2}),\qquad \mathrm{Var}(X)=\sigma^2\Delta t+O(\Delta t^2).
+\end{equation}
+\end{proposicao}
+
+\begin{proof}
+$X=\pm\sigma\sqrt{\Delta t}$ com probabilidades $q$ e $1-q$, logo $\mathbb E[X]=(2q-1)\sigma\sqrt{\Delta t}$ e $\mathrm{Var}(X)=4q(1-q)\sigma^2\Delta t$. Expandindo $e^{r\Delta t}$ e $e^{\pm\sigma\sqrt{\Delta t}}$ até a ordem $\Delta t$, $q=\tfrac12+\tfrac{(r-\sigma^2/2)}{2\sigma}\sqrt{\Delta t}+O(\Delta t)$, de onde seguem as duas expressões.
+\end{proof}
+
+\begin{teorema}[Convergência para Black-Scholes]\label{teo:crr-conv}
+Para um payoff europeu $h$ contínuo e de crescimento no máximo linear, o preço binomial \eqref{eq:binom-n} com a parametrização CRR converge para o preço de Black-Scholes quando $M\to\infty$.
+\end{teorema}
+
+\begin{proof}[Esboço]
+$\ln(S_M/S_0)$ é soma de $M$ variáveis i.i.d. com média e variância dadas pela proposição anterior. Pelo teorema central do limite de Lindeberg para arranjos triangulares, $\ln(S_M/S_0)\Rightarrow N\big((r-\tfrac12\sigma^2)T,\sigma^2T\big)$, que é a lei de $\ln(S_T/S_0)$ sob $\mathbb Q$ no modelo de Black-Scholes. A integrabilidade uniforme de $h(S_M)$ permite passar o limite para dentro da esperança.
+\end{proof}
+
+\begin{observacao}[Ordem e oscilação]
+Para a call europeia, o erro é $O(1/M)$, mas não monótono: ele oscila conforme a posição do strike em relação aos nós finais. Médias de árvores com $M$ e $M+1$ passos, ou o posicionamento de um nó no strike, suavizam a convergência.
+\end{observacao}
+
+\subsection{Exercício antecipado}
+
+\begin{definicao}[Opção americana na árvore]
+Uma opção americana de payoff $h$ pode ser exercida em qualquer nó. Seu valor é dado pela indução para trás
+\begin{equation}
+V_{M,j}=h(S_{M,j}),\qquad V_{m,j}=\max\Big\{h(S_{m,j}),\ e^{-r\Delta t}\big(qV_{m+1,j+1}+(1-q)V_{m+1,j}\big)\Big\}.
+\end{equation}
+\end{definicao}
+
+\begin{teorema}[Envelope de Snell]
+$V_{m}=\max_{\tau}\,\mathbb E^{\mathbb Q}\big[e^{-r(\tau-m)\Delta t}h(S_\tau)\,\big|\,\mathcal F_m\big]$, onde o máximo é sobre os tempos de parada $\tau\in\{m,\dots,M\}$. O processo descontado $e^{-rm\Delta t}V_m$ é o menor supermartingal que domina o payoff descontado, e $\tau^*=\min\{m:V_m=h(S_m)\}$ é um tempo de parada ótimo.
+\end{teorema}
+
+\begin{proposicao}[Call americana sem dividendos]
+Se $r\ge0$ e o ativo não paga dividendos, a call americana vale o mesmo que a europeia \citep{merton1973}.
+\end{proposicao}
+
+\begin{proof}
+Para $t<T$, $C^{\mathrm{eur}}_t\ge S_t-Ke^{-r(T-t)}\ge S_t-K$, pela paridade put-call e por $P\ge0$. Logo o valor de continuação sempre supera o de exercício, e nunca é ótimo exercer antes.
+\end{proof}
+
+Para a put, o exercício antecipado tem valor: quando $S$ é baixo, receber $K$ hoje e aplicar a $r$ vale mais que esperar. A região de exercício $\{S\le S^*(t)\}$ é delimitada pela \emph{fronteira de exercício} $S^*(t)$, crescente em $t$, com $S^*(T)=K$.

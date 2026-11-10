@@ -1,0 +1,62 @@
+\section{Fundamentos teóricos}
+
+\subsection{Estratégias autofinanciadas e a EDP}
+
+\begin{definicao}[Estratégia autofinanciada]
+Uma estratégia $(\Delta_t,\beta_t)$ em ações e conta remunerada $B_t=e^{rt}$ tem valor $V_t=\Delta_tS_t+\beta_tB_t$. Ela é \emph{autofinanciada} se $dV_t=\Delta_t\,dS_t+\beta_t\,dB_t$, isto é, se toda variação de valor vem de ganhos de mercado, sem aportes nem retiradas.
+\end{definicao}
+
+\begin{teorema}[Black-Scholes-Merton; \citealp{blackscholes1973,merton1973}]\label{teo:bsm}
+Suponha $dS_t=\mu S_t\,dt+\sigma S_t\,dW_t$, taxa $r$ constante e ausência de dividendos e custos. Seja $V(t,S)\in C^{1,2}$ o preço de um derivativo europeu de payoff $h(S_T)$. Se não há arbitragem, $V$ satisfaz
+\begin{equation}\label{eq:edp-bs}
+\partial_tV+rS\,\partial_SV+\tfrac12\sigma^2S^2\,\partial_{SS}V-rV=0,\qquad V(T,S)=h(S).
+\end{equation}
+\end{teorema}
+
+\begin{proof}
+Monte a carteira $\Pi=V-\Delta S$ com $\Delta=\partial_SV$. Pela fórmula de Itô,
+$d\Pi=\big(\partial_tV+\tfrac12\sigma^2S^2\partial_{SS}V\big)dt$, sem termo em $dW$: a carteira é localmente sem risco. Na ausência de arbitragem ela rende a taxa livre de risco, $d\Pi=r\Pi\,dt=r(V-S\partial_SV)\,dt$. Igualando as duas expressões obtém-se \eqref{eq:edp-bs}. Note que $\mu$ desaparece.
+\end{proof}
+
+\begin{teorema}[Feynman-Kac]\label{teo:fk}
+Sob condições de crescimento em $h$, a solução de \eqref{eq:edp-bs} é
+\begin{equation}
+V(t,S)=e^{-r(T-t)}\,\mathbb E^{\mathbb Q}\big[h(S_T)\,\big|\,S_t=S\big],\qquad dS_u=rS_u\,du+\sigma S_u\,d\widetilde W_u.
+\end{equation}
+\end{teorema}
+
+\begin{proof}[Esboço]
+Aplique Itô a $e^{-ru}V(u,S_u)$ sob $\mathbb Q$: a EDP anula o termo em $du$, e o processo é um martingal local; com as condições de crescimento ele é um martingal, e igualar seus valores em $t$ e em $T$ dá a fórmula.
+\end{proof}
+
+\subsection{A fórmula}
+
+\begin{proposicao}[Fórmula de Black-Scholes]
+Para a call europeia de strike $K$ e vencimento $T$, com $\tau=T-t$,
+\begin{gather}
+C(t,S)=S\,N(d_1)-Ke^{-r\tau}N(d_2),\\
+d_{1,2}=\frac{\ln(S/K)+(r\pm\tfrac12\sigma^2)\tau}{\sigma\sqrt\tau},
+\end{gather}
+e, pela paridade put-call, $P=Ke^{-r\tau}N(-d_2)-S\,N(-d_1)$.
+\end{proposicao}
+
+\begin{proof}
+Pelo Teorema~\ref{teo:fk}, $C=e^{-r\tau}\mathbb E^{\mathbb Q}[(S_T-K)^+]$ com $\ln S_T\sim N\big(\ln S+(r-\tfrac12\sigma^2)\tau,\sigma^2\tau\big)$. Escreva $\mathbb E[(S_T-K)^+]=\mathbb E[S_T\mathbf 1_{S_T>K}]-K\,\mathbb Q(S_T>K)$. O segundo termo é $K\,N(d_2)$. No primeiro, a mudança de medida com densidade $S_T/\mathbb E[S_T]$ (o próprio ativo como numerário) desloca a média do log em $\sigma^2\tau$ e dá $Se^{r\tau}N(d_1)$.
+\end{proof}
+
+\subsection{Gregas}
+
+\begin{proposicao}[Sensibilidades da call]
+Com $\phi$ a densidade normal padrão,
+\begin{align}
+\Delta&=\partial_SC=N(d_1), & \Gamma&=\partial_{SS}C=\frac{\phi(d_1)}{S\sigma\sqrt\tau},\\
+\mathcal V&=\partial_\sigma C=S\sqrt\tau\,\phi(d_1), & \rho&=\partial_rC=K\tau e^{-r\tau}N(d_2),\\
+\Theta&=\partial_tC=-\frac{S\phi(d_1)\sigma}{2\sqrt\tau}-rKe^{-r\tau}N(d_2).
+\end{align}
+\end{proposicao}
+
+A demonstração usa a identidade $S\,\phi(d_1)=Ke^{-r\tau}\phi(d_2)$, que elimina os termos que vêm de derivar $d_1$ e $d_2$. Substituindo as gregas em \eqref{eq:edp-bs} obtém-se a relação $\Theta+\tfrac12\sigma^2S^2\Gamma+rS\Delta-rC=0$: numa carteira com delta neutro, o ganho de \emph{theta} paga a convexidade (\emph{gamma}).
+
+\begin{observacao}[Hipóteses]
+O teorema supõe negociação contínua, sem custos, volatilidade constante e trajetórias contínuas. Cada hipótese é relaxada em capítulos posteriores: saltos (Capítulo 10), volatilidade estocástica e juros estocásticos (Capítulo 11), hedge discreto (Capítulo 16). Para custos de transação, veja \citet{leland1985}.
+\end{observacao}

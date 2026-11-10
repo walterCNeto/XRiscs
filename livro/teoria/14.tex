@@ -1,0 +1,47 @@
+\section{Fundamentos teóricos}
+
+\subsection{Problemas mal postos e regularização}
+
+\begin{definicao}[Problema bem posto]
+O problema de encontrar $\vartheta$ com $F(\vartheta)=y$ é \emph{bem posto} (Hadamard) se, para todo dado $y$ admissível, existe solução, ela é única e depende continuamente de $y$. Caso contrário, é \emph{mal posto}.
+\end{definicao}
+
+A calibração do Capítulo 13 é mal posta por falta de unicidade (vales de parâmetros quase equivalentes) e de estabilidade (ruído de alguns centavos nos preços move muito $\hat\vartheta$). A regularização troca o problema original por um próximo e bem posto \citep{englhankeneubauer1996}.
+
+\begin{definicao}[Regularização de Tikhonov]
+Dado um parâmetro de referência $\vartheta^0$ (por exemplo, a calibração da véspera) e $\alpha>0$,
+\begin{equation}\label{eq:tikhonov}
+\hat\vartheta_\alpha=\arg\min_{\vartheta\in\Theta}\ \Big\{\mathrm{EQM}(\vartheta)+\alpha\,\|\vartheta-\vartheta^0\|^2_W\Big\},
+\end{equation}
+com $\|x\|^2_W=x^\top Wx$ e $W$ diagonal positiva para pôr os parâmetros na mesma escala.
+\end{definicao}
+
+\begin{proposicao}[Efeito da penalidade]
+Se $\mathrm{EQM}$ é duas vezes diferenciável e $\nabla^2\mathrm{EQM}(\vartheta)\succeq-\mu I$ numa vizinhança convexa de $\vartheta^0$, então para $\alpha>\mu/(2\lambda_{\min}(W))$ o objetivo \eqref{eq:tikhonov} é fortemente convexo nessa vizinhança e tem, ali, um único minimizador, que depende continuamente dos dados.
+\end{proposicao}
+
+\begin{proof}
+A Hessiana do objetivo é $\nabla^2\mathrm{EQM}+2\alpha W\succeq(2\alpha\lambda_{\min}(W)-\mu)I\succ0$. Funções fortemente convexas têm minimizador único, e a estabilidade decorre do teorema da função implícita aplicado à condição de primeira ordem.
+\end{proof}
+
+\begin{observacao}[Escolha de $\alpha$]
+$\alpha$ grande demais prende o modelo em $\vartheta^0$ (viés); pequeno demais não estabiliza (variância). O \emph{princípio da discrepância} de Morozov escolhe o maior $\alpha$ cujo erro de ajuste ainda é comparável ao ruído dos dados, por exemplo à metade do spread de compra e venda.
+\end{observacao}
+
+\subsection{Identificação de saltos}
+
+\begin{proposicao}[Cumulantes]
+Para o log-retorno $X_T$ de um processo de Lévy, os cumulantes são lineares no prazo, $c_n(X_T)=T\,c_n(X_1)$. Em particular, a assimetria decai como $T^{-1/2}$ e o excesso de curtose como $T^{-1}$.
+\end{proposicao}
+
+A proposição explica por que o smile de prazos curtos é a principal fonte de informação sobre os saltos: com o prazo, a lei do log-retorno se aproxima da normal e o efeito dos saltos sobre as vols implícitas se dilui. Em Heston, ao contrário, a assimetria cresce com o prazo nos primeiros meses, porque a correlação precisa de tempo para agir \citep{gatheral2006}. Calibrar BCC97 a prazos curtos e longos ao mesmo tempo usa essa diferença para separar os dois mecanismos.
+
+\subsection{Calibração sequencial e conjunta}
+
+\begin{definicao}[Estratégias]
+Na \emph{calibração sequencial}, calibra-se primeiro um submodelo (por exemplo, Heston aos prazos longos) e, com seus parâmetros fixos, o bloco restante (saltos aos prazos curtos). Na \emph{calibração conjunta}, todos os parâmetros são ajustados juntos, usando o resultado sequencial como ponto de partida.
+\end{definicao}
+
+\begin{observacao}[Risco de modelo após a calibração]
+Mesmo bem calibrados, conjuntos de parâmetros diferentes dentro do vale de soluções quase ótimas dão preços diferentes para produtos que dependem de outros aspectos da lei conjunta, como a variância futura ou o smile a termo. Medir essa dispersão (recalibrando com restrições, como fixar $\kappa_v$ em valores alternativos) é uma forma direta de quantificar risco de modelo.
+\end{observacao}
